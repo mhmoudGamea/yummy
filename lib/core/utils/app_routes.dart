@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 // views imports
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
+import '../../features/admin/banners/presentation/views/banner_manage_view.dart';
 import '../../features/admin/login/presentation/views/admin_login_view.dart';
 import '../../features/admin/register/presentation/views/admin_register_view.dart';
 import '../../features/on_board/presentation/views/board_view.dart';
@@ -83,6 +84,10 @@ class AppRoutes {
       GoRoute(
         path: AdminHomeView.rn,
         builder: (context, state) => const AdminHomeView(),
+      ),
+      GoRoute(
+        path: BannerManageView.rn,
+        builder: (context, state) => const BannerManageView(),
       ),
     ],
   );

@@ -25,10 +25,10 @@ class CErrorWidget extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, size: 20, color: Colors.white),
-          const SizedBox(width: 5),
+          const SizedBox(width: 10),
           Flexible(
             child: Text(
-              'Sorry we have no banners for now for you.',
+              text,
               style: Styles.title14.copyWith(color: Colors.white),
             ),
           ),

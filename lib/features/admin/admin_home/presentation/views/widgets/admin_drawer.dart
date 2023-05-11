@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constants.dart';
+import '../../../../banners/presentation/views/banner_manage_view.dart';
 import 'drawer_image.dart';
 import 'drawer_item.dart';
 
@@ -25,7 +27,8 @@ class AdminDrawer extends StatelessWidget {
                   text: 'Banners',
                   icon: FontAwesomeIcons.flag,
                   onPress: () {
-                    // GoRouter.of(context).push(BannerManageView.rn);
+                    GoRouter.of(context).push(BannerManageView.rn);
+                    Scaffold.of(context).closeDrawer();
                   },
                 ),
                 DrawerItem(

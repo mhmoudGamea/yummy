@@ -17,9 +17,7 @@ class AdminRegisterView extends StatelessWidget {
       create: (context) => RegisterCubit(RegisterRepoImpl()),
       child: Scaffold(
         appBar: Helper.appBar(
-            context: context,
-            text: 'Yummy App Admin Dashboard',
-            bgColor: primaryColor),
+            context: context, text: 'Yummy App Admin', bgColor: primaryColor),
         body: const SafeArea(
           child: AdminRegisterViewBody(),
         ),

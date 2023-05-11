@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yummy/core/constants.dart';
 
 import '../../../../../core/utils/styles.dart';
@@ -13,24 +14,27 @@ class AdminHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // automaticallyImplyLeading: false,
-        // leading: Builder(
-        //   builder: (context) {
-        //     return IconButton(
-        //         onPressed: () {
-        //           Scaffold.of(context).openDrawer();
-        //         },
-        //         icon: const Icon(
-        //           Icons.menu_rounded,
-        //           size: 23,
-        //         ));
-        //   },
-        // ),
+        automaticallyImplyLeading: false,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              icon: const Icon(
+                FontAwesomeIcons.bars,
+                size: 20,
+                color: Colors.white,
+              ),
+            );
+          },
+        ),
         backgroundColor: primaryColor,
-        elevation: 1,
+        elevation: 2,
+        shadowColor: greyColor,
         centerTitle: true,
         title: Text(
-          'Admin Dashboard',
+          'Admin',
           style: Styles.title16.copyWith(color: Colors.white),
         ),
       ),

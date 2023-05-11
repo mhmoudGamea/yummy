@@ -16,6 +16,7 @@ class Helper {
     );
   }
 
+  // this appbar is used in loging and registration
   static AppBar appBar({
     required BuildContext context,
     required String text,
@@ -39,7 +40,7 @@ class Helper {
       ),
       title: Text(
         text,
-        style: Styles.title16.copyWith(color: textColor, letterSpacing: 0.2),
+        style: Styles.title15.copyWith(color: textColor, letterSpacing: 0.4),
       ),
     );
   }
