@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../../core/widgets/c_circle_loading.dart';
-import '../../../../../core/widgets/c_error_widget.dart';
+import '../../../../../../core/widgets/c_circle_loading.dart';
+import '../../../../../../core/widgets/c_error_widget.dart';
 import '../../model_views/banner_cubit/banner_cubit.dart';
 
 class CCurosalSlider extends StatelessWidget {

@@ -8,9 +8,9 @@ import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/core/widgets/tabs_view.dart';
 
-import '../../../../../../core/error/failure.dart';
-import '../../../../../../core/utils/styles.dart';
-import '../../../../../../core/widgets/c_text_button.dart';
+import '../../../../../../../core/error/failure.dart';
+import '../../../../../../../core/utils/styles.dart';
+import '../../../../../../../core/widgets/c_text_button.dart';
 
 part 'login_state.dart';
 

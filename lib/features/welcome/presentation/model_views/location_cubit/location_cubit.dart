@@ -8,11 +8,11 @@ import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/core/widgets/tabs_view.dart';
-import 'package:yummy/features/register/login/presentation/login_view.dart';
 import 'package:yummy/features/welcome/data/models/location_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../user/register/login/presentation/login_view.dart';
 import '../../../data/repos/location/location_repo.dart';
 import '../../views/map_view.dart';
 

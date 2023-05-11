@@ -9,7 +9,7 @@ import '../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../core/widgets/c_text_button.dart';
 import '../../../../admin/login/presentation/views/admin_login_view.dart';
 import '../../../../on_board/presentation/views/board_view.dart';
-import '../../../../register/login/presentation/login_view.dart';
+import '../../../../user/register/login/presentation/login_view.dart';
 import '../../model_views/location_cubit/location_cubit.dart';
 
 class WelcomeViewBody extends StatelessWidget {

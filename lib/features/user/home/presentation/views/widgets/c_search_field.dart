@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 
-import '../../../../../core/utils/helper.dart';
+import '../../../../../../core/utils/helper.dart';
 
 class CSearchField extends StatelessWidget {
   const CSearchField({Key? key}) : super(key: key);

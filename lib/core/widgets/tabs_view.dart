@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
-import 'package:yummy/features/favourite/presentation/views/favourite_view.dart';
-import 'package:yummy/features/home/presentation/views/home_view.dart';
+import 'package:yummy/features/user/favourite/presentation/views/favourite_view.dart';
+
+import '../../features/user/home/presentation/views/home_view.dart';
 
 class TabsView extends StatelessWidget {
   static const String rn = '/tabsView';

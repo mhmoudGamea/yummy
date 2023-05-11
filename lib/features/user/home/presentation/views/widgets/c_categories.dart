@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yummy/core/utils/styles.dart';
-import 'package:yummy/features/home/presentation/views/widgets/c_header_name.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../../core/constants.dart';
+import 'c_header_name.dart';
 
 class CCategories extends StatelessWidget {
   const CCategories({Key? key}) : super(key: key);

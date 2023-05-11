@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dartz/dartz.dart';
-
-import '../../features/register/login/data/models/login_model.dart';
+import '../../features/admin/register/data/models/login_model.dart';
 import '../error/failure.dart';
 
 class FirestoreServices {

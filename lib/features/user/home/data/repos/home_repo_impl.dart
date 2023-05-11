@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-
-import 'home_repo.dart';
-
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/failure.dart';
+import '../../../../../core/error/failure.dart';
+import './home_repo.dart';
 import '../data/user_info_model.dart';
 
 class HomeRepoImpl implements HomeRepo {

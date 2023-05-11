@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/constants.dart';
-import '../../../../../core/utils/styles.dart';
-import '../../../../../core/widgets/c_circle_loading.dart';
-import '../../../../../core/widgets/c_expanded_button.dart';
-import '../../../../../core/widgets/c_text_form_field.dart';
-import '../../../../welcome/data/models/location_model.dart';
+import '../../../../../../core/constants.dart';
+import '../../../../../../core/utils/styles.dart';
+import '../../../../../../core/widgets/c_circle_loading.dart';
+import '../../../../../../core/widgets/c_expanded_button.dart';
+import '../../../../../../core/widgets/c_text_form_field.dart';
+import '../../../../../welcome/data/models/location_model.dart';
 import '../model_views.dart/login_cubit/login_cubit.dart';
 
 class LoginViewBody extends StatefulWidget {
