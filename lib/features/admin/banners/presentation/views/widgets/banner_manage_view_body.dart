@@ -18,8 +18,8 @@ class BannerManageViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Column(
         children: [
-          Row(
-            children: const [
+          const Row(
+            children: [
               Spacer(),
               Text(
                 'Add or Swipe to delete banner',
