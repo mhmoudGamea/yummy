@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/features/admin/banners/data/repos/banner_repo.dart';
 
@@ -16,6 +17,7 @@ class BannerCubit extends Cubit<BannerState> {
   BannerCubit(this._bannerRepo) : super(BannerInitial());
 
   final ImagePicker _picker = GetIt.I.get<ImagePicker>();
+  final FirestoreServices _services = GetIt.I.get<FirestoreServices>();
 
   // this function is used to pick banner image from phone banner
   File? _image;
@@ -58,5 +60,18 @@ class BannerCubit extends Cubit<BannerState> {
   Future<void> saveBanner(
       {required BuildContext context, required String url}) async {
     await _bannerRepo.storeBanner(coll: 'banners', map: {'image': url});
+  }
+
+  // function to delete banner
+  void daleteBanner(BuildContext context, String id) async {
+    await _services
+        .deleteFromFirebaseStore(coll: 'banners', id: id)
+        .then((value) {
+      Helper.showCustomToast(
+          context: context,
+          bgColor: mintGreen,
+          icon: FontAwesomeIcons.check,
+          msg: value);
+    });
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
+import 'package:yummy/features/admin/banners/data/models/banner_model.dart';
 
 import '../../../../../../core/constants.dart';
 import '../../../../../../core/utils/styles.dart';
@@ -81,9 +82,9 @@ class BannerManageViewBody extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CCircleLoading();
               } else if (snapshot.hasData) {
-                List<String> banners = [];
+                List<BannerModel> banners = [];
                 for (var element in snapshot.data!.docs) {
-                  banners.add(element['image']);
+                  banners.add(BannerModel.fromJson(element));
                 }
                 if (banners.isEmpty) {
                   return CErrorWidget(
@@ -95,10 +96,11 @@ class BannerManageViewBody extends StatelessWidget {
                 return Expanded(
                   child: ListView.separated(
                     itemCount: banners.length,
+                    physics: const BouncingScrollPhysics(),
                     separatorBuilder: (context, index) =>
                         const SizedBox(height: 15),
                     itemBuilder: (context, index) =>
-                        BannerListItem(image: banners[index]),
+                        BannerListItem(model: banners[index]),
                   ),
                 );
               }

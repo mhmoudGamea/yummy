@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:yummy/features/admin/banners/presentation/model_views/banner_cubit/banner_cubit.dart';
+
+import '../../../data/models/banner_model.dart';
 
 class BannerListItem extends StatelessWidget {
-  final String image;
-  const BannerListItem({Key? key, required this.image}) : super(key: key);
+  final BannerModel model;
+  const BannerListItem({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final data = BlocProvider.of<BannerCubit>(context);
     return Dismissible(
       key: UniqueKey(),
       background: dismissBackGround(),
-      onDismissed: (direction) {},
+      onDismissed: (direction) {
+        data.daleteBanner(context, model.id);
+      },
       child: SizedBox(
         height: 130,
         width: MediaQuery.of(context).size.width,
-        child: Image.network(image, fit: BoxFit.cover),
+        child: Image.network(model.image, fit: BoxFit.cover),
       ),
     );
   }
@@ -32,15 +39,3 @@ class BannerListItem extends StatelessWidget {
     );
   }
 }
-/*
-
-https://marketplace.canva.com/EAFVfgsKMAE/1/0/1600w/canva-black-and-yellow-simple-minimalist-burger-promotion-banner-YTqWS2eL8TM.jpg
-
-
-
-https://marketplace.canva.com/EAE_zuTcURg/1/0/1600w/canva-black-modern-super-big-pizza-food-promotion-banner-F_sFHlsLraM.jpg
-
-
-
-https://marketplace.canva.com/EAFanHj4_og/1/0/1600w/canva-yellow-red-modern-food-promotion-banner-landscape-D5j43WWUmtA.jpg
-*/
