@@ -84,7 +84,8 @@ class BannerManageViewBody extends StatelessWidget {
               } else if (snapshot.hasData) {
                 List<BannerModel> banners = [];
                 for (var element in snapshot.data!.docs) {
-                  banners.add(BannerModel.fromJson(element));
+                  banners.add(BannerModel.fromJson(
+                      element.data() as Map<String, dynamic>));
                 }
                 if (banners.isEmpty) {
                   return CErrorWidget(

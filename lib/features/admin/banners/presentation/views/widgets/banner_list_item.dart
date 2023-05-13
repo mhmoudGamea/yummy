@@ -15,6 +15,7 @@ class BannerListItem extends StatelessWidget {
     return Dismissible(
       key: UniqueKey(),
       background: dismissBackGround(),
+      direction: DismissDirection.endToStart,
       onDismissed: (direction) {
         data.daleteBanner(context, model.id);
       },
