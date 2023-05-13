@@ -47,6 +47,7 @@ class _CLocationBoxState extends State<CLocationBox> {
                 GestureDetector(
                   onTap: () async {
                     await data.getCurrentDeviceLocation(context);
+                    print('pressed');
                   },
                   child: Row(
                     children: [

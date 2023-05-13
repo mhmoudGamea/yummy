@@ -15,6 +15,10 @@ class MapViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = BlocProvider.of<LocationCubit>(context);
+    print(locationModel.latitude);
+    print(locationModel.longitude);
+    print(locationModel.address);
+    print(locationModel.administrativeArea);
     var locating = false;
     return Stack(
       children: [
@@ -31,8 +35,8 @@ class MapViewBody extends StatelessWidget {
           onCameraMove: (position) {
             data.getCameraPosition(position);
           },
-          onCameraIdle: () {
-            data.onCameraIdle();
+          onCameraIdle: () async {
+            await data.onCameraIdle();
           },
         ),
         Center(

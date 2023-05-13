@@ -24,10 +24,10 @@ class LocationCubit extends Cubit<LocationState> {
 
   final GetIt _get = GetIt.I;
 
-  // LocationModel _locationModel =
-  //     LocationModel(latitude: 30.0444, longitude: 31.2357);
+  LocationModel _locationModel =
+      LocationModel(latitude: 30.0444, longitude: 31.2357);
 
-  late LocationModel _locationModel;
+  // late LocationModel _locationModel;
   LocationModel get getLocationModel {
     return _locationModel;
   }
