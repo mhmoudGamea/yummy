@@ -64,14 +64,6 @@ class BannerCubit extends Cubit<BannerState> {
 
   // function to delete banner
   void daleteBanner(BuildContext context, String id) async {
-    await _services
-        .deleteFromFirebaseStore(coll: 'banners', id: id)
-        .then((value) {
-      Helper.showCustomToast(
-          context: context,
-          bgColor: mintGreen,
-          icon: FontAwesomeIcons.check,
-          msg: value);
-    });
+    await _services.deleteFromFirebaseStore(coll: 'banners', id: id);
   }
 }
