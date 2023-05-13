@@ -27,7 +27,7 @@ class AppRoutes {
         } else if (event.email == 'admin@gmail.com') {
           path = AdminHomeView.rn;
         } else {
-          path = HomeView.rn;
+          path = TabsView.rn;
         }
       },
     );

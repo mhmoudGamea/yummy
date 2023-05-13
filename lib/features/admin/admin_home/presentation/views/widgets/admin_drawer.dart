@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import '../../../../../../core/constants.dart';
 import '../../../../banners/presentation/views/banner_manage_view.dart';
@@ -63,7 +65,8 @@ class AdminDrawer extends StatelessWidget {
                   text: 'exit',
                   icon: FontAwesomeIcons.arrowRightFromBracket,
                   onPress: () {
-                    print('Banners');
+                    FirebaseAuth.instance.signOut();
+                    GoRouter.of(context).push(WelcomeView.rn);
                   },
                 ),
               ],

@@ -70,3 +70,12 @@ class FirebaseSideError extends Failure {
     }
   }
 }
+
+// errors from storage
+class StorageSideError extends Failure {
+  StorageSideError(super.errorMessage);
+
+  factory StorageSideError.fromStore(String error) {
+    return StorageSideError(error);
+  }
+}

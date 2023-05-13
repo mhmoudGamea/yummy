@@ -2,7 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
+import 'package:yummy/core/constants.dart';
 
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_error_widget.dart';
@@ -30,6 +32,18 @@ class CCurosalSlider extends StatelessWidget {
                   icon: Icons.close_rounded,
                   text: 'Sorry we can\'t find any banners for now.');
             } else {
+              if (snapshot.data!.docs.isEmpty) {
+                return SizedBox(
+                  height: 150,
+                  child: Center(
+                    child: CErrorWidget(
+                      icon: FontAwesomeIcons.flag,
+                      text: 'No banner to display yet.',
+                      bgColor: primaryColor,
+                    ),
+                  ),
+                );
+              }
               return CarouselSlider(
                 items: snapshot.data!.docs.map(
                   (e) {

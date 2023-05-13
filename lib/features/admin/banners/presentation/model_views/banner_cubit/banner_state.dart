@@ -17,3 +17,14 @@ class BannerFailure extends BannerState {
   final String error;
   BannerFailure({required this.error});
 }
+
+// states when upload a banner
+
+class UploadImageLoading extends BannerState {}
+
+class UploadImageSuccess extends BannerState {}
+
+class UploadImageFailure extends BannerState {}
+
+// when delete picked image from phone
+class PickedImageDeleted extends BannerState {}

@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dartz/dartz.dart';
 import '../../features/admin/register/data/models/login_model.dart';
@@ -7,6 +11,8 @@ import '../error/failure.dart';
 class FirestoreServices {
   static final GetIt _getIt = GetIt.I;
   final FirebaseFirestore _store = _getIt.get<FirebaseFirestore>();
+  final FirebaseAuth _auth = _getIt.get<FirebaseAuth>();
+  final FirebaseStorage _storage = _getIt.get<FirebaseStorage>();
   // String coll = 'users';
 
   Future<Either<Failure, String>> createUser(
@@ -40,6 +46,32 @@ class FirestoreServices {
       return right(LoginModel.fromJson(result.data()!));
     } catch (error) {
       return left(const FireStoreSideError('Failed to get user'));
+    }
+  }
+
+  // store image in firebase storage
+  Future<String> storeInFirebaseStorage(
+      {required String folder, required File imageFilePath}) async {
+    String imageName =
+        '$folder/${_auth.currentUser!.uid}/${DateTime.now().microsecondsSinceEpoch}';
+    final storageRef = _storage.ref(imageName);
+    String? downloadedUrl;
+    try {
+      await storageRef.putFile(imageFilePath);
+      downloadedUrl = await storageRef.getDownloadURL();
+      return downloadedUrl;
+    } catch (error) {
+      return 'Can\'t store this image.';
+    }
+  }
+
+  Future<String> storeInFirebaseStore(
+      {required String coll, required Map<String, dynamic> map}) async {
+    try {
+      await _store.collection(coll).add(map);
+      return 'Success to add';
+    } catch (error) {
+      return 'Failed to add';
     }
   }
 }

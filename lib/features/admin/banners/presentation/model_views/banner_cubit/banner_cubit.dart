@@ -1,32 +1,62 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
-import 'package:meta/meta.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/utils/helper.dart';
+import 'package:yummy/features/admin/banners/data/repos/banner_repo.dart';
 
 part 'banner_state.dart';
 
 class BannerCubit extends Cubit<BannerState> {
-  BannerCubit() : super(BannerInitial());
+  final BannerRepo _bannerRepo;
+  BannerCubit(this._bannerRepo) : super(BannerInitial());
 
-  final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
+  final ImagePicker _picker = GetIt.I.get<ImagePicker>();
 
-  final List<String> _images = [];
-
-  List<String> get getImages {
-    return _images;
+  // this function is used to pick banner image from phone banner
+  File? _image;
+  File? get getPickedImage {
+    return _image;
   }
 
-  Future<void> getBanners() async {
-    emit(BannerLoading());
-    _store.collection('banners').snapshots().listen((event) {
-      _images.clear();
-      for (var element in event.docs) {
-        _images.add(element['image']);
-      }
-      emit(BannerSuccess(banners: _images));
-    }, onError: (error) {
-      emit(BannerFailure(error: error));
+  Future<void> pickBanner() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    _image = File(image!.path);
+  }
+
+  // if the admin hit delete button after pick his banner
+  void deletePickedImage() async {
+    _image = null;
+    emit(PickedImageDeleted());
+  }
+
+  // after pick banner from phone this func will upload it to firestorage
+  Future<void> uploadBanner(BuildContext context) async {
+    emit(UploadImageLoading());
+    final response = await _bannerRepo.uploadImage(
+        folder: 'banners', imageFilePath: _image!);
+    response.fold((fail) {
+      emit(UploadImageFailure());
+      Helper.showCustomToast(
+          context: context,
+          bgColor: mintGreen,
+          icon: FontAwesomeIcons.check,
+          msg: fail.errorMessage);
+    }, (url) async {
+      await saveBanner(context: context, url: url);
+      emit(UploadImageSuccess());
     });
+  }
+
+  // this function is automatically called after finishing from uploading banner
+  // to firebase storage to save it to firebase firestore
+
+  Future<void> saveBanner(
+      {required BuildContext context, required String url}) async {
+    await _bannerRepo.storeBanner(coll: 'banners', map: {'image': url});
   }
 }
