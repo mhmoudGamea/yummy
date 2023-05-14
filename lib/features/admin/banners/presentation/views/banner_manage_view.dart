@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy/core/constants.dart';
-import 'package:yummy/features/admin/banners/data/repos/banner_repo_impl.dart';
 
 import '../../../../../core/utils/helper.dart';
 import '../model_views/banner_cubit/banner_cubit.dart';
@@ -14,7 +13,7 @@ class BannerManageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BannerCubit(BannerRepoImpl()),
+      create: (context) => BannerCubit(),
       child: Scaffold(
         appBar: Helper.appBar(
           context: context,

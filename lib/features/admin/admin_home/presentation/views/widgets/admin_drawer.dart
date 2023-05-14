@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/features/admin/categories/presentation/views/widgets/category_view.dart';
+import 'package:yummy/features/admin/categories/presentation/views/category_view.dart';
 import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import '../../../../../../core/constants.dart';

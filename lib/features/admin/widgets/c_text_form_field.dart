@@ -34,11 +34,14 @@ class CTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         helperText: helper,
         helperStyle: Styles.title12.copyWith(color: greyColor2),
-        prefixIcon: Icon(icon),
+        prefixIcon: Icon(
+          icon,
+          size: 15,
+        ),
         prefixIconColor: primaryColor,
         prefixStyle: const TextStyle(color: greyColor2),
         border: Helper.border(),
-        focusedBorder: Helper.border(),
+        focusedBorder: Helper.border(borderColor: primaryColor),
         labelText: label,
         labelStyle: Styles.title14.copyWith(color: greyColor2),
         floatingLabelStyle: Styles.title14.copyWith(color: primaryColor),

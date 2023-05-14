@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/features/admin/categories/presentation/model_views/cubit/category_cubit.dart';
 
-import '../../../../../../core/constants.dart';
-import '../../../../../../core/utils/helper.dart';
-import 'category_view_body.dart';
+import '../../../../../core/constants.dart';
+import '../../../../../core/utils/helper.dart';
+import '../model_views/cubit/category_cubit.dart';
+import 'widgets/category_view_body.dart';
 
 class CategoryView extends StatelessWidget {
   static const String rn = '/categoryView';

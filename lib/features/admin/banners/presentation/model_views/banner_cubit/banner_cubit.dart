@@ -4,17 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
-import 'package:yummy/features/admin/banners/data/repos/banner_repo.dart';
 
 part 'banner_state.dart';
 
 class BannerCubit extends Cubit<BannerState> {
-  final BannerRepo _bannerRepo;
-  BannerCubit(this._bannerRepo) : super(BannerInitial());
+  BannerCubit() : super(BannerInitial());
 
   final ImagePicker _picker = GetIt.I.get<ImagePicker>();
   final FirestoreServices _services = GetIt.I.get<FirestoreServices>();
@@ -36,30 +35,32 @@ class BannerCubit extends Cubit<BannerState> {
     emit(PickedImageDeleted());
   }
 
-  // after pick banner from phone this func will upload it to firestorage
   Future<void> uploadBanner(BuildContext context) async {
     emit(UploadImageLoading());
-    final response = await _bannerRepo.uploadImage(
-        folder: 'banners', imageFilePath: _image!);
-    response.fold((fail) {
-      emit(UploadImageFailure());
+    if (_image != null) {
+      final response = await _services.storeInFirebaseStorage(
+          folder: 'banners', imageFilePath: _image!);
+      response.fold((fail) {
+        emit(UploadImageFailure());
+      }, (url) async {
+        emit(UploadImageSuccess());
+        await saveBanner(url: url);
+      });
+    } else {
+      // what would happen when user try to hit save without pick an image
+      GoRouter.of(context).pop();
       Helper.showCustomToast(
           context: context,
-          bgColor: mintGreen,
-          icon: FontAwesomeIcons.check,
-          msg: fail.errorMessage);
-    }, (url) async {
-      await saveBanner(context: context, url: url);
-      emit(UploadImageSuccess());
-    });
+          bgColor: secondaryColor,
+          icon: FontAwesomeIcons.xmark,
+          msg: 'Please pick an image First.');
+    }
   }
 
-  // this function is automatically called after finishing from uploading banner
-  // to firebase storage to save it to firebase firestore
-
-  Future<void> saveBanner(
-      {required BuildContext context, required String url}) async {
-    await _bannerRepo.storeBanner(coll: 'banners', map: {'image': url});
+  Future<void> saveBanner({required String url}) async {
+    String id = DateTime.now().microsecondsSinceEpoch.toString();
+    await _services
+        .storeInFirebaseStore(coll: 'banners', map: {'image': url, 'id': id});
   }
 
   // function to delete banner

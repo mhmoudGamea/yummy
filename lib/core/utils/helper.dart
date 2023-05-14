@@ -7,11 +7,11 @@ import '../widgets/c_text_button.dart';
 import 'styles.dart';
 
 class Helper {
-  static InputBorder border() {
-    return const UnderlineInputBorder(
+  static InputBorder border({Color? borderColor}) {
+    return UnderlineInputBorder(
       borderSide: BorderSide(
         width: 1.5,
-        color: black,
+        color: borderColor ?? Colors.black,
       ),
     );
   }
