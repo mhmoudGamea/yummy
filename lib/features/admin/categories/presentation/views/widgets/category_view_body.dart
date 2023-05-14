@@ -39,7 +39,7 @@ class CategoryViewBody extends StatelessWidget {
                   loading
                       ? const CCircleLoading()
                       : const Text(
-                          'Add, delete, or update category',
+                          'Add or swipe to delete category',
                           style: Styles.title14,
                         ),
                   const Spacer(),

@@ -72,4 +72,9 @@ class CategoryCubit extends Cubit<CategoryState> {
     _categoryController.text = '';
     _image = null;
   }
+
+  // function to delete banner
+  void deleteCategory(BuildContext context, String id) async {
+    await _services.deleteFromFirebaseStore(coll: 'categories', id: id);
+  }
 }

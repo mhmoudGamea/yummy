@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/core/constants.dart';
 
@@ -12,6 +13,22 @@ class Helper {
       borderSide: BorderSide(
         width: 1.5,
         color: borderColor ?? Colors.black,
+      ),
+    );
+  }
+
+  static Container dismissBackGround({double? radius}) {
+    return Container(
+      alignment: Alignment.centerRight,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius ?? 0),
+        color: Colors.red,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: const Icon(
+        FontAwesomeIcons.trash,
+        size: 18,
+        color: Colors.white,
       ),
     );
   }
