@@ -37,7 +37,7 @@ class CCurosalSlider extends StatelessWidget {
                   height: 150,
                   child: Center(
                     child: CErrorWidget(
-                      icon: FontAwesomeIcons.flag,
+                      icon: FontAwesomeIcons.triangleExclamation,
                       text: 'No banner to display yet.',
                       bgColor: primaryColor,
                     ),

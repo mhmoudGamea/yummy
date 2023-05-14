@@ -1,103 +1,54 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:yummy/core/utils/styles.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_it/get_it.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/category_list_item.dart';
 
 import '../../../../../../core/constants.dart';
-import 'c_header_name.dart';
+import '../../../../../../core/widgets/c_circle_loading.dart';
+import '../../../../../../core/widgets/c_error_widget.dart';
+import '../../../../../admin/categories/data/models/category_model.dart';
 
 class CCategories extends StatelessWidget {
   const CCategories({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> list = [
-      {
-        'image': Image.asset(
-          'assets/images/category/fastFood.png',
-          width: 35,
-        ),
-        'title': 'Fast Food'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/snack.png',
-          width: 35,
-        ),
-        'title': 'Snack'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/drink.png',
-          width: 35,
-        ),
-        'title': 'Drink'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/desert.png',
-          width: 35,
-        ),
-        'title': 'Desert'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/soup.png',
-          width: 35,
-        ),
-        'title': 'Soup'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/salad.png',
-          width: 35,
-        ),
-        'title': 'Salad'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/sauce.png',
-          width: 35,
-        ),
-        'title': 'Sauce'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/pizza.png',
-          width: 35,
-        ),
-        'title': 'Pizza'
-      },
-      {
-        'image': Image.asset(
-          'assets/images/category/pasta.png',
-          width: 35,
-        ),
-        'title': 'Pasta'
-      },
-    ];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const CHeaderName(name: 'Categories'),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 55,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => const SizedBox(width: 25),
-            itemBuilder: (context, index) => Column(
-              children: [
-                list[index]['image'],
-                const SizedBox(height: 5),
-                Text(
-                  list[index]['title'],
-                  style: Styles.title13.copyWith(color: greyColor2),
-                ),
-              ],
+    FirebaseFirestore store = GetIt.I.get<FirebaseFirestore>();
+    return StreamBuilder<QuerySnapshot>(
+      stream: store.collection('categories').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CCircleLoading();
+        } else if (snapshot.hasData) {
+          List<CategoryModel> categories = [];
+          for (var element in snapshot.data!.docs) {
+            categories.add(
+                CategoryModel.fromJson(element.data() as Map<String, dynamic>));
+          }
+          if (categories.isEmpty) {
+            return CErrorWidget(
+              text: 'No categories to display yet.',
+              icon: FontAwesomeIcons.triangleExclamation,
+              bgColor: primaryColor,
+            );
+          }
+          return SizedBox(
+            height: 55,
+            child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => const SizedBox(width: 25),
+              itemBuilder: (context, index) =>
+                  CategoryListItem(model: categories[index]),
+              itemCount: categories.length,
             ),
-            itemCount: list.length,
-          ),
-        ),
-      ],
+          );
+        }
+        return CErrorWidget(
+            text: 'Sorry we have no Category for right now.',
+            icon: FontAwesomeIcons.xmark);
+      },
     );
   }
 }
