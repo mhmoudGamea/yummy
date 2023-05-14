@@ -6,6 +6,8 @@ import 'package:yummy/features/admin/widgets/c_text_form_field.dart';
 import '../../../../../../core/constants.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
+import '../../../../widgets/c_expanded_delete.dart';
+import '../../../../widgets/c_expanded_save.dart';
 import '../../model_views/cubit/category_cubit.dart';
 
 class CategoryDialog extends StatelessWidget {
@@ -21,7 +23,6 @@ class CategoryDialog extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: SingleChildScrollView(
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               BlocBuilder<CategoryCubit, CategoryState>(
@@ -65,58 +66,16 @@ class CategoryDialog extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(
-                        child: NeumorphicButton(
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          style: NeumorphicStyle(
-                              border: NeumorphicBorder(
-                                  color: secondaryColor.withOpacity(0.5),
-                                  width: 1.2),
-                              color: Colors.white),
-                          child: Text(
-                            'Delete',
-                            style: Styles.title14.copyWith(
-                              color: secondaryColor.withOpacity(0.7),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          onPressed: () {
-                            category.deletePickedImage();
-                          },
-                        ),
-                      ),
+                      CExpandedDelete(
+                          text: 'Delete',
+                          onPress: () => category.deletePickedImage()),
                       const SizedBox(width: 15),
-                      BlocBuilder<CategoryCubit, CategoryState>(
-                        builder: (context, state) {
-                          // if (state is UploadImageLoading) {
-                          //   return Expanded(
-                          //       child: Container(
-                          //           padding:
-                          //               const EdgeInsets.symmetric(horizontal: 32),
-                          //           child: const CCircleLoading()));
-                          // }
-                          return Expanded(
-                            child: NeumorphicButton(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              style: const NeumorphicStyle(
-                                  border: NeumorphicBorder(
-                                      color: babyBlue, width: 1.2),
-                                  color: babyBlue),
-                              child: Text(
-                                'Save',
-                                style: Styles.title14.copyWith(
-                                  color: Colors.white,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              onPressed: () {
-                                category.uploadCategoryImage(context);
-                                // GoRouter.of(context).pop();
-                              },
-                            ),
-                          );
+                      CExpandedSave(
+                        text: 'Save',
+                        onPress: () {
+                          category.uploadCategoryImage(context);
                         },
-                      )
+                      ),
                     ],
                   ),
                   const SizedBox(height: 15),

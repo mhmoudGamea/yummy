@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/features/admin/categories/presentation/views/category_view.dart';
+import 'package:yummy/features/admin/food/presentation/views/food_view.dart';
 import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import '../../../../../../core/constants.dart';
@@ -39,6 +40,14 @@ class AdminDrawer extends StatelessWidget {
                   icon: FontAwesomeIcons.layerGroup,
                   onPress: () {
                     GoRouter.of(context).push(CategoryView.rn);
+                    Scaffold.of(context).closeDrawer();
+                  },
+                ),
+                DrawerItem(
+                  text: 'Food',
+                  icon: FontAwesomeIcons.burger,
+                  onPress: () {
+                    GoRouter.of(context).push(FoodView.rn);
                     Scaffold.of(context).closeDrawer();
                   },
                 ),

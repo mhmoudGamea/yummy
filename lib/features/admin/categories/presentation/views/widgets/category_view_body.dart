@@ -22,8 +22,9 @@ class CategoryViewBody extends StatelessWidget {
     FirebaseFirestore store = GetIt.I.get<FirebaseFirestore>();
     var loading = false;
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: Column(children: [
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      child: Column(
+        children: [
           BlocConsumer<CategoryCubit, CategoryState>(
             listener: (context, state) {
               if (state is UploadImageLoading) {
@@ -109,6 +110,8 @@ class CategoryViewBody extends StatelessWidget {
                   icon: FontAwesomeIcons.xmark);
             },
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }

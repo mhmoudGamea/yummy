@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
 import '../../features/admin/banners/presentation/views/banner_manage_view.dart';
 import '../../features/admin/categories/presentation/views/category_view.dart';
+import '../../features/admin/food/presentation/views/food_view.dart';
 import '../../features/admin/login/presentation/views/admin_login_view.dart';
 import '../../features/admin/register/presentation/views/admin_register_view.dart';
 import '../../features/on_board/presentation/views/board_view.dart';
@@ -93,6 +94,10 @@ class AppRoutes {
       GoRoute(
         path: CategoryView.rn,
         builder: (context, state) => const CategoryView(),
+      ),
+      GoRoute(
+        path: FoodView.rn,
+        builder: (context, state) => const FoodView(),
       ),
     ],
   );
