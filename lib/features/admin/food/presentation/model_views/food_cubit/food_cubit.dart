@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/styles.dart';
 
 part 'food_state.dart';
@@ -12,6 +14,7 @@ class FoodCubit extends Cubit<FoodState> {
   FoodCubit() : super(FoodInitial());
 
   final ImagePicker _picker = GetIt.I.get<ImagePicker>();
+  final FirestoreServices _services = GetIt.I.get<FirestoreServices>();
 
   final _form = GlobalKey<FormState>();
   GlobalKey get getFormKey {
@@ -111,8 +114,9 @@ class FoodCubit extends Cubit<FoodState> {
   TextEditingController get getDescriptionController {
     return _descriptionController;
   }
-  // start logic of picking the multiple images for the food plate ingrediants
 
+  /// *****************************ingrediants images*******************************************
+  // start logic of picking the multiple images for the food plate ingrediants
   final List<File> _ingrediantsImages = [];
 
   List<File> get getIngrediantsImages {
@@ -129,6 +133,27 @@ class FoodCubit extends Cubit<FoodState> {
     }
   }
 
+  final List<String> _downloadedUrls = [];
+
+  List<String> get getDownloadedUrls {
+    return _downloadedUrls;
+  }
+
+  // after we pick ingrediants images we should save them in fire storage
+  // after execute this func we should have list of downloaded urls
+  Future<void> uploadIngrediantsImages(List<File> ingImages) async {
+    for (var img in ingImages) {
+      final response = await _services.storeInFirebaseStorage(
+          folder: 'ingrediants', imageFilePath: img);
+      response.fold((fail) {
+        print(fail.errorMessage);
+      }, (url) {
+        _downloadedUrls.add(url);
+      });
+    }
+  }
+
+  /// **************************food image*****************************
   // start logic of picking the only one image for the food plate
   File? _image;
 
@@ -142,6 +167,57 @@ class FoodCubit extends Cubit<FoodState> {
     emit(ImagePickedSuccessfully());
   }
 
+  late String _downloadedUrl;
+  // another function to upload food image the same logic of uploading
+  // ingrediants images
+  Future<void> uploadFoodImage(File image) async {
+    final response = await _services.storeInFirebaseStorage(
+        folder: 'foods', imageFilePath: image);
+    response.fold((fail) {
+      print(fail.errorMessage);
+    }, (url) {
+      _downloadedUrl = url;
+    });
+  }
+
+  /// ****************************save form to firestore*************************************
+  Future<void> save(BuildContext context) async {
+    if (_form.currentState!.validate()) {
+      if (_ingrediantsImages.isNotEmpty) {
+        if (_image != null) {
+          emit(SaveLoading());
+          try {
+            GoRouter.of(context).pop();
+            await uploadIngrediantsImages(_ingrediantsImages);
+            await uploadFoodImage(_image!);
+            String id = DateTime.now().microsecondsSinceEpoch.toString();
+            await _services.storeInFirebaseStore(coll: 'food', map: {
+              'category': _selectedCategory,
+              'collection': _selectedCollection,
+              'name': _foodNameController.text,
+              'prepareTime': _prepareTimeController.text,
+              'rate': _rateController.text,
+              'price': _priceController.text,
+              'desc': _descriptionController.text,
+              'ingrediants': _downloadedUrls,
+              'foodImage': _downloadedUrl,
+              'id': id,
+            });
+            emit(SaveSuccess());
+          } catch (error) {
+            print(error);
+            emit(SaveFailure());
+          }
+        } else {
+          emit(HitSaveWithoutPickFoodImage());
+        }
+      } else {
+        emit(HitSaveWithoutPickIngrediantImages());
+      }
+    }
+  }
+
+  /// ****************************reset form*************************************
   // start delete button logic
   void delete() {
     _selectedCategory = _categoriesList.first;

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constants.dart';
+import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 import '../../../../widgets/c_drop_down_button.dart';
 import '../../../../widgets/c_expanded_delete.dart';
@@ -18,195 +19,206 @@ class FoodDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final food = BlocProvider.of<FoodCubit>(context);
-    return Dialog(
-        elevation: 2,
-        shadowColor: greyColor,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Form(
-              key: food.getFormKey,
-              child: Column(
-                children: [
-                  CDropDownButton(
-                    label: 'Category Name',
-                    icon: FontAwesomeIcons.layerGroup,
-                    selectedValue: food.getSelectedCategory,
-                    items: food.convertCategory(),
-                    onPress: (value) {
-                      food.setSelectedCategory = value;
-                    },
-                  ),
-                  CDropDownButton(
-                    label: 'Collection Name',
-                    icon: FontAwesomeIcons.bowlFood,
-                    selectedValue: food.getSelectedCollection,
-                    items: food.convertCollection(),
-                    onPress: (value) {
-                      food.setSelectedCollection = value;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  CTextFormField(
-                    label: 'Food Name',
-                    type: TextInputType.name,
-                    controller: food.getFoodNameController,
-                    icon: FontAwesomeIcons.burger,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Food name is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  CTextFormField(
-                    label: 'Prepare Time',
-                    type: TextInputType.number,
-                    controller: food.getPrepareController,
-                    icon: FontAwesomeIcons.clock,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Prepare time is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  CTextFormField(
-                    label: 'Rate',
-                    type: TextInputType.number,
-                    controller: food.getRateController,
-                    icon: FontAwesomeIcons.star,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Food rate is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  CTextFormField(
-                    label: 'Price',
-                    type: TextInputType.number,
-                    controller: food.getPriceController,
-                    icon: FontAwesomeIcons.dollarSign,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Food Price is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  CTextFormField(
-                    label: 'Description',
-                    type: TextInputType.name,
-                    controller: food.getDescriptionController,
-                    icon: FontAwesomeIcons.commentDots,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Description is required';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  // ingrediants images
-                  BlocBuilder<FoodCubit, FoodState>(
-                    builder: (context, state) {
-                      return Container(
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: CGridView(
-                            ingrediantsImages: food.getIngrediantsImages),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: CExpandedButton(
-                      text: 'Pick Ingrdiants Images',
-                      bgColor: primaryColor,
-                      textColor: Colors.white,
-                      onPress: () => food.pickIngrediantsImages(),
+    return BlocBuilder<FoodCubit, FoodState>(
+      builder: (context, state) {
+        return Dialog(
+          elevation: 2,
+          shadowColor: greyColor,
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Form(
+                      key: food.getFormKey,
+                      child: Column(
+                        children: [
+                          CDropDownButton(
+                            label: 'Category Name',
+                            icon: FontAwesomeIcons.layerGroup,
+                            selectedValue: food.getSelectedCategory,
+                            items: food.convertCategory(),
+                            onPress: (value) {
+                              food.setSelectedCategory = value;
+                            },
+                          ),
+                          CDropDownButton(
+                            label: 'Collection Name',
+                            icon: FontAwesomeIcons.bowlFood,
+                            selectedValue: food.getSelectedCollection,
+                            items: food.convertCollection(),
+                            onPress: (value) {
+                              food.setSelectedCollection = value;
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          CTextFormField(
+                            label: 'Food Name',
+                            type: TextInputType.name,
+                            controller: food.getFoodNameController,
+                            icon: FontAwesomeIcons.burger,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Food name is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          CTextFormField(
+                            label: 'Prepare Time',
+                            type: TextInputType.number,
+                            controller: food.getPrepareController,
+                            icon: FontAwesomeIcons.clock,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Prepare time is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          CTextFormField(
+                            label: 'Rate',
+                            type: TextInputType.number,
+                            controller: food.getRateController,
+                            icon: FontAwesomeIcons.star,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Food rate is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          CTextFormField(
+                            label: 'Price',
+                            type: TextInputType.number,
+                            controller: food.getPriceController,
+                            icon: FontAwesomeIcons.dollarSign,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Food Price is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          CTextFormField(
+                            label: 'Description',
+                            type: TextInputType.name,
+                            controller: food.getDescriptionController,
+                            icon: FontAwesomeIcons.commentDots,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Description is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          // ingrediants images
+                          Container(
+                            height: 120,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: CGridView(
+                                ingrediantsImages: food.getIngrediantsImages),
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                            child: CExpandedButton(
+                              text: 'Pick Ingrdiants Images',
+                              bgColor: primaryColor,
+                              textColor: Colors.white,
+                              onPress: () => food.pickIngrediantsImages(),
+                            ),
+                          ),
+                          // end ingrediants images
+                          const SizedBox(height: 20),
+                          // food image
+                          Container(
+                            height: 120,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: food.getPickedImage == null
+                                ? const Icon(
+                                    FontAwesomeIcons.image,
+                                    size: 100,
+                                    color: greyColor,
+                                  )
+                                : Image.file(
+                                    food.getPickedImage!,
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                            child: CExpandedButton(
+                              text: 'Pick Image',
+                              bgColor: primaryColor,
+                              textColor: Colors.white,
+                              onPress: () => food.pickImage(),
+                            ),
+                          ),
+                          if (state is HitSaveWithoutPickIngrediantImages)
+                            Column(
+                              children: [
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Please pick at least 1 ingrediant image.',
+                                  style: Styles.title13
+                                      .copyWith(color: secondaryColor),
+                                ),
+                              ],
+                            ),
+                          if (state is HitSaveWithoutPickFoodImage)
+                            Column(
+                              children: [
+                                const SizedBox(height: 15),
+                                Text(
+                                  'Please pick a food image first.',
+                                  style: Styles.title13
+                                      .copyWith(color: secondaryColor),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
                     ),
                   ),
-                  // end ingrediants images
-                  const SizedBox(height: 20),
-                  // food image
-                  BlocBuilder<FoodCubit, FoodState>(
-                    builder: (context, state) {
-                      return Container(
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: food.getPickedImage == null
-                            ? const Icon(
-                                FontAwesomeIcons.image,
-                                size: 100,
-                                color: greyColor,
-                              )
-                            : Image.file(
-                                food.getPickedImage!,
-                                fit: BoxFit.cover,
-                              ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: CExpandedButton(
-                      text: 'Pick Image',
-                      bgColor: primaryColor,
-                      textColor: Colors.white,
-                      onPress: () => food.pickImage(),
-                    ),
-                  ),
-                  // end food image
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: Row(
-                      children: [
-                        CExpandedDelete(
-                            text: 'Delete',
-                            onPress: () {
-                              GoRouter.of(context).pop();
-                              food.delete();
-                            }),
-                        const SizedBox(width: 15),
-                        CExpandedSave(text: 'Save', onPress: () {}),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  BlocBuilder<FoodCubit, FoodState>(
-                    builder: (context, state) {
-                      // if (state is HitSaveWithoutPickImage) {
-                      //   return Column(
-                      //     children: [
-                      //       const SizedBox(height: 15),
-                      //       Text(
-                      //         'Please pick an image first.',
-                      //         style: Styles.title13
-                      //             .copyWith(color: secondaryColor),
-                      //       ),
-                      //     ],
-                      //   );
-                      // }
-                      return const SizedBox();
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20, right: 10, left: 10),
+                child: Row(
+                  children: [
+                    CExpandedDelete(
+                        text: 'Delete',
+                        onPress: () {
+                          GoRouter.of(context).pop();
+                          food.delete();
+                        }),
+                    const SizedBox(width: 15),
+                    CExpandedSave(
+                      text: 'Save',
+                      onPress: () {
+                        food.save(context);
+                      },
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
-        ));
+        );
+      },
+    );
   }
 }

@@ -5,6 +5,7 @@ import 'package:yummy/features/admin/food/presentation/model_views/food_cubit/fo
 
 import '../../../../../../core/constants.dart';
 import '../../../../../../core/utils/styles.dart';
+import '../../../../../../core/widgets/c_circle_loading.dart';
 import 'food_dialog.dart';
 
 class FoodViewBody extends StatelessWidget {
@@ -20,26 +21,22 @@ class FoodViewBody extends StatelessWidget {
         children: [
           BlocConsumer<FoodCubit, FoodState>(
             listener: (context, state) {
-              // if (state is UploadImageLoading) {
-              //   loading = true;
-              // } else {
-              //   loading = false;
-              // }
+              if (state is SaveLoading) {
+                loading = true;
+              } else {
+                loading = false;
+              }
             },
             builder: (context, state) {
               return Row(
                 children: [
                   const Spacer(),
-                  // loading
-                  //     ? const CCircleLoading()
-                  //     : const Text(
-                  //         'Add or swipe to delete category',
-                  //         style: Styles.title14,
-                  //       ),
-                  const Text(
-                    'Add or swipe to delete food',
-                    style: Styles.title14,
-                  ),
+                  loading
+                      ? const CCircleLoading()
+                      : const Text(
+                          'Add or swipe to delete category',
+                          style: Styles.title14,
+                        ),
                   const Spacer(),
                   AbsorbPointer(
                     absorbing: loading ? true : false,
