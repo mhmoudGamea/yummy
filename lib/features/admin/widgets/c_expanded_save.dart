@@ -22,6 +22,7 @@ class CExpandedSave extends StatelessWidget {
       child: NeumorphicButton(
         padding: const EdgeInsets.symmetric(vertical: 12),
         style: NeumorphicStyle(
+            depth: 2,
             border: const NeumorphicBorder(color: babyBlue, width: 1.2),
             color: bgColor ?? babyBlue),
         onPressed: onPress,

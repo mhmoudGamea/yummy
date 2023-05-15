@@ -24,6 +24,7 @@ class CExpandedDelete extends StatelessWidget {
       child: NeumorphicButton(
         padding: const EdgeInsets.symmetric(vertical: 12),
         style: NeumorphicStyle(
+            depth: 2,
             border: NeumorphicBorder(
                 color: borderColor ?? secondaryColor.withOpacity(0.5),
                 width: 1.2),

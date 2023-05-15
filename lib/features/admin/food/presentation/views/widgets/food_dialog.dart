@@ -1,13 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:yummy/features/admin/widgets/c_expanded_delete.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/constants.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
+import '../../../../widgets/c_drop_down_button.dart';
+import '../../../../widgets/c_expanded_delete.dart';
 import '../../../../widgets/c_expanded_save.dart';
 import '../../../../widgets/c_text_form_field.dart';
 import '../../model_views/food_cubit/food_cubit.dart';
+import 'c_grid_view.dart';
 
 class FoodDialog extends StatelessWidget {
   const FoodDialog({Key? key}) : super(key: key);
@@ -21,20 +24,27 @@ class FoodDialog extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Form(
               key: food.getFormKey,
               child: Column(
                 children: [
-                  CTextFormField(
+                  CDropDownButton(
                     label: 'Category Name',
-                    type: TextInputType.name,
-                    controller: food.getCategoryController,
                     icon: FontAwesomeIcons.layerGroup,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Category name is required';
-                      }
-                      return null;
+                    selectedValue: food.getSelectedCategory,
+                    items: food.convertCategory(),
+                    onPress: (value) {
+                      food.setSelectedCategory = value;
+                    },
+                  ),
+                  CDropDownButton(
+                    label: 'Collection Name',
+                    icon: FontAwesomeIcons.bowlFood,
+                    selectedValue: food.getSelectedCollection,
+                    items: food.convertCollection(),
+                    onPress: (value) {
+                      food.setSelectedCollection = value;
                     },
                   ),
                   const SizedBox(height: 10),
@@ -89,7 +99,45 @@ class FoodDialog extends StatelessWidget {
                       return null;
                     },
                   ),
+                  CTextFormField(
+                    label: 'Description',
+                    type: TextInputType.name,
+                    controller: food.getDescriptionController,
+                    icon: FontAwesomeIcons.commentDots,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Description is required';
+                      }
+                      return null;
+                    },
+                  ),
                   const SizedBox(height: 10),
+                  // ingrediants images
+                  BlocBuilder<FoodCubit, FoodState>(
+                    builder: (context, state) {
+                      return Container(
+                        height: 120,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: CGridView(
+                            ingrediantsImages: food.getIngrediantsImages),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: CExpandedButton(
+                      text: 'Pick Ingrdiants Images',
+                      bgColor: primaryColor,
+                      textColor: Colors.white,
+                      onPress: () => food.pickIngrediantsImages(),
+                    ),
+                  ),
+                  // end ingrediants images
+                  const SizedBox(height: 20),
+                  // food image
                   BlocBuilder<FoodCubit, FoodState>(
                     builder: (context, state) {
                       return Container(
@@ -110,21 +158,34 @@ class FoodDialog extends StatelessWidget {
                       );
                     },
                   ),
-                  const SizedBox(height: 15),
-                  Row(
-                    children: [
-                      CExpandedDelete(text: 'Delete', onPress: () {}),
-                      const SizedBox(width: 15),
-                      CExpandedSave(text: 'Save', onPress: () {}),
-                    ],
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: CExpandedButton(
+                      text: 'Pick Image',
+                      bgColor: primaryColor,
+                      textColor: Colors.white,
+                      onPress: () => food.pickImage(),
+                    ),
+                  ),
+                  // end food image
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: Row(
+                      children: [
+                        CExpandedDelete(
+                            text: 'Delete',
+                            onPress: () {
+                              GoRouter.of(context).pop();
+                              food.delete();
+                            }),
+                        const SizedBox(width: 15),
+                        CExpandedSave(text: 'Save', onPress: () {}),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 15),
-                  CExpandedButton(
-                    text: 'Pick Image',
-                    bgColor: primaryColor,
-                    textColor: Colors.white,
-                    onPress: () => food.pickImage(),
-                  ),
                   BlocBuilder<FoodCubit, FoodState>(
                     builder: (context, state) {
                       // if (state is HitSaveWithoutPickImage) {
