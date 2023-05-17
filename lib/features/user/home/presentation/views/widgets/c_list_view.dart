@@ -21,7 +21,12 @@ class CListView extends StatelessWidget {
       stream: store.collection('food').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CCircleLoading();
+          return Center(
+            child: Container(
+                height: 260,
+                padding: const EdgeInsets.symmetric(vertical: 112),
+                child: const CCircleLoading()),
+          );
         } else if (snapshot.hasData) {
           List<UserFoodModel> model = [];
           for (var element in snapshot.data!.docs) {
@@ -42,7 +47,8 @@ class CListView extends StatelessWidget {
               separatorBuilder: (context, index) => const SizedBox(width: 20),
               itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).push(FoodDetailsView.rn);
+                    GoRouter.of(context)
+                        .push(FoodDetailsView.rn, extra: model[index]);
                   },
                   child: CListItem(model: model[index])),
               itemCount: model.length,

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 
 // views imports
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
@@ -73,7 +74,8 @@ class AppRoutes {
       ),
       GoRoute(
         path: FoodDetailsView.rn,
-        builder: (context, state) => const FoodDetailsView(),
+        builder: (context, state) =>
+            FoodDetailsView(model: state.extra as UserFoodModel),
       ),
       GoRoute(
         path: TabsView.rn,

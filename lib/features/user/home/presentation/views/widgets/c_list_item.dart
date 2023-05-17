@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/core/widgets/c_shimmer.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 import 'package:yummy/features/user/home/presentation/model_views/home_cubit/home_cubit.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/c_rounded_button.dart';
@@ -22,8 +24,15 @@ class CListItem extends StatelessWidget {
           height: 260,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: NetworkImage(model.foodImage), fit: BoxFit.cover),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CachedNetworkImage(
+              imageUrl: model.foodImage,
+              fit: BoxFit.cover,
+              placeholder: (context, url) =>
+                  const CShimmer(height: 260, width: 180),
+            ),
           ),
         ),
         Container(
