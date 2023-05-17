@@ -142,6 +142,7 @@ class FoodCubit extends Cubit<FoodState> {
   // after we pick ingrediants images we should save them in fire storage
   // after execute this func we should have list of downloaded urls
   Future<void> uploadIngrediantsImages(List<File> ingImages) async {
+    _downloadedUrls.clear();
     for (var img in ingImages) {
       final response = await _services.storeInFirebaseStorage(
           folder: 'ingrediants', imageFilePath: img);
@@ -204,6 +205,7 @@ class FoodCubit extends Cubit<FoodState> {
               'id': id,
             });
             emit(SaveSuccess());
+            delete();
           } catch (error) {
             print(error);
             emit(SaveFailure());

@@ -11,6 +11,7 @@ import '../../features/admin/login/presentation/views/admin_login_view.dart';
 import '../../features/admin/register/presentation/views/admin_register_view.dart';
 import '../../features/on_board/presentation/views/board_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
+import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
 import '../../features/user/register/login/presentation/login_view.dart';
 import '../../features/welcome/data/models/location_model.dart';
@@ -69,6 +70,10 @@ class AppRoutes {
       GoRoute(
         path: HomeView.rn,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: FoodDetailsView.rn,
+        builder: (context, state) => const FoodDetailsView(),
       ),
       GoRoute(
         path: TabsView.rn,
