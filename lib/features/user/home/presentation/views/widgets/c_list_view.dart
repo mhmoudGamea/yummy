@@ -2,14 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/c_list_item.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/details/c_list_view_body.dart';
 
 import '../../../../../../core/constants.dart';
-import '../food_details_view.dart';
 
 class CListView extends StatelessWidget {
   const CListView({Key? key}) : super(key: key);
@@ -33,27 +31,7 @@ class CListView extends StatelessWidget {
             model.add(
                 UserFoodModel.fromJson(element.data() as Map<String, dynamic>));
           }
-          if (model.isEmpty) {
-            return CErrorWidget(
-              text: 'No categories to display yet.',
-              icon: FontAwesomeIcons.triangleExclamation,
-              bgColor: primaryColor,
-            );
-          }
-          return Expanded(
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (context, index) => const SizedBox(width: 20),
-              itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context)
-                        .push(FoodDetailsView.rn, extra: model[index]);
-                  },
-                  child: CListItem(model: model[index])),
-              itemCount: model.length,
-            ),
-          );
+          return CListViewBody(model: model);
         }
         return CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,

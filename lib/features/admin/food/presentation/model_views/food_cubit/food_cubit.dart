@@ -90,6 +90,11 @@ class FoodCubit extends Cubit<FoodState> {
         .toList();
   }
 
+  final TextEditingController _caloriesController = TextEditingController();
+  TextEditingController get getCaloriesController {
+    return _caloriesController;
+  }
+
   final TextEditingController _foodNameController = TextEditingController();
   TextEditingController get getFoodNameController {
     return _foodNameController;
@@ -196,6 +201,7 @@ class FoodCubit extends Cubit<FoodState> {
               'category': _selectedCategory,
               'collection': _selectedCollection,
               'name': _foodNameController.text,
+              'calories': _caloriesController.text,
               'prepareTime': _prepareTimeController.text,
               'rate': _rateController.text,
               'price': _priceController.text,

@@ -11,7 +11,7 @@ import '../../../../widgets/c_expanded_delete.dart';
 import '../../../../widgets/c_expanded_save.dart';
 import '../../../../widgets/c_text_form_field.dart';
 import '../../model_views/food_cubit/food_cubit.dart';
-import 'c_grid_view.dart';
+import 'c_ingrediant_images_grid.dart';
 
 class FoodDialog extends StatelessWidget {
   const FoodDialog({Key? key}) : super(key: key);
@@ -63,6 +63,19 @@ class FoodDialog extends StatelessWidget {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Food name is required';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          CTextFormField(
+                            label: 'Calories',
+                            type: TextInputType.number,
+                            controller: food.getCaloriesController,
+                            icon: FontAwesomeIcons.calculator,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Food calories is required';
                               }
                               return null;
                             },
@@ -125,7 +138,7 @@ class FoodDialog extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(5)),
-                            child: CGridView(
+                            child: CIngrediantImagesGrid(
                                 ingrediantsImages: food.getIngrediantsImages),
                           ),
                           const SizedBox(height: 10),

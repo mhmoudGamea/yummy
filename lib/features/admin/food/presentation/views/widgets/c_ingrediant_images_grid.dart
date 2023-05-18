@@ -5,9 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../../core/constants.dart';
 
-class CGridView extends StatelessWidget {
+class CIngrediantImagesGrid extends StatelessWidget {
   final List<File> ingrediantsImages;
-  const CGridView({Key? key, required this.ingrediantsImages})
+  const CIngrediantImagesGrid({Key? key, required this.ingrediantsImages})
       : super(key: key);
 
   @override

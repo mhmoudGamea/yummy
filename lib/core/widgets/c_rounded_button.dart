@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/constants.dart';
+import '../constants.dart';
 
 class CRoundedButton extends StatelessWidget {
   final VoidCallback onTap;

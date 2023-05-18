@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:yummy/core/widgets/c_shimmer.dart';
-import 'package:yummy/features/user/home/data/data/user_food_model.dart';
-import 'package:yummy/core/widgets/c_rounded_button.dart';
+import 'package:yummy/core/widgets/text_13.dart';
 
 import '../../../../../../core/utils/styles.dart';
-import '../../../../../../core/widgets/text_13.dart';
+import '../../../../../../core/widgets/c_shimmer.dart';
+import '../../../data/models/admin_food_model.dart';
 
-class CListItem extends StatelessWidget {
-  final UserFoodModel model;
-  const CListItem({Key? key, required this.model}) : super(key: key);
+class CGridItem extends StatelessWidget {
+  final AdminFoodModel adminFoodModel;
+  const CGridItem({Key? key, required this.adminFoodModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class CListItem extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: CachedNetworkImage(
-              imageUrl: model.foodImage,
+              imageUrl: adminFoodModel.foodImage,
               fit: BoxFit.cover,
               placeholder: (context, url) =>
                   const CShimmer(height: 260, width: 180),
@@ -58,10 +57,12 @@ class CListItem extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Image.asset('assets/images/categories/${model.category}.png',
-                    width: 25, height: 25),
+                Image.asset(
+                    'assets/images/categories/${adminFoodModel.category}.png',
+                    width: 25,
+                    height: 25),
                 const SizedBox(width: 4),
-                Text13(text: model.category, color: Colors.white)
+                Text13(text: adminFoodModel.category, color: Colors.white)
               ],
             ),
           ),
@@ -72,7 +73,7 @@ class CListItem extends StatelessWidget {
           child: SizedBox(
             width: 120,
             child: Text(
-              model.name,
+              adminFoodModel.name,
               style: Styles.title16
                   .copyWith(color: Colors.white, overflow: TextOverflow.fade),
               maxLines: 3,
@@ -86,7 +87,9 @@ class CListItem extends StatelessWidget {
             width: 120,
             child: Row(
               children: [
-                Text13(text: '${model.prepareTime} Min', color: Colors.white),
+                Text13(
+                    text: '${adminFoodModel.prepareTime} Min',
+                    color: Colors.white),
                 const SizedBox(width: 4),
                 const Text13(text: '|', color: Colors.white),
                 const SizedBox(width: 4),
@@ -95,22 +98,11 @@ class CListItem extends StatelessWidget {
                     const Icon(Icons.star_rounded,
                         color: Colors.amber, size: 17),
                     const SizedBox(width: 4),
-                    Text13(text: model.rate, color: Colors.white),
+                    Text13(text: adminFoodModel.rate, color: Colors.white),
                   ],
                 ),
               ],
             ),
-          ),
-        ),
-        Positioned(
-          right: 12,
-          bottom: 20,
-          child: CRoundedButton(
-            icon: Icons.favorite,
-            color: Colors.white,
-            onTap: () {
-              // print('object');
-            },
           ),
         ),
       ],

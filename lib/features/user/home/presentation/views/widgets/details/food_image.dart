@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/c_shimmer.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/c_rounded_button.dart';
+import 'package:yummy/core/widgets/c_rounded_button.dart';
 
 class FoodImage extends StatelessWidget {
   final String image;

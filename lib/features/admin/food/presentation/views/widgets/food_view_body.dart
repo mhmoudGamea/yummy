@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yummy/features/admin/food/presentation/model_views/food_cubit/food_cubit.dart';
+import 'package:yummy/features/admin/food/presentation/views/widgets/c_food_grid.dart';
 
 import '../../../../../../core/constants.dart';
 import '../../../../../../core/utils/styles.dart';
@@ -66,6 +67,7 @@ class FoodViewBody extends StatelessWidget {
             color: primaryColor,
           ),
           const SizedBox(height: 10),
+          const CFoodGrid(),
         ],
       ),
     );

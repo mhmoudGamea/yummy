@@ -47,7 +47,7 @@ class CFixedButton extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                '\$$price',
+                'E£ $price',
                 style: Styles.title16.copyWith(color: primaryColor),
               ),
             ],
