@@ -1,4 +1,5 @@
 class UserFoodModel {
+  final String calories;
   final String category;
   final String collection;
   final String desc;
@@ -11,7 +12,8 @@ class UserFoodModel {
   final String rate;
 
   UserFoodModel(
-      {required this.category,
+      {required this.calories,
+      required this.category,
       required this.collection,
       required this.desc,
       required this.foodImage,
@@ -24,6 +26,7 @@ class UserFoodModel {
 
   factory UserFoodModel.fromJson(Map<String, dynamic> json) {
     return UserFoodModel(
+        calories: json['calories'],
         category: json['category'],
         collection: json['collection'],
         desc: json['desc'],
@@ -38,6 +41,7 @@ class UserFoodModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'calories': calories,
       'category': category,
       'collection': collection,
       'desc': desc,

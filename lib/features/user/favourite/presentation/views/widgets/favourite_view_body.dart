@@ -45,7 +45,7 @@ class FavouriteViewBody extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Image.asset('assets/images/category/fastFood.png',
+                  Image.asset('assets/images/category/f[ast Food.png',
                       width: 25, height: 25),
                   const SizedBox(width: 4),
                   Text(

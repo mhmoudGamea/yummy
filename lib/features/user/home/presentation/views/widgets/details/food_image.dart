@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/c_shimmer.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/c_rounded_button.dart';
 
 class FoodImage extends StatelessWidget {
   final String image;
@@ -20,6 +22,19 @@ class FoodImage extends StatelessWidget {
               height: 270,
               width: double.infinity,
             ),
+          ),
+        ),
+        Positioned(
+          left: 20,
+          top: 40,
+          child: CRoundedButton(
+            icon: Icons.arrow_back_ios_new_rounded,
+            color: Colors.white,
+            opacity: 0.5,
+            iconSize: 19,
+            onTap: () {
+              GoRouter.of(context).pop();
+            },
           ),
         )
       ],

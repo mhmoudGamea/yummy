@@ -27,4 +27,14 @@ class Styles {
     fontSize: 16,
     color: black,
   );
+  static const title17 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 17,
+    color: black,
+  );
+  static const title18 = TextStyle(
+    fontWeight: FontWeight.w800,
+    fontSize: 18,
+    color: black,
+  );
 }

@@ -123,6 +123,7 @@ class CListItem extends StatelessWidget {
           bottom: 20,
           child: CRoundedButton(
             icon: Icons.favorite,
+            color: Colors.white,
             onTap: () {
               // print('object');
             },
