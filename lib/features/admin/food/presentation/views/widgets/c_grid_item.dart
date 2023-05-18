@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:yummy/core/widgets/c_item_rate.dart';
 import 'package:yummy/core/widgets/text_13.dart';
 
 import '../../../../../../core/utils/styles.dart';
@@ -93,14 +94,7 @@ class CGridItem extends StatelessWidget {
                 const SizedBox(width: 4),
                 const Text13(text: '|', color: Colors.white),
                 const SizedBox(width: 4),
-                Row(
-                  children: [
-                    const Icon(Icons.star_rounded,
-                        color: Colors.amber, size: 17),
-                    const SizedBox(width: 4),
-                    Text13(text: adminFoodModel.rate, color: Colors.white),
-                  ],
-                ),
+                CItemRate(rate: adminFoodModel.rate, rateColor: Colors.white),
               ],
             ),
           ),

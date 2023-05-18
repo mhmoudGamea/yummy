@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:yummy/core/widgets/c_item_rate.dart';
 import 'package:yummy/core/widgets/c_shimmer.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 import 'package:yummy/core/widgets/c_rounded_button.dart';
@@ -90,14 +91,7 @@ class CListItem extends StatelessWidget {
                 const SizedBox(width: 4),
                 const Text13(text: '|', color: Colors.white),
                 const SizedBox(width: 4),
-                Row(
-                  children: [
-                    const Icon(Icons.star_rounded,
-                        color: Colors.amber, size: 17),
-                    const SizedBox(width: 4),
-                    Text13(text: model.rate, color: Colors.white),
-                  ],
-                ),
+                CItemRate(rate: model.rate, rateColor: Colors.white),
               ],
             ),
           ),

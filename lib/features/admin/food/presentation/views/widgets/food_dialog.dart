@@ -98,7 +98,7 @@ class FoodDialog extends StatelessWidget {
                             label: 'Rate',
                             type: TextInputType.number,
                             controller: food.getRateController,
-                            icon: FontAwesomeIcons.star,
+                            icon: Icons.star_rounded,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Food rate is required';

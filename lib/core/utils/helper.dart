@@ -38,26 +38,64 @@ class Helper {
     required BuildContext context,
     required String text,
     required Color bgColor,
+    bool leading = true,
+    double elevation = 0,
     Color textColor = Colors.white,
     Color iconColor = Colors.white,
   }) {
     return AppBar(
       centerTitle: true,
       backgroundColor: bgColor,
-      elevation: 0,
-      leading: TextButton(
-        onPressed: () {
-          GoRouter.of(context).pop();
-        },
-        child: const Icon(
-          Icons.arrow_back_ios_rounded,
-          color: Colors.white,
-          size: 20,
-        ),
-      ),
+      elevation: elevation,
+      shadowColor: greyColor,
+      leading: leading
+          ? TextButton(
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+                color: iconColor,
+                size: 20,
+              ),
+            )
+          : null,
       title: Text(
         text,
         style: Styles.title15.copyWith(color: textColor, letterSpacing: 0.4),
+      ),
+    );
+  }
+
+  static Widget hint({required String text, required VoidCallback onPress}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: greyColor.withOpacity(0.4),
+      ),
+      child: Row(
+        children: [
+          Image.asset('assets/images/splash.png', width: 30, height: 30),
+          const SizedBox(width: 10),
+          Flexible(
+            child: Text(
+              text,
+              style: Styles.title14,
+            ),
+          ),
+          const SizedBox(width: 10),
+          IconButton(
+            padding: const EdgeInsets.symmetric(horizontal: 0),
+            constraints: const BoxConstraints(),
+            icon: const Icon(
+              FontAwesomeIcons.xmark,
+              color: primaryColor,
+              size: 20,
+            ),
+            onPressed: onPress,
+          )
+        ],
       ),
     );
   }
