@@ -22,8 +22,8 @@ class CFavListView extends StatelessWidget {
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               separatorBuilder: (context, index) => const SizedBox(height: 20),
-              itemBuilder: (context, index) =>
-                  CListViewItem(model: model[index]),
+              itemBuilder: (context, index) => CListViewItem(
+                  key: ValueKey(model[index].id), model: model[index]),
               itemCount: model.length,
             ),
           );

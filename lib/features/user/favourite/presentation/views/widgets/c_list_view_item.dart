@@ -27,13 +27,9 @@ class _CListViewItemState extends State<CListViewItem> {
   @override
   void didChangeDependencies() {
     if (widget.model.favourites.contains(auth.currentUser!.uid)) {
-      setState(() {
-        _isLiked = true;
-      });
+      _isLiked = true;
     } else {
-      setState(() {
-        _isLiked = false;
-      });
+      _isLiked = false;
     }
     super.didChangeDependencies();
   }

@@ -28,13 +28,9 @@ class _CListItemState extends State<CListItem> {
   @override
   void didChangeDependencies() {
     if (widget.model.favourites.contains(auth.currentUser!.uid)) {
-      setState(() {
-        _isLiked = true;
-      });
+      _isLiked = true;
     } else {
-      setState(() {
-        _isLiked = false;
-      });
+      _isLiked = false;
     }
     super.didChangeDependencies();
   }
@@ -87,7 +83,10 @@ class _CListItemState extends State<CListItem> {
           bottom: 20,
           child: CRoundedButton(
             icon: Icons.favorite,
-            color: _isLiked ? Colors.red : Colors.white,
+            color: _isLiked &&
+                    widget.model.favourites.contains(auth.currentUser!.uid)
+                ? Colors.red
+                : Colors.white,
             onTap: () {
               setState(() {
                 _isLiked = !_isLiked;
