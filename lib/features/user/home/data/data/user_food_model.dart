@@ -10,33 +10,38 @@ class UserFoodModel {
   final String prepareTime;
   final String price;
   final String rate;
+  final List<String> favourites;
 
-  UserFoodModel(
-      {required this.calories,
-      required this.category,
-      required this.collection,
-      required this.desc,
-      required this.foodImage,
-      required this.id,
-      required this.ingrediants,
-      required this.name,
-      required this.prepareTime,
-      required this.price,
-      required this.rate});
+  UserFoodModel({
+    required this.calories,
+    required this.category,
+    required this.collection,
+    required this.desc,
+    required this.foodImage,
+    required this.id,
+    required this.ingrediants,
+    required this.name,
+    required this.prepareTime,
+    required this.price,
+    required this.rate,
+    required this.favourites,
+  });
 
   factory UserFoodModel.fromJson(Map<String, dynamic> json) {
     return UserFoodModel(
-        calories: json['calories'],
-        category: json['category'],
-        collection: json['collection'],
-        desc: json['desc'],
-        foodImage: json['foodImage'],
-        id: json['id'],
-        ingrediants: json['ingrediants'],
-        name: json['name'],
-        prepareTime: json['prepareTime'],
-        price: json['price'],
-        rate: json['rate']);
+      calories: json['calories'],
+      category: json['category'],
+      collection: json['collection'],
+      desc: json['desc'],
+      foodImage: json['foodImage'],
+      id: json['id'],
+      ingrediants: json['ingrediants'],
+      name: json['name'],
+      prepareTime: json['prepareTime'],
+      price: json['price'],
+      rate: json['rate'],
+      favourites: List.from(json['favourites']),
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -52,6 +57,7 @@ class UserFoodModel {
       'prepareTime': prepareTime,
       'price': price,
       'rate': rate,
+      'favourites': favourites,
     };
   }
 }

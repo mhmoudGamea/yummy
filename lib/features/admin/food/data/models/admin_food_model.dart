@@ -10,19 +10,22 @@ class AdminFoodModel {
   final String prepareTime;
   final String price;
   final String rate;
+  final List<String> favourites;
 
-  AdminFoodModel(
-      {required this.calories,
-      required this.category,
-      required this.collection,
-      required this.desc,
-      required this.foodImage,
-      required this.id,
-      required this.ingrediants,
-      required this.name,
-      required this.prepareTime,
-      required this.price,
-      required this.rate});
+  AdminFoodModel({
+    required this.calories,
+    required this.category,
+    required this.collection,
+    required this.desc,
+    required this.foodImage,
+    required this.id,
+    required this.ingrediants,
+    required this.name,
+    required this.prepareTime,
+    required this.price,
+    required this.rate,
+    required this.favourites,
+  });
 
   factory AdminFoodModel.fromJson(Map<String, dynamic> json) {
     return AdminFoodModel(
@@ -36,7 +39,8 @@ class AdminFoodModel {
         name: json['name'],
         prepareTime: json['prepareTime'],
         price: json['price'],
-        rate: json['rate']);
+        rate: json['rate'],
+        favourites: List.from(json['favourites']));
   }
 
   Map<String, dynamic> toMap() {
@@ -52,6 +56,7 @@ class AdminFoodModel {
       'prepareTime': prepareTime,
       'price': price,
       'rate': rate,
+      'favourites': favourites,
     };
   }
 }

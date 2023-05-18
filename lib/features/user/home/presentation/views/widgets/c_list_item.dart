@@ -1,71 +1,55 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:yummy/core/widgets/c_item_rate.dart';
-import 'package:yummy/core/widgets/c_shimmer.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 import 'package:yummy/core/widgets/c_rounded_button.dart';
+import 'package:yummy/features/user/home/presentation/model_views/home_cubit/home_cubit.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/c_category_food_box.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/c_food_image_box.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/c_gradient_layer.dart';
 
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/text_13.dart';
 
-class CListItem extends StatelessWidget {
+class CListItem extends StatefulWidget {
   final UserFoodModel model;
   const CListItem({Key? key, required this.model}) : super(key: key);
 
   @override
+  State<CListItem> createState() => _CListItemState();
+}
+
+class _CListItemState extends State<CListItem> {
+  FirebaseAuth auth = GetIt.I.get<FirebaseAuth>();
+  var _isLiked = false;
+
+  @override
+  void didChangeDependencies() {
+    if (widget.model.favourites.contains(auth.currentUser!.uid)) {
+      setState(() {
+        _isLiked = true;
+      });
+    } else {
+      setState(() {
+        _isLiked = false;
+      });
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final food = BlocProvider.of<HomeCubit>(context);
     return Stack(
       children: [
-        Container(
-          width: 180,
-          height: 260,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: CachedNetworkImage(
-              imageUrl: model.foodImage,
-              fit: BoxFit.cover,
-              placeholder: (context, url) =>
-                  const CShimmer(height: 260, width: 180),
-            ),
-          ),
-        ),
-        Container(
-          width: 180,
-          height: 260,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            gradient: LinearGradient(colors: [
-              Colors.black.withOpacity(0.6),
-              Colors.transparent,
-            ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-          ),
-        ),
+        CFoodImageBox(image: widget.model.foodImage, width: 180, height: 260),
+        const CGradientLayer(width: 180, height: 260),
         Positioned(
           top: 15,
           left: 12,
-          child: Container(
-            height: 30,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.grey.withOpacity(0.4),
-              gradient: LinearGradient(colors: [
-                Colors.black.withOpacity(0.8),
-                Colors.transparent,
-              ], begin: Alignment.bottomCenter, end: Alignment.topRight),
-            ),
-            child: Row(
-              children: [
-                Image.asset('assets/images/categories/${model.category}.png',
-                    width: 25, height: 25),
-                const SizedBox(width: 4),
-                Text13(text: model.category, color: Colors.white)
-              ],
-            ),
-          ),
+          child: CCategoryFoodBox(categoryName: widget.model.category),
         ),
         Positioned(
           bottom: 50,
@@ -73,7 +57,7 @@ class CListItem extends StatelessWidget {
           child: SizedBox(
             width: 120,
             child: Text(
-              model.name,
+              widget.model.name,
               style: Styles.title16
                   .copyWith(color: Colors.white, overflow: TextOverflow.fade),
               maxLines: 3,
@@ -87,11 +71,13 @@ class CListItem extends StatelessWidget {
             width: 120,
             child: Row(
               children: [
-                Text13(text: '${model.prepareTime} Min', color: Colors.white),
+                Text13(
+                    text: '${widget.model.prepareTime} Min',
+                    color: Colors.white),
                 const SizedBox(width: 4),
                 const Text13(text: '|', color: Colors.white),
                 const SizedBox(width: 4),
-                CItemRate(rate: model.rate, rateColor: Colors.white),
+                CItemRate(rate: widget.model.rate, rateColor: Colors.white),
               ],
             ),
           ),
@@ -101,9 +87,12 @@ class CListItem extends StatelessWidget {
           bottom: 20,
           child: CRoundedButton(
             icon: Icons.favorite,
-            color: Colors.white,
+            color: _isLiked ? Colors.red : Colors.white,
             onTap: () {
-              // print('object');
+              setState(() {
+                _isLiked = !_isLiked;
+              });
+              food.addToFavourite(model: widget.model, isLiked: _isLiked);
             },
           ),
         ),

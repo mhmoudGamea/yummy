@@ -209,6 +209,7 @@ class FoodCubit extends Cubit<FoodState> {
               'ingrediants': _downloadedUrls,
               'foodImage': _downloadedUrl,
               'id': id,
+              'favourites': []
             });
             emit(SaveSuccess());
             delete();
