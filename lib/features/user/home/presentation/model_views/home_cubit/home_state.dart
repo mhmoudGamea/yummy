@@ -13,3 +13,13 @@ class UserInfoSuccess extends HomeState {
 }
 
 class UserInfoFailure extends HomeState {}
+
+// states of user food
+class UserFoodLoading extends HomeState {}
+
+class UserFoodSuccess extends HomeState {
+  final List<UserFoodModel> foods;
+  UserFoodSuccess({required this.foods});
+}
+
+class UserFoodFailure extends HomeState {}

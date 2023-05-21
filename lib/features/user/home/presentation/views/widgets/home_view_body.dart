@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/constants.dart';
-import '../../../../../../core/utils/styles.dart';
 import 'c_app_bar.dart';
 import 'c_categories.dart';
 import 'c_curosal_slider.dart';

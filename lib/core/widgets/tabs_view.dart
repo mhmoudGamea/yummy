@@ -3,6 +3,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/favourite/presentation/views/favourite_view.dart';
+import 'package:yummy/features/user/search/presentation/views/user_search_view.dart';
 
 import '../../features/user/home/presentation/views/home_view.dart';
 
@@ -20,7 +21,7 @@ class TabsView extends StatelessWidget {
       return [
         const HomeView(),
         const FavouriteView(),
-        const FavouriteView(),
+        const UserSearchView(),
         const FavouriteView(),
       ];
     }
@@ -40,7 +41,7 @@ class TabsView extends StatelessWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(
             Icons.favorite_border_rounded,
-            size: 15,
+            size: 17,
           ),
           title: ("Favourite"),
           activeColorSecondary: black,
@@ -50,10 +51,10 @@ class TabsView extends StatelessWidget {
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(
-            Icons.favorite_border_rounded,
-            size: 15,
+            Icons.search_rounded,
+            size: 19,
           ),
-          title: ("Favourite"),
+          title: ("Search"),
           activeColorSecondary: black,
           textStyle: Styles.title15,
           activeColorPrimary: greyColor.withOpacity(0.4),
@@ -61,10 +62,10 @@ class TabsView extends StatelessWidget {
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(
-            Icons.favorite_border_rounded,
-            size: 15,
+            Icons.person_outline_rounded,
+            size: 19,
           ),
-          title: ("Favourite"),
+          title: ("Profile"),
           activeColorSecondary: black,
           textStyle: Styles.title15,
           activeColorPrimary: greyColor.withOpacity(0.4),

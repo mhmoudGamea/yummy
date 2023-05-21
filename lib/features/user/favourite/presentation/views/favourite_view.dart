@@ -19,7 +19,6 @@ class FavouriteView extends StatelessWidget {
           text: 'Favourite',
           bgColor: Colors.white,
           textColor: Colors.black,
-          iconColor: Colors.red,
           leading: false,
           elevation: 2,
         ),
