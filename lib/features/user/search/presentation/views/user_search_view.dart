@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/features/user/favourite/presentation/model_views/favourite/favourite_cubit.dart';
+import 'package:yummy/features/user/search/data/repos/seacrh_repo_impl.dart';
 import 'package:yummy/features/user/search/presentation/model_views/search_cubit/search_cubit.dart';
 
 import '../../../../../core/utils/helper.dart';
@@ -10,8 +12,11 @@ class UserSearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SearchCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => SearchCubit(SearchRepoImpl())),
+        BlocProvider(create: (context) => FavouriteCubit()),
+      ],
       child: Scaffold(
         appBar: Helper.appBar(
           context: context,

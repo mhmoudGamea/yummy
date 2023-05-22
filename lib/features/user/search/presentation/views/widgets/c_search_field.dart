@@ -5,14 +5,22 @@ import 'package:yummy/core/utils/styles.dart';
 import '../../../../../../core/utils/helper.dart';
 
 class CSearchField extends StatelessWidget {
-  const CSearchField({Key? key}) : super(key: key);
+  final TextEditingController controller;
+  final VoidCallback onPress;
+  const CSearchField(
+      {Key? key, required this.controller, required this.onPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: black,
+      controller: controller,
       decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.search_rounded, size: 25, color: black),
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.search_rounded, size: 25, color: black),
+          onPressed: onPress,
+        ),
         hintText: 'Search',
         hintStyle: Styles.title14,
         filled: true,

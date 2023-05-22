@@ -10,15 +10,14 @@ class CPeopleAreLookingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-        physics: const BouncingScrollPhysics(),
-        separatorBuilder: (context, index) => const SizedBox(height: 5),
-        itemBuilder: (context, index) => CPeopleAreLookingListItem(
-            key: ValueKey(peopleAreLookingList[index].id),
-            model: peopleAreLookingList[index]),
-        itemCount: peopleAreLookingList.length,
-      ),
+    return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      separatorBuilder: (context, index) => const SizedBox(height: 5),
+      itemBuilder: (context, index) => CPeopleAreLookingListItem(
+          key: ValueKey(peopleAreLookingList[index].id),
+          model: peopleAreLookingList[index]),
+      itemCount: peopleAreLookingList.length,
     );
   }
 }

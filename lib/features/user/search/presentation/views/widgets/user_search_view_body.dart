@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/features/user/search/presentation/views/widgets/c_popular_food_stream.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/features/user/search/presentation/views/widgets/search_view_body_builder.dart';
 
-import 'c_header.dart';
-import 'c_people_are_looking_stream.dart';
+import '../../model_views/search_cubit/search_cubit.dart';
 import 'c_search_field.dart';
 
 class UserSearchViewBody extends StatelessWidget {
@@ -10,22 +10,26 @@ class UserSearchViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+    final search = BlocProvider.of<SearchCubit>(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          CSearchField(),
-          SizedBox(height: 25),
-          CHeader(headerName: 'Popular Food'),
-          SizedBox(height: 10),
-          CPopularFoodStream(),
-          SizedBox(height: 25),
-          CHeader(headerName: 'People are looking'),
-          SizedBox(height: 10),
-          CPeopleAreLookingStream()
+          CSearchField(
+              controller: search.getSearchController,
+              onPress: () {
+                search.searchItems(context);
+              }),
+          const SizedBox(height: 25),
+          const Expanded(child: SearchViewBodyBuilder()),
         ],
       ),
     );
   }
 }
+/*
+
+
+
+*/
