@@ -28,7 +28,7 @@ class FirestoreServices {
   Future<Either<Failure, String>> updateUser(
       {required String coll, required Map<String, dynamic> values}) async {
     try {
-      await _store.collection(coll).doc(values['uid']).update(values);
+      await _store.collection(coll).doc(values['id']).update(values);
       return right('Success update user information');
     } catch (error) {
       return left(

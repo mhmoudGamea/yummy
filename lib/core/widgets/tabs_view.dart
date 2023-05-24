@@ -3,6 +3,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/favourite/presentation/views/favourite_view.dart';
+import 'package:yummy/features/user/profile/presentation/views/user_profile_view.dart';
 import 'package:yummy/features/user/search/presentation/views/user_search_view.dart';
 
 import '../../features/user/home/presentation/views/home_view.dart';
@@ -22,7 +23,7 @@ class TabsView extends StatelessWidget {
         const HomeView(),
         const FavouriteView(),
         const UserSearchView(),
-        const FavouriteView(),
+        const UserProfileView(),
       ];
     }
 

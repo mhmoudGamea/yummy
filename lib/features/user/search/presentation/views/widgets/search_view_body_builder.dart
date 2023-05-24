@@ -20,6 +20,7 @@ class SearchViewBodyBuilder extends StatelessWidget {
       builder: (context, state) {
         if (state is SearchInitial) {
           return const CustomScrollView(
+            physics: BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(
                 child: Column(
