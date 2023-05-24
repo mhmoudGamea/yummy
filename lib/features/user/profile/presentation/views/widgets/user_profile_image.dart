@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'select_profile_image_button.dart';
+
 class UserProfileImage extends StatelessWidget {
   const UserProfileImage({Key? key}) : super(key: key);
 
@@ -13,8 +15,18 @@ class UserProfileImage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(75),
+            image: const DecorationImage(
+              image: NetworkImage(
+                  'https://img.freepik.com/premium-vector/cute-brunette-young-girl_128665-103.jpg?size=626&ext=jpg&uid=R77423435&ga=GA1.1.168172065.1675103739'),
+              fit: BoxFit.cover,
+            ),
           ),
-        )
+        ),
+        const Positioned(
+          bottom: 20,
+          right: 0,
+          child: SelectProfileImageButton(),
+        ),
       ],
     );
   }

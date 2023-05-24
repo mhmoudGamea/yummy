@@ -7,6 +7,8 @@ class UserProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserProfileViewBody();
+    return const Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(child: UserProfileViewBody()));
   }
 }

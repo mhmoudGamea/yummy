@@ -38,7 +38,7 @@ class CPeopleAreLookingListItem extends StatelessWidget {
               color: Colors.black,
             ),
             onPressed: () {},
-          )
+          ),
         ],
       ),
     );
