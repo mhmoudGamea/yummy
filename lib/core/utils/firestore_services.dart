@@ -81,7 +81,6 @@ class FirestoreServices {
       await _store.collection(coll).doc(id).delete();
       return 'Deleted successfully';
     } catch (error) {
-      print(error.toString());
       return 'Failed to delete';
     }
   }

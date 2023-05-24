@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:yummy/core/constants.dart';
-import 'package:yummy/core/widgets/c_circle_loading.dart';
-import 'package:yummy/core/widgets/c_error_widget.dart';
-import 'package:yummy/features/user/search/presentation/model_views/search_cubit/search_cubit.dart';
-import 'package:yummy/features/user/search/presentation/views/widgets/c_search_list.dart';
 
+import '../../../../../../core/constants.dart';
+import '../../../../../../core/widgets/c_error_widget.dart';
+import '../../model_views/search_cubit/search_cubit.dart';
 import 'c_header.dart';
 import 'c_people_are_looking_stream.dart';
 import 'c_popular_food_stream.dart';
+import 'c_search_list.dart';
 
 class SearchViewBodyBuilder extends StatelessWidget {
   const SearchViewBodyBuilder({Key? key}) : super(key: key);
@@ -47,7 +46,7 @@ class SearchViewBodyBuilder extends StatelessWidget {
         } else if (state is SearchSuccess) {
           return CSearchList(searchList: state.searchList);
         }
-        return const CCircleLoading();
+        return const SizedBox();
       },
     );
   }

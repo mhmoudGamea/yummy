@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:yummy/features/admin/banners/presentation/model_views/banner_cubit/banner_cubit.dart';
+import '../../model_views/banner_cubit/banner_cubit.dart';
 
 import '../../../../../../core/utils/helper.dart';
 import '../../../data/models/banner_model.dart';

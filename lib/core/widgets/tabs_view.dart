@@ -18,7 +18,7 @@ class TabsView extends StatelessWidget {
 
     controller = PersistentTabController(initialIndex: 0);
 
-    List<Widget> _buildScreens() {
+    List<Widget> buildScreens() {
       return [
         const HomeView(),
         const FavouriteView(),
@@ -27,7 +27,7 @@ class TabsView extends StatelessWidget {
       ];
     }
 
-    List<PersistentBottomNavBarItem> _navBarsItems() {
+    List<PersistentBottomNavBarItem> navBarsItems() {
       return [
         PersistentBottomNavBarItem(
           icon: Image.asset(
@@ -79,8 +79,8 @@ class TabsView extends StatelessWidget {
       body: PersistentTabView(
         context,
         controller: controller,
-        screens: _buildScreens(),
-        items: _navBarsItems(),
+        screens: buildScreens(),
+        items: navBarsItems(),
         confineInSafeArea: true,
         backgroundColor: Colors.white, // Default is Colors.white.
         handleAndroidBackButtonPress: true, // Default is true.

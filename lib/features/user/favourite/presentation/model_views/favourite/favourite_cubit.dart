@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../data/models/favourite_model.dart';
 
@@ -13,6 +14,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
 
   final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
   final FirebaseAuth _auth = GetIt.I.get<FirebaseAuth>();
+  final SharedPreferences _prefs = GetIt.I.get<SharedPreferences>();
 
   Future<void> addToFavourite(
       {required FavouriteModel model, required bool isLiked}) async {
@@ -32,5 +34,14 @@ class FavouriteCubit extends Cubit<FavouriteState> {
         });
       }
     });
+  }
+
+  void understandFav() async {
+    await _prefs.setBool('getIt', true);
+    emit(UnderstandFavouriteDone());
+  }
+
+  bool? getPrefs() {
+    return _prefs.getBool('getIt');
   }
 }

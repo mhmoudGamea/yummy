@@ -11,8 +11,7 @@ class LoginRepoImpl implements LoginRepo {
   Future<Either<Failure, String>> loginUserWithEmailPass(
       {required String email, required String password}) async {
     try {
-      final cradentials = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
       return right('Successfully Logining.');
     } on FirebaseAuthException catch (error) {
       return left(FirebaseSideError.fromLogin(error.code));
