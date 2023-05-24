@@ -27,7 +27,6 @@ class SearchCubit extends Cubit<SearchState> {
   // 3- user enter a text and press on search icon [this text could be valid or invalid => 'chicken' or 'jdjnkdj']
   // so if it's valid i return listview with data else return errorWidget
   void searchItems(BuildContext context) async {
-    print(getSearchController.text);
     emit(SearchLoading());
     if (getSearchController.text.isEmpty) {
       emit(SearchInitial());
@@ -41,7 +40,7 @@ class SearchCubit extends Cubit<SearchState> {
       response.fold((fail) {
         emit(SearchFailure(error: fail.errorMessage));
       }, (searchedList) {
-        if (searchedList.isNotEmpty) {
+        if (searchedList.isEmpty) {
           emit(SearchInitial());
           Helper.showCustomToast(
               context: context,

@@ -13,7 +13,7 @@ class SearchRepoImpl implements SearchRepo {
   Future<Either<Failure, List<SearchModel>>> searchFood(String value) async {
     //
     try {
-      _store.collection('food').get().then((values) {
+      await _store.collection('food').get().then((values) {
         search = [];
         for (var doc in values.docs) {
           if (doc['name'].toLowerCase().contains(value.toLowerCase())) {
