@@ -8,8 +8,7 @@ class HomeInitial extends HomeState {}
 class UserInfoLoading extends HomeState {}
 
 class UserInfoSuccess extends HomeState {
-  final String administrativeArea;
-  UserInfoSuccess({required this.administrativeArea});
+  UserInfoSuccess();
 }
 
 class UserInfoFailure extends HomeState {}

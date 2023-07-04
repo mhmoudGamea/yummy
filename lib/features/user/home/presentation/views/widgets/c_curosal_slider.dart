@@ -29,8 +29,7 @@ class CCurosalSlider extends StatelessWidget {
               );
             } else if (snapshot.hasError) {
               return CErrorWidget(
-                  icon: Icons.close_rounded,
-                  text: 'Sorry we can\'t find any banners for now.');
+                  icon: Icons.close_rounded, text: '${snapshot.error}');
             } else {
               if (snapshot.data!.docs.isEmpty) {
                 return SizedBox(

@@ -20,7 +20,7 @@ class CButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return NeumorphicButton(
       style: NeumorphicStyle(depth: 1, color: bgColor),
-      padding: const EdgeInsets.symmetric(vertical: 14),
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
       onPressed: onPress,
       child: Text(
         text,

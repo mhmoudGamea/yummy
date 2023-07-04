@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yummy/core/widgets/c_circle_loading.dart';
+import 'package:yummy/core/widgets/c_error_widget.dart';
+import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
+import 'package:yummy/features/user/profile/presentation/views/user_edit_profile_view.dart';
 
 import '../../../../home/presentation/views/widgets/c_header_name.dart';
 import 'more_info_tab.dart';
@@ -12,54 +18,72 @@ class UserProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const UserProfileImage(),
-            const SizedBox(height: 15),
-            const UserProfileAccount(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Column(
-                children: [
-                  const SizedBox(height: 30),
-                  const UserProfileInfo(),
-                  const SizedBox(height: 30),
-                  MoreInfoTab(
-                    icon: FontAwesomeIcons.bell,
-                    text: 'Notification',
-                    onTap: () {},
+    return BlocBuilder<ProfileCubit, ProfileState>(
+      builder: (context, state) {
+        if (state is GetUserInfoLoading) {
+          return const Center(child: CCircleLoading());
+        } else if (state is GetUserInfoFailure) {
+          return CErrorWidget(
+              icon: FontAwesomeIcons.triangleExclamation,
+              text: 'Sorry we can\'t get profile information right now.');
+        }
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                const UserProfileImage(),
+                const SizedBox(height: 15),
+                const UserProfileAccount(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 30),
+                      const UserProfileInfo(),
+                      const SizedBox(height: 30),
+                      MoreInfoTab(
+                        icon: FontAwesomeIcons.bell,
+                        text: 'Notification',
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 15),
+                      MoreInfoTab(
+                        icon: FontAwesomeIcons.locationDot,
+                        text: 'Location',
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 15),
+                      MoreInfoTab(
+                        icon: FontAwesomeIcons.commentDots,
+                        text: 'FAQ',
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 15),
+                      const CHeaderName(name: 'Security'),
+                      const SizedBox(height: 15),
+                      MoreInfoTab(
+                        icon: FontAwesomeIcons.lock,
+                        text: 'Password',
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 15),
+                      MoreInfoTab(
+                        icon: FontAwesomeIcons.penToSquare,
+                        text: 'Edit Profile',
+                        onTap: () {
+                          GoRouter.of(context).push(UserEditProfileView.rn);
+                        },
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 15),
-                  MoreInfoTab(
-                    icon: FontAwesomeIcons.locationDot,
-                    text: 'Location',
-                    onTap: () {},
-                  ),
-                  const SizedBox(height: 15),
-                  MoreInfoTab(
-                    icon: FontAwesomeIcons.commentDots,
-                    text: 'FAQ',
-                    onTap: () {},
-                  ),
-                  const SizedBox(height: 15),
-                  const CHeaderName(name: 'Security'),
-                  const SizedBox(height: 15),
-                  MoreInfoTab(
-                    icon: FontAwesomeIcons.lock,
-                    text: 'Password',
-                    onTap: () {},
-                  ),
-                  const SizedBox(height: 15),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

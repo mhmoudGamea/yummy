@@ -37,8 +37,7 @@ class HomeCubit extends Cubit<HomeState> {
           msg: failure.errorMessage);
     }, (userInfoModel) {
       _userInfoModel = userInfoModel;
-      emit(UserInfoSuccess(
-          administrativeArea: userInfoModel.administrativeArea));
+      emit(UserInfoSuccess());
     });
   }
 

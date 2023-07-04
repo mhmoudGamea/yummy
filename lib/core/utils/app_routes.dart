@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 
 // views imports
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
@@ -12,8 +11,10 @@ import '../../features/admin/login/presentation/views/admin_login_view.dart';
 import '../../features/admin/register/presentation/views/admin_register_view.dart';
 import '../../features/on_board/presentation/views/board_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
+import '../../features/user/home/data/data/user_food_model.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
+import '../../features/user/profile/presentation/views/user_edit_profile_view.dart';
 import '../../features/user/register/login/presentation/login_view.dart';
 import '../../features/welcome/data/models/location_model.dart';
 import '../../features/welcome/presentation/views/map_view.dart';
@@ -81,6 +82,11 @@ class AppRoutes {
         path: TabsView.rn,
         builder: (context, state) => const TabsView(),
       ),
+      GoRoute(
+        path: UserEditProfileView.rn,
+        builder: (context, state) => const UserEditProfileView(),
+      ),
+
       // admin navigation section
       GoRoute(
         path: AdminLoginView.rn,

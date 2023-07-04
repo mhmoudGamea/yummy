@@ -122,6 +122,9 @@ class LocationCubit extends Cubit<LocationState> {
         'longitude': _locationModel.longitude,
         'address': _address,
         'administrativeArea': _administrativeArea,
+        'profileImage': null,
+        'name': null,
+        'email': null
       });
       GoRouter.of(context).push(TabsView.rn);
     } else {

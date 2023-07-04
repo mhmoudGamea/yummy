@@ -11,7 +11,6 @@ class HomeRepoImpl implements HomeRepo {
   final FirebaseAuth _auth = GetIt.I.get<FirebaseAuth>();
   final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
 
-  // late UserInfoModel _userInfoModel;
   @override
   Future<Either<Failure, UserInfoModel>> getUserInformation() async {
     try {

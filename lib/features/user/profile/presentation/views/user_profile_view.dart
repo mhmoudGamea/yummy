@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../model-views/profile_cubit/profile_cubit.dart';
 import 'widgets/user_profile_view_body.dart';
 
 class UserProfileView extends StatelessWidget {
@@ -7,8 +9,11 @@ class UserProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(child: UserProfileViewBody()));
+    return BlocProvider(
+      create: (context) => ProfileCubit(),
+      child: const Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(child: UserProfileViewBody())),
+    );
   }
 }

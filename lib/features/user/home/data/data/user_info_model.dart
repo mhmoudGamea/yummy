@@ -1,10 +1,13 @@
 class UserInfoModel {
   final String id;
   final String phoneNumber;
-  final double latitude;
-  final double longitude;
-  final String address;
-  final String administrativeArea;
+  final double? latitude;
+  final double? longitude;
+  final String? address;
+  final String? administrativeArea;
+  final String? profileImage;
+  final String? name;
+  final String? email;
 
   const UserInfoModel({
     required this.id,
@@ -13,6 +16,9 @@ class UserInfoModel {
     required this.longitude,
     required this.address,
     required this.administrativeArea,
+    this.profileImage,
+    this.name,
+    this.email,
   });
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +29,9 @@ class UserInfoModel {
       longitude: json['longitude'],
       address: json['address'],
       administrativeArea: json['administrativeArea'],
+      profileImage: json['profileImage'],
+      name: json['name'],
+      email: json['email'],
     );
   }
 
@@ -34,6 +43,9 @@ class UserInfoModel {
       'longitude': longitude,
       'address': address,
       'administrativeArea': administrativeArea,
+      'profileImage': profileImage,
+      'name': name,
+      'email': email,
     };
   }
 }

@@ -20,7 +20,8 @@ class CListViewBody extends StatelessWidget {
             icon: FontAwesomeIcons.triangleExclamation,
             bgColor: primaryColor,
           )
-        : Expanded(
+        : SizedBox(
+            height: 250,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,

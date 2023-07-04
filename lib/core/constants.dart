@@ -12,3 +12,7 @@ const Color babyBlue = Color(0xff0abde3);
 
 ThemeData lightTheme =
     ThemeData(fontFamily: 'ubuntu', scaffoldBackgroundColor: Colors.white);
+
+// this will hold the current uid of authenticated user.
+dynamic uid;
+dynamic userPhone;

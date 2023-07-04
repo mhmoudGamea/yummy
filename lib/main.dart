@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // firebase packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:yummy/core/utils/cache_helper.dart';
 import 'firebase_options.dart';
 
 // app packages
@@ -19,6 +20,11 @@ void main() async {
   );
   await ServiceLocator.setUp();
   AppRoutes.getAuthState();
+  if (uid != null || userPhone != null) {
+    uid = CacheHelper.getData('uid');
+    userPhone = CacheHelper.getData('userPhone');
+  }
+
   runApp(const MyApp());
 }
 
@@ -28,11 +34,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print('************************************');
+    print(uid);
+    print(userPhone);
+    print('************************************');
     return BlocProvider(
       create: (context) => LocationCubit(LocationRepoImpl()),
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'Grocery App',
+        title: 'Food App',
         theme: lightTheme,
         routerConfig: AppRoutes.getRouter,
       ),

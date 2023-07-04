@@ -18,7 +18,7 @@ class FirestoreServices {
   Future<Either<Failure, String>> createUser(
       {required String coll, required Map<String, dynamic> values}) async {
     try {
-      await _store.collection(coll).doc(values['uid']).set(values);
+      await _store.collection(coll).doc(values['id']).set(values);
       return right('User added successfully');
     } catch (error) {
       return left(const FireStoreSideError('Failed to add user'));

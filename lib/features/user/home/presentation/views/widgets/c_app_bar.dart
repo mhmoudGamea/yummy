@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import 'c_image_box.dart';
@@ -19,11 +17,11 @@ class CAppBar extends StatelessWidget {
         children: [
           GestureDetector(
               onTap: () async {
-                GetIt get = GetIt.I;
+                // GetIt get = GetIt.I;
                 FirebaseAuth.instance.signOut();
                 GoRouter.of(context).push(WelcomeView.rn);
-                SharedPreferences prefs = get.get<SharedPreferences>();
-                await prefs.clear();
+                // SharedPreferences prefs = get.get<SharedPreferences>();
+                // await prefs.clear();
               },
               child: const CImageBox(imagePath: 'assets/images/splash.png')),
           const SizedBox(width: 15),

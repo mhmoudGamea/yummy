@@ -11,24 +11,26 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-      child: Column(
-        children: [
-          CAppBar(),
-          SizedBox(height: 10),
-          // const CSearchField(),
-          SizedBox(height: 10),
-          CCurosalSlider(),
-          SizedBox(height: 15),
-          CHeaderName(name: 'Categories'),
-          SizedBox(height: 10),
-          CCategories(),
-          SizedBox(height: 15),
-          CHeaderName(name: 'All'),
-          SizedBox(height: 10),
-          CListView(),
-        ],
+    return const SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        child: Column(
+          children: [
+            CAppBar(),
+            SizedBox(height: 10),
+            // const CSearchField(),
+            SizedBox(height: 10),
+            CCurosalSlider(),
+            SizedBox(height: 15),
+            CHeaderName(name: 'Categories'),
+            SizedBox(height: 10),
+            CCategories(),
+            SizedBox(height: 15),
+            CHeaderName(name: 'All'),
+            SizedBox(height: 10),
+            CListView(),
+          ],
+        ),
       ),
     );
   }

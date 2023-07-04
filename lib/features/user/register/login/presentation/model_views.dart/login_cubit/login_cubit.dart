@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/utils/cache_helper.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/core/widgets/tabs_view.dart';
@@ -23,6 +24,9 @@ class LoginCubit extends Cubit<LoginState> {
   late String smsOtp;
   var error = '';
 
+  Future<void> handleSharedPreferences(
+      {required String uid, required String userPhone}) async {}
+
   Future<void> openSmsOtpDialog(
       BuildContext context,
       String number,
@@ -34,8 +38,8 @@ class LoginCubit extends Cubit<LoginState> {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Column(
-          children: const [
+        title: const Column(
+          children: [
             Text('Verification Code', style: Styles.title16),
             SizedBox(height: 10),
             Text(
@@ -89,11 +93,12 @@ class LoginCubit extends Cubit<LoginState> {
                   // navigate to home page if login success
                   Navigator.of(context).pop();
                   GoRouter.of(context).pushReplacement(TabsView.rn);
-
-                  if (address != null &&
-                      latitude != null &&
-                      longitude != null &&
-                      administrativeArea != null) {
+                  // this function will save uid and phone. then save them in uid and userPhone in constant
+                  await CacheHelper.saveData(key: 'uid', value: user.uid);
+                  await CacheHelper.saveData(
+                      key: 'userPhone', value: user.phoneNumber);
+                  // TODO: need to handle this
+                  if (uid != user.uid) {
                     _services.createUser(coll: 'users', values: {
                       'id': user.uid,
                       'phoneNumber': user.phoneNumber,
@@ -101,6 +106,9 @@ class LoginCubit extends Cubit<LoginState> {
                       'longitude': longitude,
                       'address': address,
                       'administrativeArea': administrativeArea,
+                      'profileImage': null,
+                      'name': null,
+                      'email': null,
                     });
                   }
                 } else {
