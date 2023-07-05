@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/utils/styles.dart';
+import 'package:yummy/core/widgets/c_circle_loading.dart';
+import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 import 'package:yummy/features/user/profile/presentation/views/widgets/edit/image_edit.dart';
 
@@ -33,23 +38,25 @@ class UserEditProfileViewBody extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      // const SizedBox(height: 15),
-                      // const Row(
-                      //   children: [
-                      //     Icon(
-                      //       FontAwesomeIcons.circleExclamation,
-                      //       size: 17,
-                      //       color: Colors.amber,
-                      //     ),
-                      //     SizedBox(
-                      //       width: 10,
-                      //     ),
-                      //     Flexible(
-                      //       child: Text(
-                      //           'If you didn\'t select any image you will still using your old profile image.'),
-                      //     )
-                      //   ],
-                      // ),
+                      const SizedBox(height: 15),
+                      Row(
+                        children: [
+                          const Icon(
+                            FontAwesomeIcons.circleExclamation,
+                            size: 17,
+                            color: mintGreen,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Flexible(
+                            child: Text(
+                              'If you didn\'t select any image you will still using your old profile image.',
+                              style: Styles.title13.copyWith(color: greyColor2),
+                            ),
+                          )
+                        ],
+                      ),
                       const SizedBox(height: 15),
                       EditTextField(
                           icon: Icons.person_rounded,
@@ -64,7 +71,7 @@ class UserEditProfileViewBody extends StatelessWidget {
                           icon: Icons.email_rounded,
                           label: 'Email',
                           type: TextInputType.emailAddress,
-                          controller: data.getNameController,
+                          controller: data.getEmailController,
                           validator: (value) {
                             return null;
                           }),
@@ -73,20 +80,31 @@ class UserEditProfileViewBody extends StatelessWidget {
                           icon: Icons.phone_rounded,
                           label: 'Phone',
                           type: TextInputType.phone,
-                          controller: data.getNameController,
+                          controller: data.getPhoneController,
                           validator: (value) {
                             return null;
                           }),
                       const SizedBox(height: 30),
-                      CExpandedButton(
-                        bgColor: primaryColor,
-                        text: 'Confirm',
-                        textColor: Colors.white,
-                        onPress: () async {
-                          print('************************************');
-                          print(uid);
-                          print(userPhone);
-                          print('************************************');
+                      BlocBuilder<ProfileCubit, ProfileState>(
+                        builder: (context, state) {
+                          if (state is ConfirmEditingLoading) {
+                            return const CCircleLoading();
+                          } else if (state is ConfirmEditingFailure) {
+                            return CErrorWidget(
+                              icon: FontAwesomeIcons.circleExclamation,
+                              text: 'Error hapening while updating the data',
+                              bgColor: secondaryColor,
+                            );
+                          }
+                          return CExpandedButton(
+                            bgColor: primaryColor,
+                            text: 'Confirm',
+                            textColor: Colors.white,
+                            onPress: () {
+                              data.confirmEditingUserProfileData();
+                              GoRouter.of(context).pop();
+                            },
+                          );
                         },
                       )
                     ],

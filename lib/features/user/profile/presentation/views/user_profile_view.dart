@@ -10,7 +10,7 @@ class UserProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProfileCubit(),
+      create: (context) => ProfileCubit()..getUserProfileData(),
       child: const Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(child: UserProfileViewBody())),

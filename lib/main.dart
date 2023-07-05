@@ -20,11 +20,8 @@ void main() async {
   );
   await ServiceLocator.setUp();
   AppRoutes.getAuthState();
-  if (uid != null || userPhone != null) {
-    uid = CacheHelper.getData('uid');
-    userPhone = CacheHelper.getData('userPhone');
-  }
-
+  uid = CacheHelper.getData('uid');
+  userPhone = CacheHelper.getData('userPhone');
   runApp(const MyApp());
 }
 

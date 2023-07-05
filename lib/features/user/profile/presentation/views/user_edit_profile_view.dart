@@ -11,7 +11,7 @@ class UserEditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProfileCubit(),
+      create: (context) => ProfileCubit()..getUserProfileData(),
       child: const Scaffold(
         body: SafeArea(
           child: UserEditProfileViewBody(),

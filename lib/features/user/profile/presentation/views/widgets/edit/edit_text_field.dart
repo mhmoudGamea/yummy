@@ -26,6 +26,7 @@ class EditTextField extends StatelessWidget {
       cursorColor: primaryColor,
       keyboardType: type,
       controller: controller,
+      // initialValue: 'hello world',
       decoration: InputDecoration(
         helperStyle: Styles.title12.copyWith(color: greyColor2),
         prefixIcon: Icon(
