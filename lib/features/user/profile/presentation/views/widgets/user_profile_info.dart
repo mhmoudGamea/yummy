@@ -1,54 +1,37 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
-import 'package:yummy/core/utils/styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/core/widgets/c_circle_loading.dart';
+import 'package:yummy/features/user/home/data/data/user_info_model.dart';
+import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
+
+import 'user_profile_account.dart';
+import 'user_profile_image.dart';
 
 class UserProfileInfo extends StatelessWidget {
   const UserProfileInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: greyColor.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 2,
-            offset: const Offset(2, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          userProfileInfoItem(
-              'Order Food', greyColor2, null, '120', primaryColor, null),
-          userProfileInfoItem(
-              'Spending', greyColor2, null, '\$ 4120', primaryColor, null),
-        ],
-      ),
+    final profileData = BlocProvider.of<ProfileCubit>(context);
+    final snapshot = FirebaseFirestore.instance.collection('users').snapshots();
+    return StreamBuilder<QuerySnapshot>(
+      stream: snapshot,
+      builder: ((context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CCircleLoading();
+        }
+        UserInfoModel userInfoModel =
+            profileData.getNewUpdatedData(snapshot.data);
+        return Column(
+          children: [
+            UserProfileImage(profileImage: userInfoModel.profileImage),
+            const SizedBox(height: 15),
+            UserProfileAccount(
+                name: userInfoModel.name, phone: userInfoModel.phoneNumber),
+          ],
+        );
+      }),
     );
   }
-}
-
-Widget userProfileInfoItem(String title, Color titleColor, double? titleSize,
-    String subtitle, Color subtitleColor, double? subtitleSize) {
-  return Column(
-    children: [
-      Text(
-        title,
-        style: Styles.title15
-            .copyWith(color: titleColor, fontSize: titleSize ?? 13),
-      ),
-      const SizedBox(height: 10),
-      Text(
-        subtitle,
-        style: Styles.title15
-            .copyWith(color: subtitleColor, fontSize: subtitleSize ?? 16),
-      ),
-    ],
-  );
 }

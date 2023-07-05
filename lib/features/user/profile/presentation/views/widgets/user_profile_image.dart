@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 // import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 
 class UserProfileImage extends StatelessWidget {
-  const UserProfileImage({Key? key}) : super(key: key);
+  final String? profileImage;
+  const UserProfileImage({Key? key, required this.profileImage})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,8 @@ class UserProfileImage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(75),
-        image: const DecorationImage(
-          image: NetworkImage(
+        image: DecorationImage(
+          image: NetworkImage(profileImage ??
               'https://img.freepik.com/premium-vector/cute-brunette-young-girl_128665-103.jpg?size=626&ext=jpg&uid=R77423435&ga=GA1.1.168172065.1675103739'),
           fit: BoxFit.cover,
         ),

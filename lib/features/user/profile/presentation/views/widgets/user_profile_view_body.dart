@@ -9,8 +9,7 @@ import 'package:yummy/features/user/profile/presentation/views/user_edit_profile
 
 import '../../../../home/presentation/views/widgets/c_header_name.dart';
 import 'more_info_tab.dart';
-import 'user_profile_account.dart';
-import 'user_profile_image.dart';
+import 'user_profile_sub_info.dart';
 import 'user_profile_info.dart';
 
 class UserProfileViewBody extends StatelessWidget {
@@ -33,15 +32,15 @@ class UserProfileViewBody extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
-                const UserProfileImage(),
-                const SizedBox(height: 15),
-                const UserProfileAccount(),
+                // this widget hold userProfileImage & userProfileAccount
+                const UserProfileInfo(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
-                      const UserProfileInfo(),
+                      // this will hold totalSpending
+                      const UserProfileSubInfo(),
                       const SizedBox(height: 30),
                       MoreInfoTab(
                         icon: FontAwesomeIcons.bell,
