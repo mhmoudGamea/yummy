@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/features/admin/categories/presentation/views/category_view.dart';
 import 'package:yummy/features/admin/food/presentation/views/food_view.dart';
+import 'package:yummy/features/admin/users_faqs/presentation/views/user_faqs_view.dart';
 import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import '../../../../../../core/constants.dart';
@@ -52,10 +53,11 @@ class AdminDrawer extends StatelessWidget {
                   },
                 ),
                 DrawerItem(
-                  text: 'Admin Users',
+                  text: 'Users Faqs',
                   icon: FontAwesomeIcons.user,
                   onPress: () {
-                    print('Banners');
+                    GoRouter.of(context).push(UserFaqsView.rn);
+                    Scaffold.of(context).closeDrawer();
                   },
                 ),
                 DrawerItem(
