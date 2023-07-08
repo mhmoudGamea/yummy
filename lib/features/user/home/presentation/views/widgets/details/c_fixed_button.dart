@@ -6,7 +6,6 @@ import '../../../../../../../core/utils/styles.dart';
 
 class CFixedButton extends StatelessWidget {
   final String price;
-  final IconData icon;
   final String text;
   final Color bgColor;
   final Color textColor;
@@ -14,7 +13,6 @@ class CFixedButton extends StatelessWidget {
   const CFixedButton(
       {Key? key,
       required this.price,
-      required this.icon,
       required this.bgColor,
       required this.textColor,
       required this.iconColor,
@@ -56,7 +54,6 @@ class CFixedButton extends StatelessWidget {
           Expanded(
             child: CIconButton(
                 bgColor: bgColor,
-                icon: icon,
                 iconColor: iconColor,
                 text: text,
                 textColor: textColor),

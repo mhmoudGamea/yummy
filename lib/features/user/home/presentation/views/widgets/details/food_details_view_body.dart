@@ -9,6 +9,7 @@ import 'package:yummy/features/user/home/presentation/views/widgets/details/food
 
 import '../c_header_name.dart';
 import 'c_ingrediant.dart';
+import 'quantity_widget.dart';
 
 class FoodDetailsViewBody extends StatelessWidget {
   final UserFoodModel userFoodModel;
@@ -47,7 +48,9 @@ class FoodDetailsViewBody extends StatelessWidget {
                       const SizedBox(height: 15),
                       const CHeaderName(name: 'Ingrediants'),
                       const SizedBox(height: 15),
-                      CIngrediant(ingrediants: userFoodModel.ingrediants)
+                      CIngrediant(ingrediants: userFoodModel.ingrediants),
+                      const SizedBox(height: 15),
+                      const QuantityWidget(),
                     ],
                   ),
                 )
@@ -57,7 +60,6 @@ class FoodDetailsViewBody extends StatelessWidget {
         ),
         CFixedButton(
             price: userFoodModel.price,
-            icon: Icons.shopping_bag_rounded,
             bgColor: primaryColor,
             textColor: Colors.white,
             iconColor: Colors.white,

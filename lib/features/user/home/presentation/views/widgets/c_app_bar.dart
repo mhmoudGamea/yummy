@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/cart_widget.dart';
 import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import 'c_image_box.dart';
@@ -24,8 +25,10 @@ class CAppBar extends StatelessWidget {
                 // await prefs.clear();
               },
               child: const CImageBox(imagePath: 'assets/images/splash.png')),
-          const SizedBox(width: 15),
+          const SizedBox(width: 10),
           const CLocationBox(),
+          const SizedBox(width: 10),
+          const CartWidget(),
         ],
       ),
     );

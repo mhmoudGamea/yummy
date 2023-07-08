@@ -13,6 +13,7 @@ import '../../features/admin/register/presentation/views/admin_register_view.dar
 import '../../features/on_board/presentation/views/board_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/data/data/user_food_model.dart';
+import '../../features/user/home/presentation/views/cart_view.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
 import '../../features/user/profile/presentation/views/user_edit_profile_view.dart';
@@ -78,6 +79,10 @@ class AppRoutes {
         path: FoodDetailsView.rn,
         builder: (context, state) =>
             FoodDetailsView(model: state.extra as UserFoodModel),
+      ),
+      GoRoute(
+        path: CartView.rn,
+        builder: (context, state) => const CartView(),
       ),
       GoRoute(
         path: TabsView.rn,

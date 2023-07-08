@@ -4,14 +4,12 @@ import '../../../../../../../core/utils/styles.dart';
 
 class CIconButton extends StatelessWidget {
   final Color bgColor;
-  final IconData icon;
   final Color iconColor;
   final String text;
   final Color textColor;
   const CIconButton(
       {Key? key,
       required this.bgColor,
-      required this.icon,
       required this.iconColor,
       required this.text,
       required this.textColor})
@@ -28,11 +26,7 @@ class CIconButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,
-            color: iconColor,
-            size: 22,
-          ),
+          Image.asset('assets/images/cart.png', width: 20, color: Colors.white),
           const SizedBox(width: 15),
           Text(
             text,

@@ -48,9 +48,12 @@ class CCurosalSlider extends StatelessWidget {
                   (e) {
                     return SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      child: Image.network(
-                        e['image'],
-                        fit: BoxFit.fill,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          e['image'],
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     );
                   },

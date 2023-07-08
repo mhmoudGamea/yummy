@@ -28,9 +28,7 @@ class _CLocationBoxState extends State<CLocationBox> {
   @override
   Widget build(BuildContext context) {
     final data = BlocProvider.of<LocationCubit>(context);
-    return Container(
-      width: MediaQuery.of(context).size.width - 70,
-      alignment: Alignment.center,
+    return Expanded(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
