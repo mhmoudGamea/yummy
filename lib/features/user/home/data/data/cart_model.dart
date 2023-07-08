@@ -1,13 +1,15 @@
 class CartModel {
+  final String cartId;
   final String productId;
   final String productImage;
   final String productCategory;
   final String productName;
   final String productPrice;
-  final String productQuantity;
+  final int productQuantity;
 
   const CartModel(
-      {required this.productId,
+      {required this.cartId,
+      required this.productId,
       required this.productImage,
       required this.productCategory,
       required this.productName,
@@ -16,6 +18,7 @@ class CartModel {
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
+        cartId: json['cartId'],
         productId: json['productId'],
         productImage: json['productImage'],
         productCategory: json['productCategory'],
@@ -26,6 +29,7 @@ class CartModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'cartId': cartId,
       'productId': productId,
       'productImage': productImage,
       'productCategory': productCategory,

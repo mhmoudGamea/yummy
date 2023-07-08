@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/details/c_icon_button.dart';
 
 import '../../../../../../../core/constants.dart';
 import '../../../../../../../core/utils/styles.dart';
@@ -10,13 +9,16 @@ class CFixedButton extends StatelessWidget {
   final Color bgColor;
   final Color textColor;
   final Color iconColor;
+  final VoidCallback onPress;
+
   const CFixedButton(
       {Key? key,
       required this.price,
       required this.bgColor,
       required this.textColor,
       required this.iconColor,
-      required this.text})
+      required this.text,
+      required this.onPress})
       : super(key: key);
 
   @override
@@ -52,11 +54,29 @@ class CFixedButton extends StatelessWidget {
           ),
           SizedBox(width: MediaQuery.of(context).size.width * 0.22),
           Expanded(
-            child: CIconButton(
-                bgColor: bgColor,
-                iconColor: iconColor,
-                text: text,
-                textColor: textColor),
+            child: GestureDetector(
+              onTap: onPress,
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: bgColor,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/cart.png',
+                        width: 20, color: Colors.white),
+                    const SizedBox(width: 15),
+                    Text(
+                      text,
+                      style: Styles.title15.copyWith(color: textColor),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
