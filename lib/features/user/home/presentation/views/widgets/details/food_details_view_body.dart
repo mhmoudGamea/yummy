@@ -69,7 +69,6 @@ class FoodDetailsViewBody extends StatelessWidget {
           iconColor: Colors.white,
           text: 'Add To Cart',
           onPress: () {
-            // print(cartData.getQuantity);
             CartModel cartModel = CartModel(
                 cartId: DateTime.now().microsecondsSinceEpoch.toString(),
                 productId: userFoodModel.id,

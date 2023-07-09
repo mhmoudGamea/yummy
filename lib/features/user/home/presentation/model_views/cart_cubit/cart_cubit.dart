@@ -50,24 +50,32 @@ class CartCubit extends Cubit<CartState> {
   Future<void> addToCart(
       {required String productId, required CartModel cartModel}) async {
     var newElementInCart = true;
-    var data =
+    var cartDocs =
         await _store.collection('baskets').doc(uid).collection('cart').get();
-    if (data.docs.isNotEmpty) {
-      for (var element in data.docs) {
-        if (element.id == productId) {
-          element.reference.update({
-            'productQuantity':
-                element['productQuantity'] + cartModel.productQuantity
-          });
-          newElementInCart = false;
-          return;
+    try {
+      emit(AddToCartLoading());
+      if (cartDocs.docs.isNotEmpty) {
+        for (var element in cartDocs.docs) {
+          if (element.id == productId) {
+            element.reference.update({
+              'productQuantity':
+                  element['productQuantity'] + cartModel.productQuantity
+            });
+            newElementInCart = false;
+            emit(AddToCartSuccessWithIncreaseQuantity());
+            return;
+          }
         }
-      }
-      if (newElementInCart) {
+        if (newElementInCart) {
+          await addElementInCart(productId, cartModel);
+          emit(AddToCartSuccess());
+        }
+      } else {
         await addElementInCart(productId, cartModel);
+        emit(AddToCartSuccess());
       }
-    } else {
-      await addElementInCart(productId, cartModel);
+    } catch (error) {
+      emit(AddToCartFailure());
     }
   }
 

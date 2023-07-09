@@ -9,3 +9,12 @@ class CartInitial extends CartState {}
 class QuantityIncrease extends CartState {}
 
 class QuantityDecrease extends CartState {}
+
+// 3 states to add to cart
+class AddToCartLoading extends CartState {}
+
+class AddToCartSuccess extends CartState {}
+
+class AddToCartSuccessWithIncreaseQuantity extends CartState {}
+
+class AddToCartFailure extends CartState {}
