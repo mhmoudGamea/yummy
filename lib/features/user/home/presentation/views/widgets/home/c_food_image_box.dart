@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/widgets/c_shimmer.dart';
+import '../../../../../../../core/widgets/c_shimmer.dart';
 
 class CFoodImageBox extends StatelessWidget {
   final String image;

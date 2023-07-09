@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yummy/features/user/search/data/models/search_model.dart';
 
 import '../../../../../../core/utils/styles.dart';
-import '../../../../home/presentation/views/widgets/c_food_image_box.dart';
-import '../../../../home/presentation/views/widgets/c_gradient_layer.dart';
+import '../../../../home/presentation/views/widgets/home/c_food_image_box.dart';
+import '../../../../home/presentation/views/widgets/home/c_gradient_layer.dart';
 
 class CPopularFoodListItem extends StatelessWidget {
   final SearchModel model;

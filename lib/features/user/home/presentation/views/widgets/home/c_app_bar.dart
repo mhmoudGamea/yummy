@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/cart_widget.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/home/cart_widget.dart';
 import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import 'c_image_box.dart';

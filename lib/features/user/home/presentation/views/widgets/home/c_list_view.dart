@@ -5,9 +5,9 @@ import 'package:get_it/get_it.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/details/c_list_view_body.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/home/c_list_view_body.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../../core/constants.dart';
 
 class CListView extends StatelessWidget {
   const CListView({Key? key}) : super(key: key);

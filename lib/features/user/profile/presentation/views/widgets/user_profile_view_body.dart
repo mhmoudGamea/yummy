@@ -7,7 +7,7 @@ import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 import 'package:yummy/features/user/profile/presentation/views/user_edit_profile_view.dart';
 
-import '../../../../home/presentation/views/widgets/c_header_name.dart';
+import '../../../../home/presentation/views/widgets/home/c_header_name.dart';
 import 'more_info_tab.dart';
 import 'user_profile_sub_info.dart';
 import 'user_profile_info.dart';

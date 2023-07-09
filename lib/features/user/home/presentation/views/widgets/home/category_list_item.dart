@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yummy/features/admin/categories/data/models/category_model.dart';
 
-import '../../../../../../core/constants.dart';
-import '../../../../../../core/utils/styles.dart';
+import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/utils/styles.dart';
 
 class CategoryListItem extends StatelessWidget {
   final CategoryModel model;

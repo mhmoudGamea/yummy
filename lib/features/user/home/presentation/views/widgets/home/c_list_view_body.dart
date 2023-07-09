@@ -6,7 +6,7 @@ import '../../../../../../../core/constants.dart';
 import '../../../../../../../core/widgets/c_error_widget.dart';
 import '../../../../data/data/user_food_model.dart';
 import '../../food_details_view.dart';
-import '../c_list_item.dart';
+import 'c_list_item.dart';
 
 class CListViewBody extends StatelessWidget {
   final List<UserFoodModel> model;

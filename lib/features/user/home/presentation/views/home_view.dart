@@ -6,7 +6,7 @@ import 'package:yummy/features/welcome/presentation/model_views/location_cubit/l
 import '../../data/repos/home_repo_impl.dart';
 import '../model_views/banner_cubit/banner_cubit.dart';
 import '../model_views/home_cubit/home_cubit.dart';
-import 'widgets/home_view_body.dart';
+import 'widgets/home/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
   static const String rn = '/homeView';

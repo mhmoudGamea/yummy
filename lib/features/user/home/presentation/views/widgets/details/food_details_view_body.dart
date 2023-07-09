@@ -5,12 +5,12 @@ import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/home/data/data/cart_model.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/details/c_expanded_text.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/details/c_fixed_button.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/cart/c_fixed_button.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/details/c_info.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/details/food_image.dart';
 
 import '../../../model_views/cart_cubit/cart_cubit.dart';
-import '../c_header_name.dart';
+import '../home/c_header_name.dart';
 import 'c_ingrediant.dart';
 import 'quantity_widget.dart';
 

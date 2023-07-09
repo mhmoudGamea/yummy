@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../../core/constants.dart';
-import '../../../../../../core/utils/styles.dart';
-import '../../../../../welcome/presentation/model_views/location_cubit/location_cubit.dart';
+import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/utils/styles.dart';
+import '../../../../../../welcome/presentation/model_views/location_cubit/location_cubit.dart';
 
 class CLocationBox extends StatefulWidget {
   const CLocationBox({Key? key}) : super(key: key);

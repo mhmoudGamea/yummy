@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/category_list_item.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/home/category_list_item.dart';
 
-import '../../../../../../core/constants.dart';
-import '../../../../../../core/widgets/c_circle_loading.dart';
-import '../../../../../../core/widgets/c_error_widget.dart';
-import '../../../../../admin/categories/data/models/category_model.dart';
+import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/widgets/c_circle_loading.dart';
+import '../../../../../../../core/widgets/c_error_widget.dart';
+import '../../../../../../admin/categories/data/models/category_model.dart';
 
 class CCategories extends StatelessWidget {
   const CCategories({Key? key}) : super(key: key);

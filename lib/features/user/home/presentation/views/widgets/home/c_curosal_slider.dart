@@ -6,9 +6,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yummy/core/constants.dart';
 
-import '../../../../../../core/widgets/c_circle_loading.dart';
-import '../../../../../../core/widgets/c_error_widget.dart';
-import '../../model_views/banner_cubit/banner_cubit.dart';
+import '../../../../../../../core/widgets/c_circle_loading.dart';
+import '../../../../../../../core/widgets/c_error_widget.dart';
+import '../../../model_views/banner_cubit/banner_cubit.dart';
 
 class CCurosalSlider extends StatelessWidget {
   const CCurosalSlider({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/widgets/text_13.dart';
+import '../../../../../../../core/widgets/text_13.dart';
 
 class CCategoryFoodBox extends StatelessWidget {
   final String categoryName;

@@ -6,12 +6,12 @@ import 'package:yummy/core/widgets/c_item_rate.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 import 'package:yummy/core/widgets/c_rounded_button.dart';
 import 'package:yummy/features/user/home/presentation/model_views/home_cubit/home_cubit.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/c_category_food_box.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/c_food_image_box.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/c_gradient_layer.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/home/c_category_food_box.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/home/c_food_image_box.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/home/c_gradient_layer.dart';
 
-import '../../../../../../core/utils/styles.dart';
-import '../../../../../../core/widgets/text_13.dart';
+import '../../../../../../../core/utils/styles.dart';
+import '../../../../../../../core/widgets/text_13.dart';
 
 class CListItem extends StatefulWidget {
   final UserFoodModel model;
