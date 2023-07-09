@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 import 'package:yummy/features/welcome/data/repos/location/location_repo_impl.dart';
 import 'package:yummy/features/welcome/presentation/model_views/location_cubit/location_cubit.dart';
 
@@ -28,6 +29,9 @@ class HomeView extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LocationCubit(LocationRepoImpl()),
+        ),
+        BlocProvider(
+          create: (context) => CartCubit()..getItemsFromCart(),
         ),
       ],
       child: const Scaffold(

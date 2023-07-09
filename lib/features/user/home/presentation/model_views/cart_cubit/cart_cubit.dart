@@ -88,4 +88,24 @@ class CartCubit extends Cubit<CartState> {
         .doc(productId)
         .set(cartModel.toJson());
   }
+
+  // now we finish addToCart functionality and will get all items in this authenticated user cart
+  // var _cartItemsLength = 0;
+
+  // int get getCartItemsLength {
+  //   return _cartItemsLength;
+  // }
+
+  Future<void> getItemsFromCart() async {
+    _store
+        .collection('baskets')
+        .doc(uid)
+        .collection('cart')
+        .snapshots()
+        .listen((event) {
+      if (event.docs.isNotEmpty) {
+        emit(CartItemLengthChanged(cartItemsLength: event.docs.length));
+      }
+    });
+  }
 }
