@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // firebase packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:yummy/core/utils/cache_helper.dart';
+import 'features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 import 'firebase_options.dart';
 
 // app packages
@@ -35,8 +36,15 @@ class MyApp extends StatelessWidget {
     // print(uid);
     // print(userPhone);
     // print('************************************');
-    return BlocProvider(
-      create: (context) => LocationCubit(LocationRepoImpl()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LocationCubit(LocationRepoImpl()),
+        ),
+        BlocProvider(
+          create: (context) => CartCubit()..getItemsFromCart(),
+        ),
+      ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Food App',

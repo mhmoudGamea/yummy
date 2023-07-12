@@ -90,11 +90,11 @@ class CartCubit extends Cubit<CartState> {
   }
 
   // now we finish addToCart functionality and will get all items in this authenticated user cart
-  // var _cartItemsLength = 0;
+  List<CartModel> _cartList = [];
 
-  // int get getCartItemsLength {
-  //   return _cartItemsLength;
-  // }
+  List<CartModel> get getCartList {
+    return _cartList;
+  }
 
   Future<void> getItemsFromCart() async {
     _store
@@ -104,6 +104,10 @@ class CartCubit extends Cubit<CartState> {
         .snapshots()
         .listen((event) {
       if (event.docs.isNotEmpty) {
+        _cartList = [];
+        for (var item in event.docs) {
+          _cartList.add(CartModel.fromJson(item.data()));
+        }
         emit(CartItemLengthChanged(cartItemsLength: event.docs.length));
       }
     });

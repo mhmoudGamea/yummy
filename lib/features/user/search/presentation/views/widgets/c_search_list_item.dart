@@ -3,7 +3,7 @@ import 'package:yummy/features/user/search/data/models/search_model.dart';
 
 import '../../../../../../core/constants.dart';
 import '../../../../../../core/widgets/c_item_rate.dart';
-import '../../../../favourite/presentation/views/widgets/c_item_image.dart';
+import '../../../../../../core/widgets/c_item_image.dart';
 import '../../../../favourite/presentation/views/widgets/c_item_name.dart';
 
 class CSearchListItem extends StatelessWidget {

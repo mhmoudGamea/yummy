@@ -5,7 +5,7 @@ import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/home/data/data/cart_model.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/details/c_expanded_text.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/cart/c_fixed_button.dart';
+import 'package:yummy/features/user/home/presentation/views/widgets/details/c_fixed_cart_button.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/details/c_info.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/details/food_image.dart';
 
@@ -62,7 +62,7 @@ class FoodDetailsViewBody extends StatelessWidget {
             ),
           ),
         ),
-        CFixedButton(
+        CFixedCartButton(
           price: userFoodModel.price,
           bgColor: primaryColor,
           textColor: Colors.white,

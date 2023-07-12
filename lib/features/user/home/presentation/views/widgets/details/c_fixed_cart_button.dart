@@ -9,7 +9,7 @@ import '../../../../../../../core/constants.dart';
 import '../../../../../../../core/utils/helper.dart';
 import '../../../../../../../core/utils/styles.dart';
 
-class CFixedButton extends StatelessWidget {
+class CFixedCartButton extends StatelessWidget {
   final String price;
   final String text;
   final Color bgColor;
@@ -17,7 +17,7 @@ class CFixedButton extends StatelessWidget {
   final Color iconColor;
   final VoidCallback onPress;
 
-  const CFixedButton(
+  const CFixedCartButton(
       {Key? key,
       required this.price,
       required this.bgColor,

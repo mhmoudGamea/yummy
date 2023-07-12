@@ -9,7 +9,7 @@ import '../../../../../../core/widgets/c_item_rate.dart';
 import '../../../../../../core/widgets/c_rounded_button.dart';
 import '../../../data/models/favourite_model.dart';
 import 'c_item_category.dart';
-import 'c_item_image.dart';
+import '../../../../../../core/widgets/c_item_image.dart';
 import 'c_item_name.dart';
 
 class CListViewItem extends StatefulWidget {

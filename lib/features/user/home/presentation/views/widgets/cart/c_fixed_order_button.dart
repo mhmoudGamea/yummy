@@ -1,0 +1,111 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
+
+import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/utils/styles.dart';
+
+class CFixedOrderButton extends StatelessWidget {
+  final Color bgColor;
+  final Color textColor;
+  final String text;
+  const CFixedOrderButton(
+      {Key? key,
+      required this.bgColor,
+      required this.text,
+      required this.textColor})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final orderData = BlocProvider.of<OrderCubit>(context);
+    return Container(
+      height: 70,
+      padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: greyColor.withOpacity(0.4),
+            spreadRadius: 2,
+            blurRadius: 1,
+            offset: const Offset(0, -2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Column(
+            children: [
+              Text(
+                'Total',
+                style: Styles.title14.copyWith(color: greyColor),
+              ),
+              const SizedBox(height: 5),
+              BlocBuilder<OrderCubit, OrderState>(
+                builder: (context, state) {
+                  return Text(
+                    'E£ ${orderData.getTotalPrice.toStringAsFixed(2)}',
+                    style: Styles.title16.copyWith(color: primaryColor),
+                  );
+                },
+              ),
+            ],
+          ),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.22),
+          Expanded(
+            child: GestureDetector(
+              // onTap: onPress,
+              child: BlocConsumer<OrderCubit, OrderState>(
+                listener: (context, state) {
+                  // if (state is AddToCartLoading) {
+                  //   showDialog(
+                  //       context: context,
+                  //       builder: (context) =>
+                  //           const Center(child: CCircleLoading()));
+                  // } else if (state is AddToCartSuccess) {
+                  //   GoRouter.of(context).pop();
+                  //   Helper.showCustomToast(
+                  //       context: context,
+                  //       bgColor: mintGreen,
+                  //       icon: FontAwesomeIcons.check,
+                  //       msg: 'Added to cart');
+                  // } else if (state is AddToCartSuccessWithIncreaseQuantity) {
+                  //   GoRouter.of(context).pop();
+                  //   Helper.showCustomToast(
+                  //       context: context,
+                  //       bgColor: mintGreen,
+                  //       icon: FontAwesomeIcons.check,
+                  //       msg: 'Quantity of product has been increased');
+                  // }
+                },
+                builder: (context, state) {
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 13, horizontal: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: bgColor,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/order.png',
+                            width: 20, color: Colors.white),
+                        const SizedBox(width: 15),
+                        Text(
+                          text,
+                          style: Styles.title15.copyWith(color: textColor),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
