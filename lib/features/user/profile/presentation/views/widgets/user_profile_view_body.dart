@@ -51,7 +51,10 @@ class UserProfileViewBody extends StatelessWidget {
                       MoreInfoTab(
                         icon: FontAwesomeIcons.locationDot,
                         text: 'Location',
-                        onTap: () {},
+                        onTap: () {
+                          // GoRouter.of(context)
+                          //     .push(MapView.rn, extra: _locationModel);
+                        },
                       ),
                       const SizedBox(height: 15),
                       MoreInfoTab(

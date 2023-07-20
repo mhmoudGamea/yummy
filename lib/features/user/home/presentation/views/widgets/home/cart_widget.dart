@@ -11,7 +11,6 @@ class CartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final cartData = BlocProvider.of<CartCubit>(context);
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(CartView.rn);

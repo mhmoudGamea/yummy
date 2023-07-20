@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // firebase packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:yummy/core/utils/cache_helper.dart';
+import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
 import 'features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 import 'firebase_options.dart';
 
@@ -42,7 +43,10 @@ class MyApp extends StatelessWidget {
           create: (context) => LocationCubit(LocationRepoImpl()),
         ),
         BlocProvider(
-          create: (context) => CartCubit()..getItemsFromCart(),
+          create: (context) => CartCubit(),
+        ),
+        BlocProvider(
+          create: (context) => OrderCubit()..calculateTotalPrice(),
         ),
       ],
       child: MaterialApp.router(

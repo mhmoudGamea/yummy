@@ -96,7 +96,7 @@ class CFixedOrderButton extends StatelessWidget {
                         Text(
                           text,
                           style: Styles.title15.copyWith(color: textColor),
-                        )
+                        ),
                       ],
                     ),
                   );

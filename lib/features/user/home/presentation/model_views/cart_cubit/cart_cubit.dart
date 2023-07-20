@@ -90,26 +90,28 @@ class CartCubit extends Cubit<CartState> {
   }
 
   // now we finish addToCart functionality and will get all items in this authenticated user cart
-  List<CartModel> _cartList = [];
+  final List<CartModel> _cartList = [];
 
   List<CartModel> get getCartList {
     return _cartList;
   }
 
-  Future<void> getItemsFromCart() async {
+  List<CartModel> getCartItemsFromSnapshot(QuerySnapshot snapshot) {
+    _cartList.clear();
+    for (var element in snapshot.docs) {
+      _cartList.add(CartModel.fromJson(element.data() as Map<String, dynamic>));
+    }
+    return _cartList;
+  }
+
+  // a function to remove or delete item from cart
+  Future<void> deleteItemInCart(String productId) async {
+    // emit(DeleteItemLoading());
     _store
         .collection('baskets')
         .doc(uid)
         .collection('cart')
-        .snapshots()
-        .listen((event) {
-      if (event.docs.isNotEmpty) {
-        _cartList = [];
-        for (var item in event.docs) {
-          _cartList.add(CartModel.fromJson(item.data()));
-        }
-        emit(CartItemLengthChanged(cartItemsLength: event.docs.length));
-      }
-    });
+        .doc(productId)
+        .delete();
   }
 }
