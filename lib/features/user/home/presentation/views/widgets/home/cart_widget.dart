@@ -1,9 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
-import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 import 'package:yummy/features/user/home/presentation/views/cart_view.dart';
 
 class CartWidget extends StatelessWidget {
@@ -11,6 +11,7 @@ class CartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FirebaseFirestore store = GetIt.I.get<FirebaseFirestore>();
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(CartView.rn);
@@ -29,21 +30,26 @@ class CartWidget extends StatelessWidget {
                 color: primaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: BlocBuilder<CartCubit, CartState>(
-                builder: (context, state) {
-                  if (state is CartItemLengthChanged) {
+              child: StreamBuilder<QuerySnapshot>(
+                stream: store
+                    .collection('baskets')
+                    .doc(uid)
+                    .collection('cart')
+                    .snapshots(),
+                builder: ((context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return Text(
-                      state.cartItemsLength.toString(),
+                      '...',
                       style: Styles.title12.copyWith(color: Colors.white),
                       textAlign: TextAlign.center,
                     );
                   }
                   return Text(
-                    '0',
+                    snapshot.data!.docs.length.toString(),
                     style: Styles.title12.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   );
-                },
+                }),
               ),
             ),
           )
