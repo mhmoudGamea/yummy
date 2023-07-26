@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yummy/features/user/payment/data/models/paymob_config_model.dart';
 
 import 'firestore_services.dart';
 
@@ -18,5 +22,13 @@ class ServiceLocator {
     _getIt.registerSingleton<SharedPreferences>(
         await SharedPreferences.getInstance());
     _getIt.registerSingleton<ImagePicker>(ImagePicker());
+
+    final configfile = await rootBundle.loadString('assets/config/main.json');
+    final configData = json.decode(configfile);
+
+    _getIt.registerSingleton<PaymobConfigModel>(PaymobConfigModel(
+        apiKey: configData['api_key'],
+        baseUrl: configData['base_url'],
+        authenticationRequest: configData['authentication_request']));
   }
 }

@@ -32,10 +32,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // print('************************************');
-    // print(uid);
-    // print(userPhone);
-    // print('************************************');
     return MultiBlocProvider(
       providers: [
         BlocProvider(
