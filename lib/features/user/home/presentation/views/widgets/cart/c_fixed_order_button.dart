@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
 
 import '../../../../../../../core/constants.dart';
 import '../../../../../../../core/utils/styles.dart';
+import '../../../../../payment/presentation/views/payment_view.dart';
 
 class CFixedOrderButton extends StatelessWidget {
   final Color bgColor;
   final Color textColor;
   final String text;
-  const CFixedOrderButton(
-      {Key? key,
-      required this.bgColor,
-      required this.text,
-      required this.textColor})
-      : super(key: key);
+  const CFixedOrderButton({
+    Key? key,
+    required this.bgColor,
+    required this.text,
+    required this.textColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,30 +57,12 @@ class CFixedOrderButton extends StatelessWidget {
           SizedBox(width: MediaQuery.of(context).size.width * 0.22),
           Expanded(
             child: GestureDetector(
-              // onTap: onPress,
-              child: BlocConsumer<OrderCubit, OrderState>(
-                listener: (context, state) {
-                  // if (state is AddToCartLoading) {
-                  //   showDialog(
-                  //       context: context,
-                  //       builder: (context) =>
-                  //           const Center(child: CCircleLoading()));
-                  // } else if (state is AddToCartSuccess) {
-                  //   GoRouter.of(context).pop();
-                  //   Helper.showCustomToast(
-                  //       context: context,
-                  //       bgColor: mintGreen,
-                  //       icon: FontAwesomeIcons.check,
-                  //       msg: 'Added to cart');
-                  // } else if (state is AddToCartSuccessWithIncreaseQuantity) {
-                  //   GoRouter.of(context).pop();
-                  //   Helper.showCustomToast(
-                  //       context: context,
-                  //       bgColor: mintGreen,
-                  //       icon: FontAwesomeIcons.check,
-                  //       msg: 'Quantity of product has been increased');
-                  // }
-                },
+              onTap: () {
+                GoRouter.of(context).push(PaymentView.rn,
+                    extra: double.parse(
+                        orderData.getTotalPrice.toStringAsFixed(2)));
+              },
+              child: BlocBuilder<OrderCubit, OrderState>(
                 builder: (context, state) {
                   return Container(
                     padding: const EdgeInsets.symmetric(

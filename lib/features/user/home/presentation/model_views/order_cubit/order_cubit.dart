@@ -21,7 +21,13 @@ class OrderCubit extends Cubit<OrderState> {
     return _totalPrice;
   }
 
+  set setTotalPrice(double value) {
+    _totalPrice = value;
+  }
+
+  // this function is used to calculate total price of all elements in cart
   Future<void> calculateTotalPrice() async {
+    emit(TotalPriceLoading());
     _store.collection('baskets').doc(uid).collection('cart').snapshots().listen(
         (event) {
       if (event.docs.isNotEmpty) {
@@ -30,8 +36,24 @@ class OrderCubit extends Cubit<OrderState> {
           _totalPrice += double.parse(item.data()['productPrice']) *
               item.data()['productQuantity'];
         }
-        emit(GetTotalPriceSuccess(totalPrice: _totalPrice));
+        emit(TotalPriceSuccess(totalPrice: _totalPrice));
       }
-    }, onError: (error) => emit(GetTotalPriceFailure()));
+    }, onError: (error) => emit(TotalPriceFailure()));
+  }
+
+  // when we execute payment successfully by paypal or paymob we should delete all elements from the cart
+  // so this function will do that
+  Future<void> deleteAllCart() async {
+    setTotalPrice = 0.0;
+    await _store
+        .collection('baskets')
+        .doc(uid)
+        .collection('cart')
+        .get()
+        .then((value) {
+      value.docs.forEach((element) async {
+        await element.reference.delete();
+      });
+    });
   }
 }

@@ -8,6 +8,8 @@ import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/car
 import 'package:yummy/features/user/home/presentation/views/widgets/cart/c_fixed_order_button.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/cart/cart_list_item.dart';
 
+import '../../../../../../../core/utils/helper.dart';
+
 class CartViewBody extends StatelessWidget {
   const CartViewBody({Key? key}) : super(key: key);
 
@@ -16,6 +18,16 @@ class CartViewBody extends StatelessWidget {
     final FirebaseFirestore store = GetIt.I.get<FirebaseFirestore>();
     final cartData = BlocProvider.of<CartCubit>(context);
     return Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Helper.hint(
+          text:
+              'Order your cart items from "Order Now" button or swipe to "Remove" item',
+          onPress: () {
+            // favourite.understandFav();
+          },
+        ),
+      ),
       Expanded(
         child: StreamBuilder<QuerySnapshot>(
           stream: store
@@ -30,6 +42,7 @@ class CartViewBody extends StatelessWidget {
 
             cartData.getCartItemsFromSnapshot(snapshot.data!);
             return ListView.separated(
+              physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               separatorBuilder: ((context, index) =>
                   const SizedBox(height: 20)),
@@ -42,7 +55,10 @@ class CartViewBody extends StatelessWidget {
         ),
       ),
       const CFixedOrderButton(
-          bgColor: primaryColor, textColor: Colors.white, text: 'Order Now'),
+        bgColor: primaryColor,
+        textColor: Colors.white,
+        text: 'Order Now',
+      ),
     ]);
   }
 }

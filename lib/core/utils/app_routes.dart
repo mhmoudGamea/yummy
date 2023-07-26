@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/features/admin/users_faqs/presentation/views/user_faqs_view.dart';
+import 'package:yummy/features/user/payment/presentation/views/payment_success_view.dart';
+import 'package:yummy/features/user/payment/presentation/views/widgets/payment_webview.dart';
 
 // views imports
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
@@ -16,6 +18,7 @@ import '../../features/user/home/data/data/user_food_model.dart';
 import '../../features/user/home/presentation/views/cart_view.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
+import '../../features/user/payment/presentation/views/payment_view.dart';
 import '../../features/user/profile/presentation/views/user_edit_profile_view.dart';
 import '../../features/user/register/login/presentation/login_view.dart';
 import '../../features/welcome/data/models/location_model.dart';
@@ -91,6 +94,19 @@ class AppRoutes {
       GoRoute(
         path: UserEditProfileView.rn,
         builder: (context, state) => const UserEditProfileView(),
+      ),
+      GoRoute(
+        path: PaymentView.rn,
+        builder: (context, state) => PaymentView(total: state.extra as double),
+      ),
+      GoRoute(
+        path: PaymentWebview.rn,
+        builder: (context, state) =>
+            PaymentWebview(total: state.extra as double),
+      ),
+      GoRoute(
+        path: PaymentSuccessView.rn,
+        builder: (context, state) => const PaymentSuccessView(),
       ),
 
       // admin navigation section

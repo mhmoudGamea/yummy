@@ -5,9 +5,11 @@ abstract class OrderState {}
 
 class OrderInitial extends OrderState {}
 
-class GetTotalPriceSuccess extends OrderState {
+class TotalPriceLoading extends OrderState {}
+
+class TotalPriceSuccess extends OrderState {
   final double totalPrice;
-  GetTotalPriceSuccess({required this.totalPrice});
+  TotalPriceSuccess({required this.totalPrice});
 }
 
-class GetTotalPriceFailure extends OrderState {}
+class TotalPriceFailure extends OrderState {}

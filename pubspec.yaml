@@ -61,6 +61,7 @@ dependencies:
   cached_network_image: ^3.2.3
   shimmer: ^2.0.0
   dotted_border: ^2.0.0+3
+  webview_flutter: ^4.2.2
 
 dev_dependencies:
   flutter_test:
