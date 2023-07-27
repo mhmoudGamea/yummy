@@ -11,9 +11,14 @@
 
 <h4>more screenshots in demo screenshots folder <a href="https://github.com/mhmoudGamea/yummy/tree/main/demo%20screenshots">  go</a></h4>
 
-> **_NOTE:_**  To use paypal payment you should first insert some dependecies Go to server folder first by
+> **_NOTE:_**  To use paypal payment you should first insert some dependecies go to server folder first by
 > write the next in terminal.
 
 ```shell
 cd .\server\
+```
+> then you install paypal-rest-sdk, body-parser and express by write the next command.
+
+```shell
+npm install
 ```
