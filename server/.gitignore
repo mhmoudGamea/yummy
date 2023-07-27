@@ -1,5 +1,5 @@
 # Default ignored files
 /shelf/
 /.idea/workspace.xml/
-# prevent node-modules from uploading
-/node_modules
+# prevent node-modules to be included in version control
+/node_modules/
