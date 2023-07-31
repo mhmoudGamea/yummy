@@ -3,16 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:yummy/features/user/payment/presentation/views/payment_success_view.dart';
 
-class PaymentWebview extends StatefulWidget {
-  static const String rn = '/paymentWebview';
+class PaypalWebview extends StatefulWidget {
+  static const String rn = '/paypalWebview';
   final double total;
-  const PaymentWebview({Key? key, required this.total}) : super(key: key);
+  const PaypalWebview({Key? key, required this.total}) : super(key: key);
 
   @override
-  State<PaymentWebview> createState() => _PaymentWebviewState();
+  State<PaypalWebview> createState() => _PaypalWebviewState();
 }
 
-class _PaymentWebviewState extends State<PaymentWebview> {
+class _PaypalWebviewState extends State<PaypalWebview> {
   late WebViewController _controller;
   String _loadHTML() {
     return '''

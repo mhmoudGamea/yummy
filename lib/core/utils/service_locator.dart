@@ -23,12 +23,18 @@ class ServiceLocator {
         await SharedPreferences.getInstance());
     _getIt.registerSingleton<ImagePicker>(ImagePicker());
 
-    final configfile = await rootBundle.loadString('assets/config/main.json');
-    final configData = json.decode(configfile);
+    final configFile = await rootBundle.loadString('assets/config/main.json');
+    final configData = json.decode(configFile);
 
-    _getIt.registerSingleton<PaymobConfigModel>(PaymobConfigModel(
-        apiKey: configData['api_key'],
-        baseUrl: configData['base_url'],
-        authenticationRequest: configData['authentication_request']));
+    _getIt.registerSingleton<PaymobConfigModel>(
+      PaymobConfigModel(
+          apiKey: configData['api_key'],
+          baseUrl: configData['base_url'],
+          authenticationRequest: configData['authentication_request'],
+          orderRegistration: configData['order-registration'],
+          paymentRequest: configData['payment_request'],
+          integrationOnlineCard: configData['integration_online_card']),
+    );
+    json.encode(configData);
   }
 }

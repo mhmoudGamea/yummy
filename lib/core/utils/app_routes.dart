@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/features/admin/users_faqs/presentation/views/user_faqs_view.dart';
 import 'package:yummy/features/user/payment/presentation/views/payment_success_view.dart';
-import 'package:yummy/features/user/payment/presentation/views/widgets/payment_webview.dart';
+import 'package:yummy/features/user/payment/presentation/views/widgets/paypal_webview.dart';
 
 // views imports
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
@@ -19,6 +19,8 @@ import '../../features/user/home/presentation/views/cart_view.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
 import '../../features/user/payment/presentation/views/payment_view.dart';
+import '../../features/user/payment/presentation/views/paymob_registration_view.dart';
+import '../../features/user/payment/presentation/views/widgets/paymob_webview.dart';
 import '../../features/user/profile/presentation/views/user_edit_profile_view.dart';
 import '../../features/user/register/login/presentation/login_view.dart';
 import '../../features/welcome/data/models/location_model.dart';
@@ -100,13 +102,23 @@ class AppRoutes {
         builder: (context, state) => PaymentView(total: state.extra as double),
       ),
       GoRoute(
-        path: PaymentWebview.rn,
+        path: PaypalWebview.rn,
         builder: (context, state) =>
-            PaymentWebview(total: state.extra as double),
+            PaypalWebview(total: state.extra as double),
+      ),
+      GoRoute(
+        path: PaymobWebview.rn,
+        builder: (context, state) => const PaymobWebview(),
       ),
       GoRoute(
         path: PaymentSuccessView.rn,
         builder: (context, state) => const PaymentSuccessView(),
+      ),
+      GoRoute(
+        path: PaymobRegistrationView.rn,
+        builder: (context, state) => PaymobRegistrationView(
+          total: state.extra as String,
+        ),
       ),
 
       // admin navigation section

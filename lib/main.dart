@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // firebase packages
 import 'package:firebase_core/firebase_core.dart';
+import 'package:yummy/core/utils/api_services.dart';
 import 'package:yummy/core/utils/cache_helper.dart';
 import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
 import 'firebase_options.dart';
@@ -20,6 +21,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await ServiceLocator.setUp();
+  ApiServices.initializeDio();
   AppRoutes.getAuthState();
   uid = CacheHelper.getData('uid');
   userPhone = CacheHelper.getData('userPhone');

@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 abstract class Failure {
   final String errorMessage;
 
@@ -77,5 +79,44 @@ class StorageSideError extends Failure {
 
   factory StorageSideError.fromStore(String error) {
     return StorageSideError(error);
+  }
+}
+
+// paymob api errors
+
+class ServerSideError extends Failure {
+  ServerSideError(super.errorMessage);
+
+  factory ServerSideError.fromDioError(DioException dioError) {
+    switch (dioError.type) {
+      case DioExceptionType.connectionTimeout:
+        return ServerSideError('Connection timed out, Please try again later');
+      case DioExceptionType.sendTimeout:
+        return ServerSideError('Send timed out, Please try again later');
+      case DioExceptionType.receiveTimeout:
+        return ServerSideError('Receive timed out, Please try again later');
+      case DioExceptionType.badResponse:
+        return ServerSideError.fromResponse(
+            dioError.response!.statusCode!, dioError.response!.data);
+      case DioExceptionType.cancel:
+        return ServerSideError('Request to api was canceled.');
+      default:
+        return ServerSideError(
+            'Opps there was an error, Please try again later.');
+    }
+  }
+
+  factory ServerSideError.fromResponse(
+      int statusCode, Map<String, dynamic> json) {
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      return ServerSideError(json['error']['message']);
+    } else if (statusCode == 404) {
+      return ServerSideError('This page is not found, Please try later.');
+    } else if (statusCode == 500) {
+      return ServerSideError('Internal server error, Please try later.');
+    } else {
+      return ServerSideError(
+          'Opps there was an error, Please try again later.');
+    }
   }
 }
