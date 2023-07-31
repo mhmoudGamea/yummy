@@ -7,6 +7,7 @@
   <img src='demo%20screenshots/Screenshot_20230707-100352.png' width='230'/>
   <img src='demo%20screenshots/Screenshot_20230707-100438.png' width='230'/>
   <img src='demo%20screenshots/Screenshot_20230707-100729.png' width='230'/>
+  <img src='paymob.png' width='230'/>
 </div>
 
 <h4>more screenshots in demo screenshots folder <a href="https://github.com/mhmoudGamea/yummy/tree/main/demo%20screenshots">  go</a></h4>
@@ -22,3 +23,4 @@ cd .\server\
 ```shell
 npm install
 ```
+> **_NOTE:_**  I have recently add another payment method by paymob.
