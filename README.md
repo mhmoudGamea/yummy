@@ -23,4 +23,9 @@ cd .\server\
 ```shell
 npm install
 ```
-> **_NOTE:_**  I have recently add another payment method by paymob.
+> **_NOTE:_**  I have recently add another payment method by paymob. in order to use it
+> go to assets\config\ and create main.json file like that
+
+<img src='demo%20screenshots/json.png' width='230'/>
+
+> Don't forget to Sign in paymob in order to get your own api key and integration online card
