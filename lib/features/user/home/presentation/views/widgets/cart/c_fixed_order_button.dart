@@ -12,17 +12,17 @@ class CFixedOrderButton extends StatelessWidget {
   final Color textColor;
   final String text;
   const CFixedOrderButton({
-    Key? key,
+    super.key,
     required this.bgColor,
     required this.text,
     required this.textColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final orderData = BlocProvider.of<OrderCubit>(context);
     return Container(
-      height: 70,
+      // height: 70,
       padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.white,

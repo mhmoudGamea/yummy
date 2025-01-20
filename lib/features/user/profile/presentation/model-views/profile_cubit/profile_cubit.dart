@@ -114,12 +114,12 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   // a function that will get the new updated userInfoModel directly from firebase after updating
   UserInfoModel getNewUpdatedData(QuerySnapshot<Object?>? snapshot) {
-    snapshot!.docs.forEach((element) {
+    for (var element in snapshot!.docs) {
       if (element.id == uid) {
         _userInfoModel =
             UserInfoModel.fromJson(element.data() as Map<String, dynamic>);
       }
-    });
+    }
     return _userInfoModel!;
   }
 }

@@ -8,7 +8,7 @@ import '../../../../../core/utils/helper.dart';
 import 'widgets/user_search_view_body.dart';
 
 class UserSearchView extends StatelessWidget {
-  const UserSearchView({Key? key}) : super(key: key);
+  const UserSearchView({super.key});
 
   @override
   Widget build(BuildContext context) {

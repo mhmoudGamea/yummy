@@ -12,7 +12,7 @@ import 'package:yummy/features/user/search/presentation/model_views/search_cubit
 import 'c_popular_food_list.dart';
 
 class CPopularFoodStream extends StatelessWidget {
-  const CPopularFoodStream({Key? key}) : super(key: key);
+  const CPopularFoodStream({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CPopularFoodStream extends StatelessWidget {
           List<SearchModel> popularFoodList =
               search.getPopularFoodList(snapshot, 'Popular Food');
           if (popularFoodList.isEmpty) {
-            return CErrorWidget(
+            return const CErrorWidget(
                 icon: FontAwesomeIcons.triangleExclamation,
                 text:
                     'Sorry, we have no items in popular food collection right now.',
@@ -39,7 +39,7 @@ class CPopularFoodStream extends StatelessWidget {
           }
           return CPopularFoodList(popularFoodList: popularFoodList);
         }
-        return CErrorWidget(
+        return const CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Sorry, unexpected error happen.',
             bgColor: secondaryColor);

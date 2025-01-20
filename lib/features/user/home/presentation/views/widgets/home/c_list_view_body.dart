@@ -15,7 +15,7 @@ class CListViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return model.isEmpty
-        ? CErrorWidget(
+        ? const CErrorWidget(
             text: 'No categories to display yet.',
             icon: FontAwesomeIcons.triangleExclamation,
             bgColor: primaryColor,

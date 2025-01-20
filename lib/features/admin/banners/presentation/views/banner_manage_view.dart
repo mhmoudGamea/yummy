@@ -8,7 +8,7 @@ import 'widgets/banner_manage_view_body.dart';
 
 class BannerManageView extends StatelessWidget {
   static const String rn = '/bannerManageView';
-  const BannerManageView({Key? key}) : super(key: key);
+  const BannerManageView({super.key});
 
   @override
   Widget build(BuildContext context) {

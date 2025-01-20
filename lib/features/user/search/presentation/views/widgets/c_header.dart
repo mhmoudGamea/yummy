@@ -5,7 +5,7 @@ import '../../../../../../core/utils/styles.dart';
 
 class CHeader extends StatelessWidget {
   final String headerName;
-  const CHeader({Key? key, required this.headerName}) : super(key: key);
+  const CHeader({super.key, required this.headerName});
 
   @override
   Widget build(BuildContext context) {

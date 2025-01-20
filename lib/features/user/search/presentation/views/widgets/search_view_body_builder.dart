@@ -11,7 +11,7 @@ import 'c_popular_food_stream.dart';
 import 'c_search_list.dart';
 
 class SearchViewBodyBuilder extends StatelessWidget {
-  const SearchViewBodyBuilder({Key? key}) : super(key: key);
+  const SearchViewBodyBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {

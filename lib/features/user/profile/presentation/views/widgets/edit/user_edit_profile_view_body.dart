@@ -90,7 +90,7 @@ class UserEditProfileViewBody extends StatelessWidget {
                           if (state is ConfirmEditingLoading) {
                             return const CCircleLoading();
                           } else if (state is ConfirmEditingFailure) {
-                            return CErrorWidget(
+                            return const CErrorWidget(
                               icon: FontAwesomeIcons.circleExclamation,
                               text: 'Error hapening while updating the data',
                               bgColor: secondaryColor,

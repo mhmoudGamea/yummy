@@ -37,7 +37,7 @@ class CFavStreamBuilder extends StatelessWidget {
           if (model.isEmpty) {
             return GestureDetector(
               onTap: () => GoRouter.of(context).push(TabsView.rn),
-              child: CErrorWidget(
+              child: const CErrorWidget(
                 text:
                     'No favourites to display yet, please go to home and add some food to your favourites, just tab on me.',
                 icon: Icons.favorite_rounded,
@@ -47,7 +47,7 @@ class CFavStreamBuilder extends StatelessWidget {
           }
           return CFavListView(model: model);
         }
-        return CErrorWidget(
+        return const CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Oops some error happining.',
             bgColor: secondaryColor);

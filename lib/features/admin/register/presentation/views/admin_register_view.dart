@@ -9,7 +9,7 @@ import 'widgets/admin_register_view_body.dart';
 
 class AdminRegisterView extends StatelessWidget {
   static const String rn = '/adminRegisterView';
-  const AdminRegisterView({Key? key}) : super(key: key);
+  const AdminRegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {

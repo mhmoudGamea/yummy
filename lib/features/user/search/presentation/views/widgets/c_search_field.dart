@@ -8,8 +8,7 @@ class CSearchField extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onPress;
   const CSearchField(
-      {Key? key, required this.controller, required this.onPress})
-      : super(key: key);
+      {super.key, required this.controller, required this.onPress});
 
   @override
   Widget build(BuildContext context) {

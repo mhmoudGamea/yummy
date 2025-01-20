@@ -10,7 +10,7 @@ import '../../../../../../../core/widgets/c_error_widget.dart';
 import '../../../../../../admin/categories/data/models/category_model.dart';
 
 class CCategories extends StatelessWidget {
-  const CCategories({Key? key}) : super(key: key);
+  const CCategories({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +27,14 @@ class CCategories extends StatelessWidget {
                 CategoryModel.fromJson(element.data() as Map<String, dynamic>));
           }
           if (categories.isEmpty) {
-            return CErrorWidget(
+            return const CErrorWidget(
               text: 'No categories to display yet.',
               icon: FontAwesomeIcons.triangleExclamation,
               bgColor: primaryColor,
             );
           }
           return SizedBox(
-            height: 55,
+            height: 60,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
@@ -45,7 +45,7 @@ class CCategories extends StatelessWidget {
             ),
           );
         }
-        return CErrorWidget(
+        return const CErrorWidget(
             text: 'Sorry we have no Category for right now.',
             icon: FontAwesomeIcons.xmark);
       },

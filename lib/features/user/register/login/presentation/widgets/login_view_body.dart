@@ -11,7 +11,7 @@ import '../model_views.dart/login_cubit/login_cubit.dart';
 
 class LoginViewBody extends StatefulWidget {
   final LocationModel? locationModel;
-  const LoginViewBody({Key? key, this.locationModel}) : super(key: key);
+  const LoginViewBody({super.key, this.locationModel});
 
   @override
   State<LoginViewBody> createState() => _LoginViewBodyState();

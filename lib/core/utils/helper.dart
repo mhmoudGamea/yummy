@@ -72,7 +72,7 @@ class Helper {
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: greyColor.withOpacity(0.4),
+        color: greyColor.withAlpha((0.7 * 255).toInt()),
       ),
       child: Row(
         children: [

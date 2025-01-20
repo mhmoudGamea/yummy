@@ -84,7 +84,7 @@ class CategoryViewBody extends StatelessWidget {
                       element.data() as Map<String, dynamic>));
                 }
                 if (categories.isEmpty) {
-                  return CErrorWidget(
+                  return const CErrorWidget(
                       text:
                           'Start to add a new category by click on add category button.',
                       icon: FontAwesomeIcons.faceSmile,
@@ -105,7 +105,7 @@ class CategoryViewBody extends StatelessWidget {
                   ),
                 );
               }
-              return CErrorWidget(
+              return const CErrorWidget(
                   text: 'Sorry we have no Category for right now.',
                   icon: FontAwesomeIcons.xmark);
             },

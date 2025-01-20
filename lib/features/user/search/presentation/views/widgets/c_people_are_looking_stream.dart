@@ -12,7 +12,7 @@ import '../../../../../../core/widgets/c_error_widget.dart';
 import 'c_people_are_looking_list.dart';
 
 class CPeopleAreLookingStream extends StatelessWidget {
-  const CPeopleAreLookingStream({Key? key}) : super(key: key);
+  const CPeopleAreLookingStream({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CPeopleAreLookingStream extends StatelessWidget {
               search.getPeopleAreLookingList(snapshot, 'People are looking');
 
           if (peopleAreLookingList.isEmpty) {
-            return CErrorWidget(
+            return const CErrorWidget(
                 icon: FontAwesomeIcons.triangleExclamation,
                 text:
                     'Sorry, we have no items in popular food collection right now.',
@@ -40,7 +40,7 @@ class CPeopleAreLookingStream extends StatelessWidget {
           return CPeopleAreLookingList(
               peopleAreLookingList: peopleAreLookingList);
         }
-        return CErrorWidget(
+        return const CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Sorry, unexpected error happen.',
             bgColor: secondaryColor);

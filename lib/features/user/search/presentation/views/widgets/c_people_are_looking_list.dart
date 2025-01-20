@@ -5,8 +5,7 @@ import 'c_people_are_looking_list_item.dart';
 
 class CPeopleAreLookingList extends StatelessWidget {
   final List<SearchModel> peopleAreLookingList;
-  const CPeopleAreLookingList({Key? key, required this.peopleAreLookingList})
-      : super(key: key);
+  const CPeopleAreLookingList({super.key, required this.peopleAreLookingList});
 
   @override
   Widget build(BuildContext context) {

@@ -9,12 +9,12 @@ class CButton extends StatelessWidget {
   final Color bgColor;
   final VoidCallback onPress;
   const CButton({
-    Key? key,
+    super.key,
     required this.text,
     this.textColor = black,
     required this.bgColor,
     required this.onPress,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

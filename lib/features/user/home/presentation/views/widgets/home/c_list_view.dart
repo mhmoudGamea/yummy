@@ -33,7 +33,7 @@ class CListView extends StatelessWidget {
           }
           return CListViewBody(model: model);
         }
-        return CErrorWidget(
+        return const CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Oops some error happining.',
             bgColor: secondaryColor);

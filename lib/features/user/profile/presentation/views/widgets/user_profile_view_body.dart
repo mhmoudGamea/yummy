@@ -22,7 +22,7 @@ class UserProfileViewBody extends StatelessWidget {
         if (state is GetUserInfoLoading) {
           return const Center(child: CCircleLoading());
         } else if (state is GetUserInfoFailure) {
-          return CErrorWidget(
+          return const CErrorWidget(
               icon: FontAwesomeIcons.triangleExclamation,
               text: 'Sorry we can\'t get profile information right now.');
         }

@@ -13,7 +13,7 @@ import '../../../../user/register/login/presentation/login_view.dart';
 import '../../model_views/location_cubit/location_cubit.dart';
 
 class WelcomeViewBody extends StatelessWidget {
-  const WelcomeViewBody({Key? key}) : super(key: key);
+  const WelcomeViewBody({super.key});
 
   void openModelSheet(BuildContext context) {
     showModalBottomSheet(

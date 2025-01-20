@@ -9,7 +9,7 @@ import 'package:yummy/core/widgets/c_circle_loading.dart';
 import '../../model_views/banner_cubit/banner_cubit.dart';
 
 class BannerDialog extends StatelessWidget {
-  const BannerDialog({Key? key}) : super(key: key);
+  const BannerDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AdminHomeViewBody extends StatelessWidget {
-  const AdminHomeViewBody({Key? key}) : super(key: key);
+  const AdminHomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

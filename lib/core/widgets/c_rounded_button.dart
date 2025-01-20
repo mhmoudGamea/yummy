@@ -9,13 +9,12 @@ class CRoundedButton extends StatelessWidget {
   final double? iconSize;
   final double? opacity;
   const CRoundedButton(
-      {Key? key,
+      {super.key,
       required this.onTap,
       required this.icon,
       this.color,
       this.opacity,
-      this.iconSize})
-      : super(key: key);
+      this.iconSize});
 
   @override
   Widget build(BuildContext context) {

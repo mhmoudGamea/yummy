@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 class UserProfileImage extends StatelessWidget {
   final String? profileImage;
-  const UserProfileImage({Key? key, required this.profileImage})
-      : super(key: key);
+  const UserProfileImage({super.key, required this.profileImage});
 
   @override
   Widget build(BuildContext context) {

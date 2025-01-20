@@ -32,7 +32,7 @@ class CCurosalSlider extends StatelessWidget {
                   icon: Icons.close_rounded, text: '${snapshot.error}');
             } else {
               if (snapshot.data!.docs.isEmpty) {
-                return SizedBox(
+                return const SizedBox(
                   height: 150,
                   child: Center(
                     child: CErrorWidget(

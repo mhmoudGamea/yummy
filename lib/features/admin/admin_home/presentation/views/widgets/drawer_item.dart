@@ -10,13 +10,13 @@ class DrawerItem extends StatelessWidget {
   final Color iconColor;
   final VoidCallback onPress;
   const DrawerItem({
-    Key? key,
+    super.key,
     required this.text,
     required this.icon,
     this.textColor = greyColor2,
     this.iconColor = black,
     required this.onPress,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

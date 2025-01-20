@@ -7,8 +7,7 @@ import '../../../../favourite/presentation/views/widgets/c_item_name.dart';
 
 class CPeopleAreLookingListItem extends StatelessWidget {
   final SearchModel model;
-  const CPeopleAreLookingListItem({Key? key, required this.model})
-      : super(key: key);
+  const CPeopleAreLookingListItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {

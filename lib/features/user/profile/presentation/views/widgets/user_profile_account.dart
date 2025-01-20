@@ -6,8 +6,8 @@ import '../../../../../../core/utils/styles.dart';
 class UserProfileAccount extends StatelessWidget {
   final String? name;
   final String? phone;
-  const UserProfileAccount({Key? key, required this.name, required this.phone})
-      : super(key: key);
+  const UserProfileAccount(
+      {super.key, required this.name, required this.phone});
 
   @override
   Widget build(BuildContext context) {

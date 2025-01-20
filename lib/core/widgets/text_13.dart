@@ -5,8 +5,7 @@ import '../utils/styles.dart';
 class Text13 extends StatelessWidget {
   final String text;
   final Color color;
-  const Text13({Key? key, required this.text, required this.color})
-      : super(key: key);
+  const Text13({super.key, required this.text, required this.color});
 
   @override
   Widget build(BuildContext context) {

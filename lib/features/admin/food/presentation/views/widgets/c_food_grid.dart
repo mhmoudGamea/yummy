@@ -32,7 +32,7 @@ class CFoodGrid extends StatelessWidget {
                 element.data() as Map<String, dynamic>));
           }
           if (model.isEmpty) {
-            return CErrorWidget(
+            return const CErrorWidget(
               text: 'No categories to display yet.',
               icon: FontAwesomeIcons.triangleExclamation,
               bgColor: primaryColor,
@@ -52,7 +52,7 @@ class CFoodGrid extends StatelessWidget {
             ),
           );
         }
-        return CErrorWidget(
+        return const CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Oops some error happining.',
             bgColor: secondaryColor);

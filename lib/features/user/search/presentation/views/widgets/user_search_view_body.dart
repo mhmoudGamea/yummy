@@ -6,7 +6,7 @@ import '../../model_views/search_cubit/search_cubit.dart';
 import 'c_search_field.dart';
 
 class UserSearchViewBody extends StatelessWidget {
-  const UserSearchViewBody({Key? key}) : super(key: key);
+  const UserSearchViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,7 @@ import './widgets/login_view_body.dart';
 class LoginView extends StatelessWidget {
   static const String rn = '/loginView';
   final LocationModel? locationModel; // lat, long & address
-  const LoginView({Key? key, this.locationModel}) : super(key: key);
+  const LoginView({super.key, this.locationModel});
 
   @override
   Widget build(BuildContext context) {

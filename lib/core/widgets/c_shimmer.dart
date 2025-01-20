@@ -5,8 +5,7 @@ import 'package:yummy/core/constants.dart';
 class CShimmer extends StatelessWidget {
   final double height;
   final double width;
-  const CShimmer({Key? key, required this.height, required this.width})
-      : super(key: key);
+  const CShimmer({super.key, required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {

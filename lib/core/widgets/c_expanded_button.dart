@@ -9,12 +9,12 @@ class CExpandedButton extends StatelessWidget {
   final Color bgColor;
   final VoidCallback onPress;
   const CExpandedButton({
-    Key? key,
+    super.key,
     required this.text,
     this.textColor = black,
     required this.bgColor,
     required this.onPress,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

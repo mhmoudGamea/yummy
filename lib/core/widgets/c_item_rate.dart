@@ -5,8 +5,8 @@ import 'text_13.dart';
 class CItemRate extends StatelessWidget {
   final String rate;
   final Color rateColor;
-  const CItemRate({Key? key, required this.rate, required this.rateColor})
-      : super(key: key);
+  const CItemRate(
+      {super.key, superkey, required this.rate, required this.rateColor});
 
   @override
   Widget build(BuildContext context) {

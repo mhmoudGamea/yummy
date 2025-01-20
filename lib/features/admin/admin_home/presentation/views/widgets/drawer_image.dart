@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../../core/constants.dart';
 
 class DrawerImage extends StatelessWidget {
-  const DrawerImage({Key? key}) : super(key: key);
+  const DrawerImage({super.key});
 
   @override
   Widget build(BuildContext context) {

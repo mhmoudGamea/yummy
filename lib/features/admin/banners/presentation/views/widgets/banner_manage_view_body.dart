@@ -88,7 +88,7 @@ class BannerManageViewBody extends StatelessWidget {
                       element.data() as Map<String, dynamic>));
                 }
                 if (banners.isEmpty) {
-                  return CErrorWidget(
+                  return const CErrorWidget(
                       text:
                           'Start to add a new banner by click on add banner button.',
                       icon: FontAwesomeIcons.faceSmile,
@@ -105,7 +105,7 @@ class BannerManageViewBody extends StatelessWidget {
                   ),
                 );
               }
-              return CErrorWidget(
+              return const CErrorWidget(
                   text: 'Sorry we have no banners for now for you.',
                   icon: FontAwesomeIcons.xmark);
             },

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class CItemImage extends StatelessWidget {
   final String image;
-  const CItemImage({Key? key, required this.image}) : super(key: key);
+  const CItemImage({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {

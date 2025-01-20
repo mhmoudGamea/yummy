@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/favourite/presentation/views/favourite_view.dart';
@@ -10,7 +10,7 @@ import '../../features/user/home/presentation/views/home_view.dart';
 
 class TabsView extends StatelessWidget {
   static const String rn = '/tabsView';
-  const TabsView({Key? key}) : super(key: key);
+  const TabsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +81,14 @@ class TabsView extends StatelessWidget {
         controller: controller,
         screens: buildScreens(),
         items: navBarsItems(),
-        confineInSafeArea: true,
+        confineToSafeArea: true,
         backgroundColor: Colors.white, // Default is Colors.white.
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
             true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
         stateManagement: true, // Default is true.
-        hideNavigationBarWhenKeyboardShows:
-            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+        hideNavigationBarWhenKeyboardAppears: true,
+
         decoration: NavBarDecoration(
           // borderRadius: BorderRadius.circular(10.0),
           colorBehindNavBar: Colors.white,
@@ -96,23 +96,10 @@ class TabsView extends StatelessWidget {
             BoxShadow(
               blurRadius: 2,
               spreadRadius: 2,
-              color: greyColor.withOpacity(0.4),
+              color: greyColor.withAlpha((0.4 * 255).toInt()),
               offset: const Offset(0, -1),
             ),
           ],
-        ),
-        popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
-        itemAnimationProperties: const ItemAnimationProperties(
-          // Navigation Bar's items animation properties.
-          duration: Duration(milliseconds: 200),
-          curve: Curves.ease,
-        ),
-        screenTransitionAnimation: const ScreenTransitionAnimation(
-          // Screen transition animation on change of selected tab.
-          animateTabTransition: true,
-          curve: Curves.ease,
-          duration: Duration(milliseconds: 200),
         ),
         navBarStyle:
             NavBarStyle.style10, // Choose the nav bar style with this property.

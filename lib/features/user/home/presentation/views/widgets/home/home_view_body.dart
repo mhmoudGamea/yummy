@@ -7,7 +7,7 @@ import 'c_header_name.dart';
 import 'c_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({Key? key}) : super(key: key);
+  const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

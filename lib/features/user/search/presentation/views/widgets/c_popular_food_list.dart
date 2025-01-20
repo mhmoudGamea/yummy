@@ -4,8 +4,7 @@ import 'package:yummy/features/user/search/presentation/views/widgets/c_popular_
 
 class CPopularFoodList extends StatelessWidget {
   final List<SearchModel> popularFoodList;
-  const CPopularFoodList({Key? key, required this.popularFoodList})
-      : super(key: key);
+  const CPopularFoodList({super.key, required this.popularFoodList});
 
   @override
   Widget build(BuildContext context) {

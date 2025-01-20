@@ -8,7 +8,7 @@ import 'widgets/admin_home_view_body.dart';
 
 class AdminHomeView extends StatelessWidget {
   static const String rn = '/adminHomeView';
-  const AdminHomeView({Key? key}) : super(key: key);
+  const AdminHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class CCircleLoading extends StatelessWidget {
-  const CCircleLoading({Key? key}) : super(key: key);
+  const CCircleLoading({super.key});
 
   @override
   Widget build(BuildContext context) {

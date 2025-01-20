@@ -7,7 +7,7 @@ import '../../../../home/presentation/views/widgets/home/c_gradient_layer.dart';
 
 class CPopularFoodListItem extends StatelessWidget {
   final SearchModel model;
-  const CPopularFoodListItem({Key? key, required this.model}) : super(key: key);
+  const CPopularFoodListItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
