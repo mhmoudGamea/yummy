@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/favourite/presentation/views/favourite_view.dart';
 import 'package:yummy/features/user/profile/presentation/views/user_profile_view.dart';
 import 'package:yummy/features/user/search/presentation/views/user_search_view.dart';
 
 import '../../features/user/home/presentation/views/home_view.dart';
+import '../config/app_colors.dart';
 
 class TabsView extends StatelessWidget {
   static const String rn = '/tabsView';
@@ -35,9 +35,9 @@ class TabsView extends StatelessWidget {
             width: 20,
           ),
           title: ("Home"),
-          activeColorSecondary: black,
+          activeColorSecondary: AppColors.black,
           textStyle: Styles.title15,
-          activeColorPrimary: greyColor.withOpacity(0.4),
+          activeColorPrimary: AppColors.greyColor.withOpacity(0.4),
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(
@@ -45,10 +45,10 @@ class TabsView extends StatelessWidget {
             size: 17,
           ),
           title: ("Favourite"),
-          activeColorSecondary: black,
+          activeColorSecondary: AppColors.black,
           textStyle: Styles.title15,
-          activeColorPrimary: greyColor.withOpacity(0.4),
-          inactiveColorPrimary: black,
+          activeColorPrimary: AppColors.greyColor.withOpacity(0.4),
+          inactiveColorPrimary: AppColors.black,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(
@@ -56,10 +56,10 @@ class TabsView extends StatelessWidget {
             size: 19,
           ),
           title: ("Search"),
-          activeColorSecondary: black,
+          activeColorSecondary: AppColors.black,
           textStyle: Styles.title15,
-          activeColorPrimary: greyColor.withOpacity(0.4),
-          inactiveColorPrimary: black,
+          activeColorPrimary: AppColors.greyColor.withOpacity(0.4),
+          inactiveColorPrimary: AppColors.black,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(
@@ -67,10 +67,10 @@ class TabsView extends StatelessWidget {
             size: 19,
           ),
           title: ("Profile"),
-          activeColorSecondary: black,
+          activeColorSecondary: AppColors.black,
           textStyle: Styles.title15,
-          activeColorPrimary: greyColor.withOpacity(0.4),
-          inactiveColorPrimary: black,
+          activeColorPrimary: AppColors.greyColor.withOpacity(0.4),
+          inactiveColorPrimary: AppColors.black,
         ),
       ];
     }
@@ -96,7 +96,7 @@ class TabsView extends StatelessWidget {
             BoxShadow(
               blurRadius: 2,
               spreadRadius: 2,
-              color: greyColor.withAlpha((0.4 * 255).toInt()),
+              color: AppColors.greyColor.withAlpha((0.4 * 255).toInt()),
               offset: const Offset(0, -1),
             ),
           ],

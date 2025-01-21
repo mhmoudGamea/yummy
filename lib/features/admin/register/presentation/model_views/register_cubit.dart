@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/helper.dart';
 import '../../data/repos/register_repo.dart';
 import 'register_state.dart';
@@ -26,7 +26,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterSuccess());
       Helper.showCustomToast(
           context: context,
-          bgColor: mintGreen,
+          bgColor: AppColors.mintGreen,
           icon: Icons.check_circle_rounded,
           msg: success);
     });

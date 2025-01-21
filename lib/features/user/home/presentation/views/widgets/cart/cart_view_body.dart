@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/cart/c_fixed_order_button.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/cart/cart_list_item.dart';
 
+import '../../../../../../../core/config/app_colors.dart';
+import '../../../../../../../core/constants.dart';
 import '../../../../../../../core/utils/helper.dart';
 
 class CartViewBody extends StatelessWidget {
@@ -54,8 +55,8 @@ class CartViewBody extends StatelessWidget {
           }),
         ),
       ),
-      const CFixedOrderButton(
-        bgColor: primaryColor,
+      CFixedOrderButton(
+        bgColor: AppColors.primaryColor,
         textColor: Colors.white,
         text: 'Order Now',
       ),

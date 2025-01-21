@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/details/c_info_item.dart';
+
+import '../../../../../../../core/config/app_colors.dart';
+import 'c_info_item.dart';
 
 class CInfo extends StatelessWidget {
   final String rate;
@@ -21,11 +22,11 @@ class CInfo extends StatelessWidget {
         CInfoItem(icon: Icons.star, iconColor: Colors.amber, text: rate),
         CInfoItem(
             icon: Icons.local_fire_department_rounded,
-            iconColor: secondaryColor,
+            iconColor: AppColors.secondaryColor,
             text: '$calories calories'),
         CInfoItem(
             icon: Icons.watch_later_sharp,
-            iconColor: babyBlue,
+            iconColor: AppColors.babyBlue,
             text: '$prepareTime Min'),
       ],
     );

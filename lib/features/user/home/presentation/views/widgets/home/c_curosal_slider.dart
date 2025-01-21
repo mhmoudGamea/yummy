@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
-import 'package:yummy/core/constants.dart';
 
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../../core/widgets/c_error_widget.dart';
 import '../../../model_views/banner_cubit/banner_cubit.dart';
 
 class CCurosalSlider extends StatelessWidget {
-  const CCurosalSlider({Key? key}) : super(key: key);
+  const CCurosalSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +32,13 @@ class CCurosalSlider extends StatelessWidget {
                   icon: Icons.close_rounded, text: '${snapshot.error}');
             } else {
               if (snapshot.data!.docs.isEmpty) {
-                return const SizedBox(
+                return SizedBox(
                   height: 150,
                   child: Center(
                     child: CErrorWidget(
                       icon: FontAwesomeIcons.triangleExclamation,
                       text: 'No banner to display yet.',
-                      bgColor: primaryColor,
+                      bgColor: AppColors.primaryColor,
                     ),
                   ),
                 );

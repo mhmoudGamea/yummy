@@ -1,21 +1,25 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/welcome/data/models/location_model.dart';
 
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/widgets/c_expanded_button.dart';
 import '../../model_views/location_cubit/location_cubit.dart';
 
 class MapViewBody extends StatelessWidget {
   final LocationModel locationModel;
-  const MapViewBody({Key? key, required this.locationModel}) : super(key: key);
+  const MapViewBody({super.key, required this.locationModel});
 
   @override
   Widget build(BuildContext context) {
     final data = BlocProvider.of<LocationCubit>(context);
     var locating = false;
+    log(locationModel.latitude.toString());
+    log(locationModel.longitude.toString());
     return Stack(
       children: [
         GoogleMap(
@@ -61,9 +65,9 @@ class MapViewBody extends StatelessWidget {
                 child: Column(
                   children: [
                     if (locating)
-                      const LinearProgressIndicator(
-                          color: primaryColor,
-                          backgroundColor: greyColor,
+                      LinearProgressIndicator(
+                          color: AppColors.primaryColor,
+                          backgroundColor: AppColors.greyColor,
                           minHeight: 3),
                     TextButton.icon(
                       onPressed: () {},
@@ -80,7 +84,8 @@ class MapViewBody extends StatelessWidget {
                     ),
                     Text(
                       data.getAddress,
-                      style: Styles.title14.copyWith(color: greyColor2),
+                      style:
+                          Styles.title14.copyWith(color: AppColors.greyColor2),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 15),
@@ -88,7 +93,9 @@ class MapViewBody extends StatelessWidget {
                       absorbing: locating ? true : false,
                       child: CExpandedButton(
                         text: 'Confirm Location',
-                        bgColor: locating ? greyColor : primaryColor,
+                        bgColor: locating
+                            ? AppColors.greyColor
+                            : AppColors.primaryColor,
                         onPress: () async {
                           await data.confirmLocation(context);
                         },

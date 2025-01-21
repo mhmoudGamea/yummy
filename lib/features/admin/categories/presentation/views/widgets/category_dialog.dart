@@ -3,7 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yummy/features/admin/widgets/c_text_form_field.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 import '../../../../widgets/c_expanded_delete.dart';
@@ -18,7 +18,7 @@ class CategoryDialog extends StatelessWidget {
     final category = BlocProvider.of<CategoryCubit>(context);
     return Dialog(
       elevation: 2,
-      shadowColor: greyColor,
+      shadowColor: AppColors.greyColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: SingleChildScrollView(
@@ -33,10 +33,10 @@ class CategoryDialog extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5)),
                     child: category.getPickedImage == null
-                        ? const Icon(
+                        ? Icon(
                             FontAwesomeIcons.image,
                             size: 100,
-                            color: greyColor,
+                            color: AppColors.greyColor,
                           )
                         : Image.file(
                             category.getPickedImage!,
@@ -81,7 +81,7 @@ class CategoryDialog extends StatelessWidget {
                   const SizedBox(height: 15),
                   CExpandedButton(
                     text: 'Pick Image',
-                    bgColor: primaryColor,
+                    bgColor: AppColors.primaryColor,
                     textColor: Colors.white,
                     onPress: () => category.pickImage(),
                   ),
@@ -94,7 +94,7 @@ class CategoryDialog extends StatelessWidget {
                             Text(
                               'Please pick an image first.',
                               style: Styles.title13
-                                  .copyWith(color: secondaryColor),
+                                  .copyWith(color: AppColors.secondaryColor),
                             ),
                           ],
                         );

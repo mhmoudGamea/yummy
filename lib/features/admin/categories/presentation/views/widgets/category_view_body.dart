@@ -8,13 +8,13 @@ import 'package:yummy/features/admin/categories/presentation/model_views/cubit/c
 import 'package:yummy/features/admin/categories/presentation/views/widgets/category_dialog.dart';
 import 'package:yummy/features/admin/categories/presentation/views/widgets/category_grid_item.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_error_widget.dart';
 
 class CategoryViewBody extends StatelessWidget {
-  const CategoryViewBody({Key? key}) : super(key: key);
+  const CategoryViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class CategoryViewBody extends StatelessWidget {
                   const Spacer(),
                   loading
                       ? const CCircleLoading()
-                      : const Text(
+                      : Text(
                           'Add or swipe to delete category',
                           style: Styles.title14,
                         ),
@@ -49,8 +49,8 @@ class CategoryViewBody extends StatelessWidget {
                     child: IconButton(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       constraints: const BoxConstraints(),
-                      icon: const Icon(FontAwesomeIcons.plus,
-                          size: 18, color: primaryColor),
+                      icon: Icon(FontAwesomeIcons.plus,
+                          size: 18, color: AppColors.primaryColor),
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -67,9 +67,9 @@ class CategoryViewBody extends StatelessWidget {
             },
           ),
           const SizedBox(height: 10),
-          const Divider(
+          Divider(
             thickness: 3,
-            color: primaryColor,
+            color: AppColors.primaryColor,
           ),
           const SizedBox(height: 10),
           StreamBuilder<QuerySnapshot>(
@@ -84,11 +84,11 @@ class CategoryViewBody extends StatelessWidget {
                       element.data() as Map<String, dynamic>));
                 }
                 if (categories.isEmpty) {
-                  return const CErrorWidget(
+                  return CErrorWidget(
                       text:
                           'Start to add a new category by click on add category button.',
                       icon: FontAwesomeIcons.faceSmile,
-                      bgColor: primaryColor);
+                      bgColor: AppColors.primaryColor);
                 }
                 return Expanded(
                   child: GridView.builder(

@@ -2,14 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/c_button.dart';
 import '../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../core/widgets/c_text_button.dart';
 import '../../../../admin/login/presentation/views/admin_login_view.dart';
 import '../../../../on_board/presentation/views/board_view.dart';
-import '../../../../user/register/login/presentation/login_view.dart';
+import '../../../../user/login/presentation/views/login_view.dart';
 import '../../model_views/location_cubit/location_cubit.dart';
 
 class WelcomeViewBody extends StatelessWidget {
@@ -34,7 +34,7 @@ class WelcomeViewBody extends StatelessWidget {
               child: BoardView(),
             ),
             const SizedBox(height: 10),
-            const Text('Ready to order from your nearest resturant ?',
+            Text('Ready to order from your nearest resturant ?',
                 style: Styles.title14),
             const SizedBox(height: 20),
             BlocBuilder<LocationCubit, LocationState>(
@@ -45,7 +45,7 @@ class WelcomeViewBody extends StatelessWidget {
                   return CButton(
                     text: 'Set Delivery Location',
                     textColor: Colors.white,
-                    bgColor: primaryColor,
+                    bgColor: AppColors.primaryColor,
                     onPress: () async {
                       await data.getCurrentDeviceLocation(context);
                     },
@@ -58,11 +58,12 @@ class WelcomeViewBody extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                   text: 'Already a customer ? ',
-                  style: Styles.title14.copyWith(color: greyColor2),
+                  style: Styles.title14.copyWith(color: AppColors.greyColor2),
                   children: [
                     TextSpan(
                         text: 'LogIn',
-                        style: Styles.title15.copyWith(color: primaryColor)),
+                        style: Styles.title15
+                            .copyWith(color: AppColors.primaryColor)),
                   ],
                 ),
               ),
@@ -79,7 +80,7 @@ class WelcomeViewBody extends StatelessWidget {
           child: CTextButton(
             text: 'Admin Login',
             align: Alignment.topRight,
-            textColor: primaryColor,
+            textColor: AppColors.primaryColor,
             size: 15,
             onPress: () {
               GoRouter.of(context).push(AdminLoginView.rn);

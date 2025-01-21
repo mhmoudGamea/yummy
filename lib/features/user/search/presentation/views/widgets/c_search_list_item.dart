@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yummy/features/user/search/data/models/search_model.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_item_rate.dart';
 import '../../../../../../core/widgets/c_item_image.dart';
 import '../../../../favourite/presentation/views/widgets/c_item_name.dart';
 
 class CSearchListItem extends StatelessWidget {
   final SearchModel model;
-  const CSearchListItem({Key? key, required this.model}) : super(key: key);
+  const CSearchListItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CSearchListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         boxShadow: [
           BoxShadow(
-            color: greyColor.withOpacity(0.6),
+            color: AppColors.greyColor.withAlpha((0.6 * 255).toInt()),
             spreadRadius: 2,
             blurRadius: 2,
             offset: const Offset(0.1, 0.1),

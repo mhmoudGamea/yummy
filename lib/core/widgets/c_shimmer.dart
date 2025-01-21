@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:yummy/core/constants.dart';
+
+import '../config/app_colors.dart';
 
 class CShimmer extends StatelessWidget {
   final double height;
@@ -10,8 +11,8 @@ class CShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: greyColor.withOpacity(0.1),
-      highlightColor: primaryColor.withOpacity(0.1),
+      baseColor: AppColors.greyColor.withOpacity(0.1),
+      highlightColor: AppColors.primaryColor.withOpacity(0.1),
       child: Container(
         height: height,
         width: width,

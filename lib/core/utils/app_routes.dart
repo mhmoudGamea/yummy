@@ -22,7 +22,7 @@ import '../../features/user/payment/presentation/views/payment_view.dart';
 import '../../features/user/payment/presentation/views/paymob_registration_view.dart';
 import '../../features/user/payment/presentation/views/widgets/paymob_webview.dart';
 import '../../features/user/profile/presentation/views/user_edit_profile_view.dart';
-import '../../features/user/register/login/presentation/login_view.dart';
+import '../../features/user/login/presentation/views/login_view.dart';
 import '../../features/welcome/data/models/location_model.dart';
 import '../../features/welcome/presentation/views/map_view.dart';
 import '../../features/welcome/presentation/views/welcome_view.dart';

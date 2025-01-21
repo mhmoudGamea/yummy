@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
+
+import '../../../../../../core/config/app_colors.dart';
 
 class CItemCategory extends StatelessWidget {
   final String categoryName;
-  const CItemCategory({Key? key, required this.categoryName}) : super(key: key);
+  const CItemCategory({super.key, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class CItemCategory extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           categoryName,
-          style: Styles.title14.copyWith(color: primaryColor),
+          style: Styles.title14.copyWith(color: AppColors.primaryColor),
         ),
       ],
     );

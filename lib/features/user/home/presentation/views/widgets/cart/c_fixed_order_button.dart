@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/utils/styles.dart';
 import '../../../../../payment/presentation/views/payment_view.dart';
 
@@ -28,7 +28,7 @@ class CFixedOrderButton extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: greyColor.withOpacity(0.4),
+            color: AppColors.greyColor.withOpacity(0.4),
             spreadRadius: 2,
             blurRadius: 1,
             offset: const Offset(0, -2),
@@ -41,14 +41,15 @@ class CFixedOrderButton extends StatelessWidget {
             children: [
               Text(
                 'Total',
-                style: Styles.title14.copyWith(color: greyColor),
+                style: Styles.title14.copyWith(color: AppColors.greyColor),
               ),
               const SizedBox(height: 5),
               BlocBuilder<OrderCubit, OrderState>(
                 builder: (context, state) {
                   return Text(
                     'E£ ${orderData.getTotalPrice.toStringAsFixed(2)}',
-                    style: Styles.title16.copyWith(color: primaryColor),
+                    style:
+                        Styles.title16.copyWith(color: AppColors.primaryColor),
                   );
                 },
               ),

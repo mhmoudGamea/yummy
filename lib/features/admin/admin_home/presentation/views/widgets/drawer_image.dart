@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 
 class DrawerImage extends StatelessWidget {
   const DrawerImage({super.key});
@@ -14,7 +14,7 @@ class DrawerImage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 30, left: 90, right: 90),
             width: double.infinity,
             height: 150,
-            color: primaryColor.withOpacity(0.5),
+            color: AppColors.primaryColor.withOpacity(0.5),
             child: Image.asset('assets/images/splash.png')),
         Positioned(
           top: 25,
@@ -24,9 +24,9 @@ class DrawerImage extends StatelessWidget {
               onPressed: () {
                 Scaffold.of(context).closeDrawer();
               },
-              icon: const Icon(
+              icon: Icon(
                 FontAwesomeIcons.xmark,
-                color: secondaryColor,
+                color: AppColors.secondaryColor,
                 size: 20,
               ),
             );

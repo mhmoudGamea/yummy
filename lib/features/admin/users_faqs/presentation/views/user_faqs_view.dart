@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yummy/features/admin/users_faqs/presentation/views/widgets/user_faqs_view_body.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/helper.dart';
 
 class UserFaqsView extends StatelessWidget {
@@ -12,7 +12,7 @@ class UserFaqsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Helper.appBar(
-          context: context, text: 'User Faqs', bgColor: primaryColor),
+          context: context, text: 'User Faqs', bgColor: AppColors.primaryColor),
       body: const SafeArea(
         child: UserFaqsViewBody(),
       ),

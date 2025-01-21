@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/helper.dart';
 import '../../../data/data/user_food_model.dart';
 import '../../../data/data/user_info_model.dart';
@@ -32,7 +32,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(UserInfoFailure());
       Helper.showCustomToast(
           context: context,
-          bgColor: secondaryColor,
+          bgColor: AppColors.secondaryColor,
           icon: Icons.close_rounded,
           msg: failure.errorMessage);
     }, (userInfoModel) {

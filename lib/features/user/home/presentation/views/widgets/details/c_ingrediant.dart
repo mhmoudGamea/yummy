@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
+
+import '../../../../../../../core/config/app_colors.dart';
 
 class CIngrediant extends StatelessWidget {
   final List<dynamic> ingrediants;
-  const CIngrediant({Key? key, required this.ingrediants}) : super(key: key);
+  const CIngrediant({super.key, required this.ingrediants});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CIngrediant extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: greyColor.withOpacity(0.2),
+                  color: AppColors.greyColor.withOpacity(0.2),
                 ),
                 child: CachedNetworkImage(
                   imageUrl: ingrediants[index],

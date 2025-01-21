@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/features/user/search/data/models/search_model.dart';
 import 'package:yummy/features/user/search/data/repos/search_repo.dart';
+
+import '../../../../../../core/config/app_colors.dart';
 
 part 'search_state.dart';
 
@@ -32,7 +33,7 @@ class SearchCubit extends Cubit<SearchState> {
       emit(SearchInitial());
       Helper.showCustomToast(
           context: context,
-          bgColor: primaryColor,
+          bgColor: AppColors.primaryColor,
           icon: FontAwesomeIcons.triangleExclamation,
           msg: 'Please, enter a value to search about it.');
     } else if (getSearchController.text.isNotEmpty) {
@@ -44,7 +45,7 @@ class SearchCubit extends Cubit<SearchState> {
           emit(SearchInitial());
           Helper.showCustomToast(
               context: context,
-              bgColor: secondaryColor,
+              bgColor: AppColors.secondaryColor,
               icon: FontAwesomeIcons.triangleExclamation,
               msg:
                   'Can\'t find this food, try to retype it or may be you misspelling it.');

@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:yummy/features/user/search/data/models/search_model.dart';
 import 'package:yummy/features/user/search/presentation/model_views/search_cubit/search_cubit.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_error_widget.dart';
 import 'c_people_are_looking_list.dart';
@@ -30,20 +30,20 @@ class CPeopleAreLookingStream extends StatelessWidget {
               search.getPeopleAreLookingList(snapshot, 'People are looking');
 
           if (peopleAreLookingList.isEmpty) {
-            return const CErrorWidget(
+            return CErrorWidget(
                 icon: FontAwesomeIcons.triangleExclamation,
                 text:
                     'Sorry, we have no items in popular food collection right now.',
-                bgColor: primaryColor);
+                bgColor: AppColors.primaryColor);
           }
 
           return CPeopleAreLookingList(
               peopleAreLookingList: peopleAreLookingList);
         }
-        return const CErrorWidget(
+        return CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Sorry, unexpected error happen.',
-            bgColor: secondaryColor);
+            bgColor: AppColors.secondaryColor);
       },
     );
   }

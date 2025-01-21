@@ -1,7 +1,7 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:yummy/core/utils/styles.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 
 class DrawerItem extends StatelessWidget {
   final String text;
@@ -13,8 +13,8 @@ class DrawerItem extends StatelessWidget {
     super.key,
     required this.text,
     required this.icon,
-    this.textColor = greyColor2,
-    this.iconColor = black,
+    this.textColor = Colors.black38,
+    this.iconColor = Colors.black,
     required this.onPress,
   });
 
@@ -24,7 +24,7 @@ class DrawerItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       margin: const EdgeInsets.only(bottom: 15),
       style: NeumorphicStyle(
-        color: primaryColor.withOpacity(0.5),
+        color: AppColors.primaryColor.withOpacity(0.5),
         depth: 2,
       ),
       onPressed: onPress,

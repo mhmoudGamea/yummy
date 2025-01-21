@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 
+import '../../../../../../core/config/app_colors.dart';
+
 class UserProfileSubInfo extends StatelessWidget {
-  const UserProfileSubInfo({Key? key}) : super(key: key);
+  const UserProfileSubInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class UserProfileSubInfo extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: greyColor.withOpacity(0.5),
+            color: AppColors.greyColor.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 2,
             offset: const Offset(2, 2),
@@ -24,10 +25,10 @@ class UserProfileSubInfo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          userProfileInfoItem(
-              'Order Food', greyColor2, null, '120', primaryColor, null),
-          userProfileInfoItem(
-              'Spending', greyColor2, null, '\$ 4120', primaryColor, null),
+          userProfileInfoItem('Order Food', AppColors.greyColor2, null, '120',
+              AppColors.primaryColor, null),
+          userProfileInfoItem('Spending', AppColors.greyColor2, null, '\$ 4120',
+              AppColors.primaryColor, null),
         ],
       ),
     );

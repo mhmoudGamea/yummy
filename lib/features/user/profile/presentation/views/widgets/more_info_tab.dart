@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
+
+import '../../../../../../core/config/app_colors.dart';
 
 class MoreInfoTab extends StatelessWidget {
   final IconData icon;
   final String text;
   final VoidCallback onTap;
   const MoreInfoTab(
-      {Key? key, required this.icon, required this.text, required this.onTap})
-      : super(key: key);
+      {super.key, required this.icon, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,9 @@ class MoreInfoTab extends StatelessWidget {
             height: 40,
             width: 40,
             decoration: BoxDecoration(
-                color: primaryColor.withOpacity(0.15),
+                color: AppColors.primaryColor.withOpacity(0.15),
                 borderRadius: BorderRadius.circular(5)),
-            child: Icon(icon, size: 17, color: primaryColor),
+            child: Icon(icon, size: 17, color: AppColors.primaryColor),
           ),
           const SizedBox(width: 15),
           Text(text, style: Styles.title15),

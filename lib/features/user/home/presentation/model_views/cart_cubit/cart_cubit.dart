@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/helper.dart';
 
+import '../../../../../../core/config/app_colors.dart';
 import '../../../data/data/cart_model.dart';
 
 part 'cart_state.dart';
@@ -30,7 +31,7 @@ class CartCubit extends Cubit<CartState> {
     } else {
       Helper.showCustomToast(
           context: context,
-          bgColor: primaryColor.withOpacity(0.7),
+          bgColor: AppColors.primaryColor.withAlpha((0.7 * 255).toInt()),
           icon: FontAwesomeIcons.triangleExclamation,
           msg: 'Sorry it\'s not allowed to increase than 20');
     }

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/core/widgets/tabs_view.dart';
@@ -12,7 +11,8 @@ import 'package:yummy/features/welcome/data/models/location_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../user/register/login/presentation/login_view.dart';
+import '../../../../../core/config/app_colors.dart';
+import '../../../../user/login/presentation/views/login_view.dart';
 import '../../../data/repos/location/location_repo.dart';
 import '../../views/map_view.dart';
 
@@ -41,7 +41,7 @@ class LocationCubit extends Cubit<LocationState> {
         emit(LocationFailure());
         Helper.showCustomToast(
           context: context,
-          bgColor: secondaryColor,
+          bgColor: AppColors.secondaryColor,
           icon: Icons.cancel_outlined,
           msg: failure.errorMessage,
         );
@@ -51,7 +51,7 @@ class LocationCubit extends Cubit<LocationState> {
         emit(LocationSuccess());
         Helper.showCustomToast(
           context: context,
-          bgColor: mintGreen,
+          bgColor: AppColors.mintGreen,
           icon: Icons.check_circle_outline_rounded,
           msg: 'Success detect your location.',
         );

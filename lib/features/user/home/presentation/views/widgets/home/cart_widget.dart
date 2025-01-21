@@ -6,8 +6,10 @@ import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/home/presentation/views/cart_view.dart';
 
+import '../../../../../../../core/config/app_colors.dart';
+
 class CartWidget extends StatelessWidget {
-  const CartWidget({Key? key}) : super(key: key);
+  const CartWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CartWidget extends StatelessWidget {
               height: 15,
               width: 15,
               decoration: BoxDecoration(
-                color: primaryColor,
+                color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: StreamBuilder<QuerySnapshot>(

@@ -4,12 +4,12 @@ import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/features/admin/categories/data/models/category_model.dart';
 import 'package:yummy/features/admin/categories/presentation/model_views/cubit/category_cubit.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 
 class CategoryGridItem extends StatelessWidget {
   final CategoryModel model;
-  const CategoryGridItem({Key? key, required this.model}) : super(key: key);
+  const CategoryGridItem({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CategoryGridItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
-          border: Border.all(width: 2, color: greyColor),
+          border: Border.all(width: 2, color: AppColors.greyColor),
         ),
         child: Column(
           children: [
@@ -35,7 +35,7 @@ class CategoryGridItem extends StatelessWidget {
               height: 110,
               width: 100,
             ),
-            const Divider(height: 25, color: greyColor, thickness: 1),
+            Divider(height: 25, color: AppColors.greyColor, thickness: 1),
             Text(
               model.categoryName,
               style: Styles.title15,

@@ -4,13 +4,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yummy/features/admin/food/presentation/model_views/food_cubit/food_cubit.dart';
 import 'package:yummy/features/admin/food/presentation/views/widgets/c_food_grid.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import 'food_dialog.dart';
 
 class FoodViewBody extends StatelessWidget {
-  const FoodViewBody({Key? key}) : super(key: key);
+  const FoodViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class FoodViewBody extends StatelessWidget {
                   const Spacer(),
                   loading
                       ? const CCircleLoading()
-                      : const Text(
+                      : Text(
                           'Add or swipe to delete category',
                           style: Styles.title14,
                         ),
@@ -44,8 +44,8 @@ class FoodViewBody extends StatelessWidget {
                     child: IconButton(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       constraints: const BoxConstraints(),
-                      icon: const Icon(FontAwesomeIcons.plus,
-                          size: 18, color: primaryColor),
+                      icon: Icon(FontAwesomeIcons.plus,
+                          size: 18, color: AppColors.primaryColor),
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -62,9 +62,9 @@ class FoodViewBody extends StatelessWidget {
             },
           ),
           const SizedBox(height: 10),
-          const Divider(
+          Divider(
             thickness: 3,
-            color: primaryColor,
+            color: AppColors.primaryColor,
           ),
           const SizedBox(height: 10),
           const CFoodGrid(),

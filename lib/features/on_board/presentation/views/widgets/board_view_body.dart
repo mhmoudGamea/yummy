@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/styles.dart';
 
 class BoardViewBody extends StatefulWidget {
-  const BoardViewBody({Key? key}) : super(key: key);
+  const BoardViewBody({super.key});
 
   @override
   State<BoardViewBody> createState() => _BoardViewBodyState();
@@ -22,7 +22,7 @@ class _BoardViewBodyState extends State<BoardViewBody> {
             width: 200,
           ),
         ),
-        const Text('Set your delivery location', style: Styles.title16),
+        Text('Set your delivery location', style: Styles.title16),
       ],
     ),
     Column(
@@ -33,7 +33,7 @@ class _BoardViewBodyState extends State<BoardViewBody> {
             width: 200,
           ),
         ),
-        const FittedBox(
+        FittedBox(
           child: Text('Order online from your favourite resturant',
               style: Styles.title16),
         ),
@@ -47,7 +47,7 @@ class _BoardViewBodyState extends State<BoardViewBody> {
             width: 200,
           ),
         ),
-        const Text('Quick deliver to your doorstep', style: Styles.title16),
+        Text('Quick deliver to your doorstep', style: Styles.title16),
       ],
     ),
   ];
@@ -72,10 +72,10 @@ class _BoardViewBodyState extends State<BoardViewBody> {
         SmoothPageIndicator(
           controller: _controller,
           count: _pages.length,
-          effect: const ExpandingDotsEffect(
+          effect: ExpandingDotsEffect(
             dotHeight: 9,
-            activeDotColor: primaryColor,
-            dotColor: greyColor,
+            activeDotColor: AppColors.primaryColor,
+            dotColor: AppColors.greyColor,
           ),
           onDotClicked: (index) {
             currentPage = index;

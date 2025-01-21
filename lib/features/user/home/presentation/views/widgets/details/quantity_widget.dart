@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 
+import '../../../../../../../core/config/app_colors.dart';
 import 'quantity_button.dart';
 
 class QuantityWidget extends StatelessWidget {
-  const QuantityWidget({Key? key}) : super(key: key);
+  const QuantityWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class QuantityWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: greyColor.withOpacity(0.2),
+            color: AppColors.greyColor.withOpacity(0.2),
           ),
           child: Row(
             children: [

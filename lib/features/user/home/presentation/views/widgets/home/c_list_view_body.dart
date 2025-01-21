@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/widgets/c_error_widget.dart';
 import '../../../../data/data/user_food_model.dart';
 import '../../food_details_view.dart';
@@ -10,15 +10,15 @@ import 'c_list_item.dart';
 
 class CListViewBody extends StatelessWidget {
   final List<UserFoodModel> model;
-  const CListViewBody({Key? key, required this.model}) : super(key: key);
+  const CListViewBody({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return model.isEmpty
-        ? const CErrorWidget(
+        ? CErrorWidget(
             text: 'No categories to display yet.',
             icon: FontAwesomeIcons.triangleExclamation,
-            bgColor: primaryColor,
+            bgColor: AppColors.primaryColor,
           )
         : SizedBox(
             height: 250,

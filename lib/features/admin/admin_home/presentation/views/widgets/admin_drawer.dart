@@ -7,7 +7,7 @@ import 'package:yummy/features/admin/food/presentation/views/food_view.dart';
 import 'package:yummy/features/admin/users_faqs/presentation/views/user_faqs_view.dart';
 import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../banners/presentation/views/banner_manage_view.dart';
 import 'drawer_image.dart';
 import 'drawer_item.dart';
@@ -20,7 +20,7 @@ class AdminDrawer extends StatelessWidget {
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.7,
       elevation: 4,
-      shadowColor: greyColor,
+      shadowColor: AppColors.greyColor,
       child: Column(
         children: [
           const DrawerImage(),

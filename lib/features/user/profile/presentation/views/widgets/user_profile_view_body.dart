@@ -13,7 +13,7 @@ import 'user_profile_sub_info.dart';
 import 'user_profile_info.dart';
 
 class UserProfileViewBody extends StatelessWidget {
-  const UserProfileViewBody({Key? key}) : super(key: key);
+  const UserProfileViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

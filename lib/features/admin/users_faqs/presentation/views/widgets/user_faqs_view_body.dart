@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 
 class UserFaqsViewBody extends StatelessWidget {
-  const UserFaqsViewBody({Key? key}) : super(key: key);
+  const UserFaqsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class UserFaqsViewBody extends StatelessWidget {
               // loading
               //     ? const CCircleLoading()
               //     : const
-              const Text(
+              Text(
                 'Add or swipe to delete faq',
                 style: Styles.title14,
               ),
@@ -30,8 +30,8 @@ class UserFaqsViewBody extends StatelessWidget {
                 child: IconButton(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   constraints: const BoxConstraints(),
-                  icon: const Icon(FontAwesomeIcons.plus,
-                      size: 18, color: primaryColor),
+                  icon: Icon(FontAwesomeIcons.plus,
+                      size: 18, color: AppColors.primaryColor),
                   onPressed: () {
                     // showDialog(
                     //   context: context,
@@ -46,9 +46,9 @@ class UserFaqsViewBody extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          const Divider(
+          Divider(
             thickness: 3,
-            color: primaryColor,
+            color: AppColors.primaryColor,
           ),
           const SizedBox(height: 10),
         ],

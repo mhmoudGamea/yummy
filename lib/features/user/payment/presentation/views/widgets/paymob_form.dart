@@ -7,12 +7,12 @@ import 'package:yummy/features/user/payment/data/models/paymob_user_info.dart';
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
 import 'package:yummy/features/user/payment/presentation/views/widgets/paymob_webview.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../admin/widgets/c_text_form_field.dart';
 
 class PaymobForm extends StatefulWidget {
   final String total;
-  const PaymobForm({Key? key, required this.total}) : super(key: key);
+  const PaymobForm({super.key, required this.total});
 
   @override
   State<PaymobForm> createState() => _PaymobFormState();
@@ -35,11 +35,11 @@ class _PaymobFormState extends State<PaymobForm> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 5,
               spreadRadius: 1,
-              color: greyColor,
+              color: AppColors.greyColor,
               offset: Offset(1, 1),
             ),
           ],
@@ -123,7 +123,7 @@ class _PaymobFormState extends State<PaymobForm> {
                         ? const Center(child: CCircleLoading())
                         : CExpandedButton(
                             text: 'Register',
-                            bgColor: primaryColor,
+                            bgColor: AppColors.primaryColor,
                             textColor: Colors.white,
                             onPress: () {
                               if (_form.currentState!.validate()) {

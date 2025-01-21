@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../config/app_colors.dart';
 import '../utils/styles.dart';
 
 class CErrorWidget extends StatelessWidget {
@@ -19,7 +19,8 @@ class CErrorWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
-        color: bgColor ?? secondaryColor.withAlpha((0.7 * 255).toInt()),
+        color:
+            bgColor ?? AppColors.secondaryColor.withAlpha((0.7 * 255).toInt()),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(

@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/core/constants.dart';
 
+import '../config/app_colors.dart';
 import '../widgets/c_text_button.dart';
 import 'styles.dart';
 
@@ -47,7 +49,7 @@ class Helper {
       centerTitle: true,
       backgroundColor: bgColor,
       elevation: elevation,
-      shadowColor: greyColor,
+      shadowColor: AppColors.greyColor,
       leading: leading
           ? TextButton(
               onPressed: () {
@@ -72,7 +74,7 @@ class Helper {
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: greyColor.withAlpha((0.7 * 255).toInt()),
+        color: AppColors.greyColor.withAlpha((0.7 * 255).toInt()),
       ),
       child: Row(
         children: [
@@ -88,9 +90,9 @@ class Helper {
           IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 0),
             constraints: const BoxConstraints(),
-            icon: const Icon(
+            icon: Icon(
               FontAwesomeIcons.xmark,
-              color: primaryColor,
+              color: AppColors.primaryColor,
               size: 20,
             ),
             onPressed: onPress,
@@ -149,8 +151,8 @@ class Helper {
         return AlertDialog(
           title: Text(title, style: Styles.title15),
           content: Text(content,
-              style:
-                  Styles.title14.copyWith(color: greyColor2, letterSpacing: 1)),
+              style: Styles.title14
+                  .copyWith(color: AppColors.greyColor2, letterSpacing: 1)),
           actions: [
             CTextButton(
               text: 'Ok',
@@ -158,11 +160,51 @@ class Helper {
                 GoRouter.of(context).pop();
               },
               align: Alignment.bottomRight,
-              textColor: babyBlue,
+              textColor: AppColors.babyBlue,
             )
           ],
         );
       },
+    );
+  }
+
+  // this dialog used to make user enter his otp code to login
+  static openSmsOtpDialog(
+    BuildContext context,
+    Function(String) smsOtp,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Column(
+          children: [
+            Text('Verification Code', style: Styles.title16),
+            SizedBox(height: 10),
+            Text(
+              'Enter 6 numbers received as SMS',
+              style: Styles.title14,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+        content: SizedBox(
+          height: 50,
+          child: TextField(
+            textAlign: TextAlign.center,
+            autofocus: true,
+            maxLength: 6,
+            keyboardType: TextInputType.number,
+            cursorColor: AppColors.primaryColor,
+            decoration: InputDecoration(
+              border: border(borderColor: AppColors.primaryColor),
+              focusedBorder: border(borderColor: AppColors.primaryColor),
+            ),
+            onChanged: (value) {
+              smsOtp(value);
+            },
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-import '../../../core/constants.dart';
+import '../../../core/config/app_colors.dart';
 import '../../../core/utils/styles.dart';
 
 class CExpandedDelete extends StatelessWidget {
@@ -10,13 +10,13 @@ class CExpandedDelete extends StatelessWidget {
   final Color? textColor;
   final Color? borderColor;
   const CExpandedDelete({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPress,
     this.bgColor,
     this.textColor,
     this.borderColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class CExpandedDelete extends StatelessWidget {
         style: NeumorphicStyle(
             depth: 2,
             border: NeumorphicBorder(
-                color: borderColor ?? secondaryColor.withOpacity(0.5),
+                color: borderColor ?? AppColors.secondaryColor.withOpacity(0.5),
                 width: 1.2),
             color: bgColor ?? Colors.white),
         onPressed: onPress,
         child: Text(
           text,
           style: Styles.title14.copyWith(
-            color: textColor ?? secondaryColor.withOpacity(0.7),
+            color: textColor ?? AppColors.secondaryColor.withOpacity(0.7),
           ),
           textAlign: TextAlign.center,
         ),

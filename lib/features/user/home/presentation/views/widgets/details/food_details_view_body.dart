@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/home/data/data/cart_model.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
@@ -9,6 +8,7 @@ import 'package:yummy/features/user/home/presentation/views/widgets/details/c_fi
 import 'package:yummy/features/user/home/presentation/views/widgets/details/c_info.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/details/food_image.dart';
 
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../model_views/cart_cubit/cart_cubit.dart';
 import '../home/c_header_name.dart';
 import 'c_ingrediant.dart';
@@ -16,8 +16,7 @@ import 'quantity_widget.dart';
 
 class FoodDetailsViewBody extends StatelessWidget {
   final UserFoodModel userFoodModel;
-  const FoodDetailsViewBody({Key? key, required this.userFoodModel})
-      : super(key: key);
+  const FoodDetailsViewBody({super.key, required this.userFoodModel});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +63,7 @@ class FoodDetailsViewBody extends StatelessWidget {
         ),
         CFixedCartButton(
           price: userFoodModel.price,
-          bgColor: primaryColor,
+          bgColor: AppColors.primaryColor,
           textColor: Colors.white,
           iconColor: Colors.white,
           text: 'Add To Cart',

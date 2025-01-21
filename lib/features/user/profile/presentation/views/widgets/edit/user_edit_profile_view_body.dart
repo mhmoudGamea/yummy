@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 import 'package:yummy/features/user/profile/presentation/views/widgets/edit/image_edit.dart';
 
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/widgets/c_expanded_button.dart';
 import 'edit_text_field.dart';
 
 class UserEditProfileViewBody extends StatelessWidget {
-  const UserEditProfileViewBody({Key? key}) : super(key: key);
+  const UserEditProfileViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     final data = BlocProvider.of<ProfileCubit>(context);
     final media = MediaQuery.of(context).size;
     return Container(
-      color: primaryColor,
+      color: AppColors.primaryColor,
       width: media.width,
       child: Column(
         children: [
@@ -41,10 +41,10 @@ class UserEditProfileViewBody extends StatelessWidget {
                       const SizedBox(height: 15),
                       Row(
                         children: [
-                          const Icon(
+                          Icon(
                             FontAwesomeIcons.circleExclamation,
                             size: 17,
-                            color: mintGreen,
+                            color: AppColors.mintGreen,
                           ),
                           const SizedBox(
                             width: 10,
@@ -52,7 +52,8 @@ class UserEditProfileViewBody extends StatelessWidget {
                           Flexible(
                             child: Text(
                               'If you didn\'t select any image you will still using your old profile image.',
-                              style: Styles.title13.copyWith(color: greyColor2),
+                              style: Styles.title13
+                                  .copyWith(color: AppColors.greyColor2),
                             ),
                           )
                         ],
@@ -90,14 +91,14 @@ class UserEditProfileViewBody extends StatelessWidget {
                           if (state is ConfirmEditingLoading) {
                             return const CCircleLoading();
                           } else if (state is ConfirmEditingFailure) {
-                            return const CErrorWidget(
+                            return CErrorWidget(
                               icon: FontAwesomeIcons.circleExclamation,
                               text: 'Error hapening while updating the data',
-                              bgColor: secondaryColor,
+                              bgColor: AppColors.secondaryColor,
                             );
                           }
                           return CExpandedButton(
-                            bgColor: primaryColor,
+                            bgColor: AppColors.primaryColor,
                             text: 'Confirm',
                             textColor: Colors.white,
                             onPress: () {

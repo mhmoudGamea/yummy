@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import 'admin_login_box.dart';
 
 class AdminLoginViewBody extends StatelessWidget {
-  const AdminLoginViewBody({Key? key}) : super(key: key);
+  const AdminLoginViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            primaryColor,
+            AppColors.primaryColor,
             Colors.white,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          stops: [0.5, 0.5],
+          stops: const [0.5, 0.5],
         ),
       ),
       child: const AdminLoginBox(),

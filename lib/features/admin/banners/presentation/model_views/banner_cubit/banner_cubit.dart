@@ -6,9 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
+
+import '../../../../../../core/config/app_colors.dart';
 
 part 'banner_state.dart';
 
@@ -51,7 +52,7 @@ class BannerCubit extends Cubit<BannerState> {
       GoRouter.of(context).pop();
       Helper.showCustomToast(
           context: context,
-          bgColor: secondaryColor,
+          bgColor: AppColors.secondaryColor,
           icon: FontAwesomeIcons.xmark,
           msg: 'Please pick an image First.');
     }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 import '../../../../../../core/widgets/c_text_form_field.dart';
 import '../../../../../welcome/data/models/location_model.dart';
-import '../model_views.dart/login_cubit/login_cubit.dart';
+import '../../model_views/login_cubit/login_cubit.dart';
 
 class LoginViewBody extends StatefulWidget {
   final LocationModel? locationModel;
@@ -34,7 +34,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             Text('Login', style: Styles.title16.copyWith(fontSize: 20)),
             const SizedBox(height: 10),
             Text('Enter your number to process.',
-                style: Styles.title14.copyWith(color: greyColor2)),
+                style: Styles.title14.copyWith(color: AppColors.greyColor2)),
             const SizedBox(height: 15),
             CTextFormField(
               type: TextInputType.number,
@@ -71,8 +71,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           text: _isValidMobileNumber
                               ? 'Continue'
                               : 'Enter Phone Number',
-                          bgColor:
-                              _isValidMobileNumber ? primaryColor : greyColor,
+                          bgColor: _isValidMobileNumber
+                              ? AppColors.primaryColor
+                              : AppColors.greyColor,
                           onPress: () async {
                             // to close keyboard
                             FocusManager.instance.primaryFocus!.unfocus();
@@ -81,11 +82,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                                 .signinUserWithPhoneNumber(
                                   context: context,
                                   number: number,
-                                  latitude: widget.locationModel?.latitude,
-                                  longitude: widget.locationModel?.longitude,
-                                  address: widget.locationModel?.address,
-                                  administrativeArea:
-                                      widget.locationModel?.administrativeArea,
                                 )
                                 .then((value) => _controller.clear());
                           },

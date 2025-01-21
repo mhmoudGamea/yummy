@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:yummy/core/constants.dart';
 
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/styles.dart';
 import 'widgets/admin_drawer.dart';
 import 'widgets/admin_home_view_body.dart';
@@ -29,9 +29,9 @@ class AdminHomeView extends StatelessWidget {
             );
           },
         ),
-        backgroundColor: primaryColor,
+        backgroundColor: AppColors.primaryColor,
         elevation: 2,
-        shadowColor: greyColor,
+        shadowColor: AppColors.greyColor,
         centerTitle: true,
         title: Text(
           'Admin',

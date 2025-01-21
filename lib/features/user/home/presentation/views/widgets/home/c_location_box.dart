@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/utils/styles.dart';
 import '../../../../../../welcome/presentation/model_views/location_cubit/location_cubit.dart';
 
 class CLocationBox extends StatefulWidget {
-  const CLocationBox({Key? key}) : super(key: key);
+  const CLocationBox({super.key});
 
   @override
   State<CLocationBox> createState() => _CLocationBoxState();
@@ -54,10 +54,10 @@ class _CLocationBoxState extends State<CLocationBox> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(width: 5),
-                      const Icon(
+                      Icon(
                         Icons.edit_location_rounded,
                         size: 15,
-                        color: black,
+                        color: AppColors.black,
                       ),
                     ],
                   ),
@@ -65,7 +65,7 @@ class _CLocationBoxState extends State<CLocationBox> {
                 if (address != null)
                   Text(
                     address ?? '',
-                    style: Styles.title13.copyWith(color: greyColor2),
+                    style: Styles.title13.copyWith(color: AppColors.greyColor2),
                     overflow: TextOverflow.ellipsis,
                   ),
               ],

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:yummy/features/admin/register/presentation/model_views/register_cubit.dart';
 import 'package:yummy/features/admin/register/presentation/model_views/register_state.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 import '../../../../login/presentation/views/admin_login_view.dart';
@@ -12,7 +12,7 @@ import '../../../../widgets/c_rech_text.dart';
 import '../../../../widgets/c_text_form_field.dart';
 
 class AdminRegisterBox extends StatefulWidget {
-  const AdminRegisterBox({Key? key}) : super(key: key);
+  const AdminRegisterBox({super.key});
 
   @override
   State<AdminRegisterBox> createState() => _AdminRegisterBoxState();
@@ -33,11 +33,11 @@ class _AdminRegisterBoxState extends State<AdminRegisterBox> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 5,
               spreadRadius: 1,
-              color: greyColor,
+              color: AppColors.greyColor,
               offset: Offset(1, 1),
             ),
           ],
@@ -98,7 +98,7 @@ class _AdminRegisterBoxState extends State<AdminRegisterBox> {
                       return const CCircleLoading();
                     }
                     return CExpandedButton(
-                      bgColor: primaryColor,
+                      bgColor: AppColors.primaryColor,
                       text: 'Register',
                       textColor: Colors.white,
                       onPress: () async {

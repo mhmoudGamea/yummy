@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/helper.dart';
 import '../../../admin_home/presentation/views/admin_home_view.dart';
 import '../../data/repos/login_repo.dart';
@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginSuccess());
       Helper.showCustomToast(
           context: context,
-          bgColor: mintGreen,
+          bgColor: AppColors.mintGreen,
           icon: Icons.check_circle_rounded,
           msg: success);
       GoRouter.of(context).push(AdminHomeView.rn);

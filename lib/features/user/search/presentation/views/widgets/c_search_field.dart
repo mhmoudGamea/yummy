@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/helper.dart';
 
 class CSearchField extends StatelessWidget {
@@ -13,17 +13,17 @@ class CSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: black,
+      cursorColor: AppColors.black,
       controller: controller,
       decoration: InputDecoration(
         suffixIcon: IconButton(
-          icon: const Icon(Icons.search_rounded, size: 25, color: black),
+          icon: Icon(Icons.search_rounded, size: 25, color: AppColors.black),
           onPressed: onPress,
         ),
         hintText: 'Search',
         hintStyle: Styles.title14,
         filled: true,
-        fillColor: greyColor.withOpacity(0.2),
+        fillColor: AppColors.greyColor.withAlpha((0.2 * 255).toInt()),
         border: Helper.border(),
         focusedBorder: Helper.border(),
         enabledBorder: Helper.border(),

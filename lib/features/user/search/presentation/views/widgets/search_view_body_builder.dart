@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_error_widget.dart';
 import '../../model_views/search_cubit/search_cubit.dart';
 import 'c_header.dart';
@@ -42,7 +42,7 @@ class SearchViewBodyBuilder extends StatelessWidget {
           return CErrorWidget(
               icon: FontAwesomeIcons.triangleExclamation,
               text: state.error,
-              bgColor: secondaryColor);
+              bgColor: AppColors.secondaryColor);
         } else if (state is SearchSuccess) {
           return CSearchList(searchList: state.searchList);
         }

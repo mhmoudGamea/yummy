@@ -8,7 +8,7 @@ import 'package:yummy/core/widgets/tabs_view.dart';
 import 'package:yummy/features/user/favourite/data/models/favourite_model.dart';
 import 'package:yummy/features/user/favourite/presentation/views/widgets/c_fav_list_view.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_error_widget.dart';
 
@@ -37,20 +37,20 @@ class CFavStreamBuilder extends StatelessWidget {
           if (model.isEmpty) {
             return GestureDetector(
               onTap: () => GoRouter.of(context).push(TabsView.rn),
-              child: const CErrorWidget(
+              child: CErrorWidget(
                 text:
                     'No favourites to display yet, please go to home and add some food to your favourites, just tab on me.',
                 icon: Icons.favorite_rounded,
-                bgColor: primaryColor,
+                bgColor: AppColors.primaryColor,
               ),
             );
           }
           return CFavListView(model: model);
         }
-        return const CErrorWidget(
+        return CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Oops some error happining.',
-            bgColor: secondaryColor);
+            bgColor: AppColors.secondaryColor);
       },
     );
   }

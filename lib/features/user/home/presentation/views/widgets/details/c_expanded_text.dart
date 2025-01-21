@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/utils/styles.dart';
 
 class CExpandedText extends StatefulWidget {
   final String text;
-  const CExpandedText({Key? key, required this.text}) : super(key: key);
+  const CExpandedText({super.key, required this.text});
 
   @override
   CExpandedTextState createState() => CExpandedTextState();
@@ -33,8 +33,8 @@ class CExpandedTextState extends State<CExpandedText> {
     return lastHalf.isEmpty
         ? Text(
             firstHalf,
-            style:
-                Styles.title14.copyWith(color: greyColor2, letterSpacing: 0.6),
+            style: Styles.title14
+                .copyWith(color: AppColors.greyColor2, letterSpacing: 0.6),
           )
         : Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +42,7 @@ class CExpandedTextState extends State<CExpandedText> {
               Text(
                 expanded ? widget.text : firstHalf,
                 style: Styles.title14
-                    .copyWith(color: greyColor2, letterSpacing: 0.6),
+                    .copyWith(color: AppColors.greyColor2, letterSpacing: 0.6),
               ),
               const SizedBox(height: 3),
               GestureDetector(
@@ -56,15 +56,15 @@ class CExpandedTextState extends State<CExpandedText> {
                   children: [
                     Text(
                       expanded ? 'Show Less' : 'Show More',
-                      style: Styles.title14
-                          .copyWith(color: primaryColor, letterSpacing: 0.6),
+                      style: Styles.title14.copyWith(
+                          color: AppColors.primaryColor, letterSpacing: 0.6),
                     ),
                     Icon(
                       expanded
                           ? Icons.keyboard_arrow_up_rounded
                           : Icons.keyboard_arrow_down_rounded,
                       size: 20,
-                      color: primaryColor,
+                      color: AppColors.primaryColor,
                     )
                   ],
                 ),

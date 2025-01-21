@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/constants.dart';
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/helper.dart';
 import '../../data/repos/register_repo_impl.dart';
 import '../model_views/register_cubit.dart';
@@ -17,7 +17,9 @@ class AdminRegisterView extends StatelessWidget {
       create: (context) => RegisterCubit(RegisterRepoImpl()),
       child: Scaffold(
         appBar: Helper.appBar(
-            context: context, text: 'Yummy App Admin', bgColor: primaryColor),
+            context: context,
+            text: 'Yummy App Admin',
+            bgColor: AppColors.primaryColor),
         body: const SafeArea(
           child: AdminRegisterViewBody(),
         ),

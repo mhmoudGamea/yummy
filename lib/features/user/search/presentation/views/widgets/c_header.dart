@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yummy/core/constants.dart';
 
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 
 class CHeader extends StatelessWidget {
@@ -23,7 +23,7 @@ class CHeader extends StatelessWidget {
           style: Styles.title13.copyWith(
               letterSpacing: .1,
               fontWeight: FontWeight.w400,
-              color: primaryColor),
+              color: AppColors.primaryColor),
         ),
       ],
     );

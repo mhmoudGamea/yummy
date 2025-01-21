@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yummy/features/user/favourite/presentation/model_views/favourite/favourite_cubit.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_item_rate.dart';
 import '../../../../../../core/widgets/c_rounded_button.dart';
 import '../../../data/models/favourite_model.dart';
@@ -14,7 +14,7 @@ import 'c_item_name.dart';
 
 class CListViewItem extends StatefulWidget {
   final FavouriteModel model;
-  const CListViewItem({Key? key, required this.model}) : super(key: key);
+  const CListViewItem({super.key, required this.model});
 
   @override
   State<CListViewItem> createState() => _CListViewItemState();
@@ -44,7 +44,7 @@ class _CListViewItemState extends State<CListViewItem> {
         borderRadius: BorderRadius.circular(5),
         boxShadow: [
           BoxShadow(
-            color: greyColor.withOpacity(0.6),
+            color: AppColors.greyColor.withOpacity(0.6),
             spreadRadius: 2,
             blurRadius: 2,
             offset: const Offset(0.1, 0.1),
@@ -76,7 +76,7 @@ class _CListViewItemState extends State<CListViewItem> {
             icon: Icons.favorite_rounded,
             iconSize: 20,
             opacity: 0.13,
-            color: _isLiked ? secondaryColor : greyColor,
+            color: _isLiked ? AppColors.secondaryColor : AppColors.greyColor,
           )
         ],
       ),

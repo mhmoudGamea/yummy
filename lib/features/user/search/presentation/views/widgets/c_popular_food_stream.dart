@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/search/data/models/search_model.dart';
 import 'package:yummy/features/user/search/presentation/model_views/search_cubit/search_cubit.dart';
 
+import '../../../../../../core/config/app_colors.dart';
 import 'c_popular_food_list.dart';
 
 class CPopularFoodStream extends StatelessWidget {
@@ -31,18 +31,18 @@ class CPopularFoodStream extends StatelessWidget {
           List<SearchModel> popularFoodList =
               search.getPopularFoodList(snapshot, 'Popular Food');
           if (popularFoodList.isEmpty) {
-            return const CErrorWidget(
+            return CErrorWidget(
                 icon: FontAwesomeIcons.triangleExclamation,
                 text:
                     'Sorry, we have no items in popular food collection right now.',
-                bgColor: primaryColor);
+                bgColor: AppColors.primaryColor);
           }
           return CPopularFoodList(popularFoodList: popularFoodList);
         }
-        return const CErrorWidget(
+        return CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Sorry, unexpected error happen.',
-            bgColor: secondaryColor);
+            bgColor: AppColors.secondaryColor);
       },
     );
   }

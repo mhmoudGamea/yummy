@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/core/constants.dart';
 
+import '../../../../../core/config/app_colors.dart';
 import '../../../../../core/utils/helper.dart';
 import '../model_views/banner_cubit/banner_cubit.dart';
 import 'widgets/banner_manage_view_body.dart';
@@ -18,7 +18,7 @@ class BannerManageView extends StatelessWidget {
         appBar: Helper.appBar(
           context: context,
           text: 'Banners',
-          bgColor: primaryColor,
+          bgColor: AppColors.primaryColor,
         ),
         body: const SafeArea(
           child: BannerManageViewBody(),

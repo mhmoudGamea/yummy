@@ -6,7 +6,7 @@ import 'widgets/map_view_body.dart';
 class MapView extends StatelessWidget {
   static const String rn = '/mapView';
   final LocationModel locationModel;
-  const MapView({Key? key, required this.locationModel}) : super(key: key);
+  const MapView({super.key, required this.locationModel});
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/home/category_list_item.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../../core/widgets/c_error_widget.dart';
 import '../../../../../../admin/categories/data/models/category_model.dart';
@@ -27,10 +27,10 @@ class CCategories extends StatelessWidget {
                 CategoryModel.fromJson(element.data() as Map<String, dynamic>));
           }
           if (categories.isEmpty) {
-            return const CErrorWidget(
+            return CErrorWidget(
               text: 'No categories to display yet.',
               icon: FontAwesomeIcons.triangleExclamation,
-              bgColor: primaryColor,
+              bgColor: AppColors.primaryColor,
             );
           }
           return SizedBox(

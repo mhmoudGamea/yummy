@@ -1,5 +1,4 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:yummy/core/constants.dart';
 
 import '../utils/styles.dart';
 
@@ -11,7 +10,7 @@ class CButton extends StatelessWidget {
   const CButton({
     super.key,
     required this.text,
-    this.textColor = black,
+    this.textColor = Colors.black,
     required this.bgColor,
     required this.onPress,
   });

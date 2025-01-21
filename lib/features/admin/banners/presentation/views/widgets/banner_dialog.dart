@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 
+import '../../../../../../core/config/app_colors.dart';
 import '../../model_views/banner_cubit/banner_cubit.dart';
 
 class BannerDialog extends StatelessWidget {
@@ -16,7 +16,7 @@ class BannerDialog extends StatelessWidget {
     final banner = BlocProvider.of<BannerCubit>(context);
     return Dialog(
       elevation: 2,
-      shadowColor: greyColor,
+      shadowColor: AppColors.greyColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
@@ -30,10 +30,10 @@ class BannerDialog extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5)),
                   child: banner.getPickedImage == null
-                      ? const Icon(
+                      ? Icon(
                           FontAwesomeIcons.image,
                           size: 100,
-                          color: greyColor,
+                          color: AppColors.greyColor,
                         )
                       : Image.file(
                           banner.getPickedImage!,
@@ -50,12 +50,13 @@ class BannerDialog extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     style: NeumorphicStyle(
                         border: NeumorphicBorder(
-                            color: secondaryColor.withOpacity(0.5), width: 1.2),
+                            color: AppColors.secondaryColor.withOpacity(0.5),
+                            width: 1.2),
                         color: Colors.white),
                     child: Text(
                       'Delete',
                       style: Styles.title13.copyWith(
-                        color: secondaryColor.withOpacity(0.7),
+                        color: AppColors.secondaryColor.withOpacity(0.7),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -78,10 +79,10 @@ class BannerDialog extends StatelessWidget {
                     return Expanded(
                       child: NeumorphicButton(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        style: const NeumorphicStyle(
-                            border:
-                                NeumorphicBorder(color: babyBlue, width: 1.2),
-                            color: babyBlue),
+                        style: NeumorphicStyle(
+                            border: NeumorphicBorder(
+                                color: AppColors.babyBlue, width: 1.2),
+                            color: AppColors.babyBlue),
                         child: Text(
                           'Save',
                           style: Styles.title13.copyWith(

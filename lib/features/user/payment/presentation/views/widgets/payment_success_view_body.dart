@@ -4,12 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/tabs_view.dart';
 import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 
 class PaymentSuccessViewBody extends StatelessWidget {
-  const PaymentSuccessViewBody({Key? key}) : super(key: key);
+  const PaymentSuccessViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,14 @@ class PaymentSuccessViewBody extends StatelessWidget {
         children: [
           Image.asset('assets/images/success.png', height: 150),
           const SizedBox(height: 15),
-          const Text(
+          Text(
             'You placed the order successfully',
             style: Styles.title16,
           ),
           const SizedBox(height: 20),
           CExpandedButton(
             text: 'Back to home',
-            bgColor: primaryColor,
+            bgColor: AppColors.primaryColor,
             onPress: () {
               orderData.deleteAllCart();
               GoRouter.of(context).pushReplacement(TabsView.rn);

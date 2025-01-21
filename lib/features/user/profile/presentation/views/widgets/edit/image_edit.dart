@@ -5,10 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 
 class ImageEdit extends StatelessWidget {
-  const ImageEdit({Key? key}) : super(key: key);
+  const ImageEdit({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class SelectImage extends StatelessWidget {
       ),
       child: DottedBorder(
         borderType: BorderType.Circle,
-        color: greyColor,
+        color: AppColors.greyColor,
         borderPadding: const EdgeInsets.all(8),
         child: SizedBox(
           height: media * 0.2,
@@ -57,11 +57,11 @@ class SelectImage extends StatelessWidget {
             children: [
               Icon(
                 FontAwesomeIcons.image,
-                color: greyColor.withOpacity(0.5),
+                color: AppColors.greyColor.withOpacity(0.5),
                 size: 50,
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'Select Image',
                 style: Styles.title13,
               ),

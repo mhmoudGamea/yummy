@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_error_widget.dart';
 import '../../../data/models/admin_food_model.dart';
@@ -32,10 +32,10 @@ class CFoodGrid extends StatelessWidget {
                 element.data() as Map<String, dynamic>));
           }
           if (model.isEmpty) {
-            return const CErrorWidget(
+            return CErrorWidget(
               text: 'No categories to display yet.',
               icon: FontAwesomeIcons.triangleExclamation,
-              bgColor: primaryColor,
+              bgColor: AppColors.primaryColor,
             );
           }
           return Expanded(
@@ -52,10 +52,10 @@ class CFoodGrid extends StatelessWidget {
             ),
           );
         }
-        return const CErrorWidget(
+        return CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Oops some error happining.',
-            bgColor: secondaryColor);
+            bgColor: AppColors.secondaryColor);
       },
     );
   }

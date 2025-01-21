@@ -3,7 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 import '../../../../widgets/c_drop_down_button.dart';
@@ -14,7 +14,7 @@ import '../../model_views/food_cubit/food_cubit.dart';
 import 'c_ingrediant_images_grid.dart';
 
 class FoodDialog extends StatelessWidget {
-  const FoodDialog({Key? key}) : super(key: key);
+  const FoodDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class FoodDialog extends StatelessWidget {
       builder: (context, state) {
         return Dialog(
           elevation: 2,
-          shadowColor: greyColor,
+          shadowColor: AppColors.greyColor,
           child: Column(
             children: [
               Expanded(
@@ -146,7 +146,7 @@ class FoodDialog extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 2),
                             child: CExpandedButton(
                               text: 'Pick Ingrdiants Images',
-                              bgColor: primaryColor,
+                              bgColor: AppColors.primaryColor,
                               textColor: Colors.white,
                               onPress: () => food.pickIngrediantsImages(),
                             ),
@@ -160,10 +160,10 @@ class FoodDialog extends StatelessWidget {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: food.getPickedImage == null
-                                ? const Icon(
+                                ? Icon(
                                     FontAwesomeIcons.image,
                                     size: 100,
-                                    color: greyColor,
+                                    color: AppColors.greyColor,
                                   )
                                 : Image.file(
                                     food.getPickedImage!,
@@ -175,7 +175,7 @@ class FoodDialog extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 2),
                             child: CExpandedButton(
                               text: 'Pick Image',
-                              bgColor: primaryColor,
+                              bgColor: AppColors.primaryColor,
                               textColor: Colors.white,
                               onPress: () => food.pickImage(),
                             ),
@@ -186,8 +186,8 @@ class FoodDialog extends StatelessWidget {
                                 const SizedBox(height: 15),
                                 Text(
                                   'Please pick at least 1 ingrediant image.',
-                                  style: Styles.title13
-                                      .copyWith(color: secondaryColor),
+                                  style: Styles.title13.copyWith(
+                                      color: AppColors.secondaryColor),
                                 ),
                               ],
                             ),
@@ -197,8 +197,8 @@ class FoodDialog extends StatelessWidget {
                                 const SizedBox(height: 15),
                                 Text(
                                   'Please pick a food image first.',
-                                  style: Styles.title13
-                                      .copyWith(color: secondaryColor),
+                                  style: Styles.title13.copyWith(
+                                      color: AppColors.secondaryColor),
                                 ),
                               ],
                             ),

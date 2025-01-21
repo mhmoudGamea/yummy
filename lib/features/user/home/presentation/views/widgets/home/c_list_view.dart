@@ -7,10 +7,10 @@ import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/home/data/data/user_food_model.dart';
 import 'package:yummy/features/user/home/presentation/views/widgets/home/c_list_view_body.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 
 class CListView extends StatelessWidget {
-  const CListView({Key? key}) : super(key: key);
+  const CListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,10 @@ class CListView extends StatelessWidget {
           }
           return CListViewBody(model: model);
         }
-        return const CErrorWidget(
+        return CErrorWidget(
             icon: FontAwesomeIcons.triangleExclamation,
             text: 'Oops some error happining.',
-            bgColor: secondaryColor);
+            bgColor: AppColors.secondaryColor);
       },
     );
   }

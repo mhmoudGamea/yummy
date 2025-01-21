@@ -1,6 +1,6 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-import '../../../core/constants.dart';
+import '../../../core/config/app_colors.dart';
 import '../../../core/utils/styles.dart';
 
 class CExpandedSave extends StatelessWidget {
@@ -9,12 +9,12 @@ class CExpandedSave extends StatelessWidget {
   final Color? bgColor;
   final Color? textColor;
   const CExpandedSave({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPress,
     this.bgColor,
     this.textColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class CExpandedSave extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12),
         style: NeumorphicStyle(
             depth: 2,
-            border: const NeumorphicBorder(color: babyBlue, width: 1.2),
-            color: bgColor ?? babyBlue),
+            border: NeumorphicBorder(color: AppColors.babyBlue, width: 1.2),
+            color: bgColor ?? AppColors.babyBlue),
         onPressed: onPress,
         child: Text(
           text,

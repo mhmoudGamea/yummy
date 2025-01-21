@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../config/app_colors.dart';
 
 class CRoundedButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -34,7 +34,7 @@ class CRoundedButton extends StatelessWidget {
         ),
         child: Icon(
           icon,
-          color: color ?? greyColor,
+          color: color ?? AppColors.greyColor,
           size: iconSize ?? 21,
         ),
       ),

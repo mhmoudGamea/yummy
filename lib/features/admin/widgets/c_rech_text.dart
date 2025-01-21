@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants.dart';
+import '../../../core/config/app_colors.dart';
 import '../../../core/utils/styles.dart';
 
 class CRechText extends StatelessWidget {
@@ -8,8 +8,10 @@ class CRechText extends StatelessWidget {
   final String text;
   final VoidCallback onPress;
   const CRechText(
-      {Key? key, required this.rich, required this.text, required this.onPress})
-      : super(key: key);
+      {super.key,
+      required this.rich,
+      required this.text,
+      required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class CRechText extends StatelessWidget {
       child: RichText(
         text: TextSpan(
           text: rich,
-          style: Styles.title13.copyWith(color: greyColor2),
+          style: Styles.title13.copyWith(color: AppColors.greyColor2),
           children: [
             TextSpan(
                 text: text,
-                style: Styles.title14.copyWith(color: primaryColor)),
+                style: Styles.title14.copyWith(color: AppColors.primaryColor)),
           ],
         ),
       ),

@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yummy/features/admin/banners/data/models/banner_model.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_error_widget.dart';
@@ -14,7 +14,7 @@ import 'banner_dialog.dart';
 import 'banner_list_item.dart';
 
 class BannerManageViewBody extends StatelessWidget {
-  const BannerManageViewBody({Key? key}) : super(key: key);
+  const BannerManageViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class BannerManageViewBody extends StatelessWidget {
                   const Spacer(),
                   loading
                       ? const CCircleLoading()
-                      : const Text(
+                      : Text(
                           'Add or Swipe to delete banner',
                           style: Styles.title14,
                         ),
@@ -49,8 +49,8 @@ class BannerManageViewBody extends StatelessWidget {
                     child: IconButton(
                       padding: const EdgeInsets.symmetric(vertical: 4),
                       constraints: const BoxConstraints(),
-                      icon: const Icon(FontAwesomeIcons.plus,
-                          size: 18, color: primaryColor),
+                      icon: Icon(FontAwesomeIcons.plus,
+                          size: 18, color: AppColors.primaryColor),
                       onPressed: () {
                         banner.pickBanner().then(
                               (_) => showDialog(
@@ -71,9 +71,9 @@ class BannerManageViewBody extends StatelessWidget {
             },
           ),
           const SizedBox(height: 10),
-          const Divider(
+          Divider(
             thickness: 3,
-            color: primaryColor,
+            color: AppColors.primaryColor,
           ),
           const SizedBox(height: 10),
           StreamBuilder<QuerySnapshot>(
@@ -88,11 +88,11 @@ class BannerManageViewBody extends StatelessWidget {
                       element.data() as Map<String, dynamic>));
                 }
                 if (banners.isEmpty) {
-                  return const CErrorWidget(
+                  return CErrorWidget(
                       text:
                           'Start to add a new banner by click on add banner button.',
                       icon: FontAwesomeIcons.faceSmile,
-                      bgColor: primaryColor);
+                      bgColor: AppColors.primaryColor);
                 }
                 return Expanded(
                   child: ListView.separated(

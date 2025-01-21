@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/utils/helper.dart';
 import '../../../../../../../core/utils/styles.dart';
 
@@ -37,7 +37,7 @@ class CFixedCartButton extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: greyColor.withOpacity(0.4),
+            color: AppColors.greyColor.withOpacity(0.4),
             spreadRadius: 2,
             blurRadius: 1,
             offset: const Offset(0, -2),
@@ -50,12 +50,12 @@ class CFixedCartButton extends StatelessWidget {
             children: [
               Text(
                 'Price',
-                style: Styles.title14.copyWith(color: greyColor),
+                style: Styles.title14.copyWith(color: AppColors.greyColor),
               ),
               const SizedBox(height: 5),
               Text(
                 'E£ $price',
-                style: Styles.title16.copyWith(color: primaryColor),
+                style: Styles.title16.copyWith(color: AppColors.primaryColor),
               ),
             ],
           ),
@@ -74,14 +74,14 @@ class CFixedCartButton extends StatelessWidget {
                     GoRouter.of(context).pop();
                     Helper.showCustomToast(
                         context: context,
-                        bgColor: mintGreen,
+                        bgColor: AppColors.mintGreen,
                         icon: FontAwesomeIcons.check,
                         msg: 'Added to cart');
                   } else if (state is AddToCartSuccessWithIncreaseQuantity) {
                     GoRouter.of(context).pop();
                     Helper.showCustomToast(
                         context: context,
-                        bgColor: mintGreen,
+                        bgColor: AppColors.mintGreen,
                         icon: FontAwesomeIcons.check,
                         msg: 'Quantity of product has been increased');
                   }

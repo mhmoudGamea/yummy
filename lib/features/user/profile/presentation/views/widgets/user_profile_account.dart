@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 
 class UserProfileAccount extends StatelessWidget {
@@ -16,7 +16,7 @@ class UserProfileAccount extends StatelessWidget {
         Text(name ?? 'Un Known', style: Styles.title16),
         const SizedBox(height: 5),
         Text(phone ?? '***********',
-            style: Styles.title13.copyWith(color: greyColor2)),
+            style: Styles.title13.copyWith(color: AppColors.greyColor2)),
       ],
     );
   }

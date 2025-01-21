@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/features/admin/login/presentation/model_views/login_state.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 import '../../../../register/presentation/views/admin_register_view.dart';
 import '../../../../widgets/c_rech_text.dart';
@@ -32,11 +32,11 @@ class _AdminLoginBoxState extends State<AdminLoginBox> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 5,
               spreadRadius: 1,
-              color: greyColor,
+              color: AppColors.greyColor,
               offset: Offset(1, 1),
             ),
           ],
@@ -86,7 +86,7 @@ class _AdminLoginBoxState extends State<AdminLoginBox> {
                       return const CCircleLoading();
                     } else {
                       return CExpandedButton(
-                        bgColor: primaryColor,
+                        bgColor: AppColors.primaryColor,
                         text: 'LogIn',
                         textColor: Colors.white,
                         onPress: () async {

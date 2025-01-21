@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/constants.dart';
+import '../../../../../../core/config/app_colors.dart';
 import 'admin_register_box.dart';
 
 class AdminRegisterViewBody extends StatelessWidget {
-  const AdminRegisterViewBody({Key? key}) : super(key: key);
+  const AdminRegisterViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            primaryColor,
+            AppColors.primaryColor,
             Colors.white,
           ],
           begin: Alignment.topCenter,

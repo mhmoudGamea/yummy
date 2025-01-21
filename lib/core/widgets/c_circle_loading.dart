@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../config/app_colors.dart';
 
 class CCircleLoading extends StatelessWidget {
   const CCircleLoading({super.key});
@@ -9,8 +9,10 @@ class CCircleLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: const CircularProgressIndicator(
-          color: primaryColor, strokeWidth: 3, backgroundColor: greyColor),
+      child: CircularProgressIndicator(
+          color: AppColors.primaryColor,
+          strokeWidth: 3,
+          backgroundColor: AppColors.greyColor),
     );
   }
 }

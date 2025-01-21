@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/constants.dart';
+import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/utils/helper.dart';
 import '../../../../../../../core/utils/styles.dart';
 
@@ -11,35 +11,36 @@ class EditTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String? value) validator;
   const EditTextField({
-    Key? key,
+    super.key,
     required this.icon,
     required this.label,
     required this.type,
     required this.controller,
     required this.validator,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validator,
-      cursorColor: primaryColor,
+      cursorColor: AppColors.primaryColor,
       keyboardType: type,
       controller: controller,
       // initialValue: 'hello world',
       decoration: InputDecoration(
-        helperStyle: Styles.title12.copyWith(color: greyColor2),
+        helperStyle: Styles.title12.copyWith(color: AppColors.greyColor2),
         prefixIcon: Icon(
           icon,
           size: 20,
         ),
-        prefixIconColor: primaryColor,
-        prefixStyle: const TextStyle(color: greyColor2),
+        prefixIconColor: AppColors.primaryColor,
+        prefixStyle: TextStyle(color: AppColors.greyColor2),
         border: Helper.border(),
-        focusedBorder: Helper.border(borderColor: primaryColor),
+        focusedBorder: Helper.border(borderColor: AppColors.primaryColor),
         labelText: label,
-        labelStyle: Styles.title14.copyWith(color: greyColor2),
-        floatingLabelStyle: Styles.title14.copyWith(color: primaryColor),
+        labelStyle: Styles.title14.copyWith(color: AppColors.greyColor2),
+        floatingLabelStyle:
+            Styles.title14.copyWith(color: AppColors.primaryColor),
       ),
     );
   }
