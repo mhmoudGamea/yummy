@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/features/user/payment/data/repos/paymob_repo_impl.dart';
+import 'package:yummy/features/user/payment/domain/repos/paymob_repo/paymob_repo_impl.dart';
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
 
 import 'widgets/paymob_registration_view_body.dart';

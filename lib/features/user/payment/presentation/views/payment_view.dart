@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/features/user/payment/data/repos/paymob_repo_impl.dart';
+import 'package:yummy/features/user/payment/domain/repos/paymob_repo/paymob_repo_impl.dart';
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
 
 import '../../../../../core/utils/helper.dart';
+import '../../data/models/paypal_model/order_model.dart';
+import '../model-views/paypal/paypal_cubit.dart';
 import 'widgets/payment_view_body.dart';
 
 class PaymentView extends StatelessWidget {
   static const String rn = '/paymentView';
-  final double total;
-  const PaymentView({Key? key, required this.total}) : super(key: key);
+  final OrderModel orderModel;
+  const PaymentView({super.key, required this.orderModel});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PaymobCubit(PaymobRepoImpl()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => PaymobCubit(PaymobRepoImpl())),
+        BlocProvider(create: (context) => PaypalCubit()),
+      ],
       child: Scaffold(
         appBar: Helper.appBar(
           context: context,
@@ -26,7 +31,7 @@ class PaymentView extends StatelessWidget {
           iconColor: Colors.black,
         ),
         body: SafeArea(
-          child: PaymentViewBody(total: total),
+          child: PaymentViewBody(orderModel: orderModel),
         ),
       ),
     );

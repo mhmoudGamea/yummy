@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:yummy/core/error/failure.dart';
-import 'package:yummy/features/user/payment/data/models/paymob_config_model.dart';
-import 'package:yummy/features/user/payment/data/models/paymob_user_info.dart';
+import 'package:yummy/features/user/payment/data/models/paymob_model/paymob_config_model.dart';
+import 'package:yummy/features/user/payment/data/models/paymob_model/paymob_user_info.dart';
 
 abstract class PaymobRepo {
   Future<Either<Failure, Map<String, dynamic>>> getAuthenticationRequest(

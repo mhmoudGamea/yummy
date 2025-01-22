@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yummy/features/user/payment/data/models/paymob_config_model.dart';
+import 'package:yummy/features/user/payment/data/models/paymob_model/paymob_config_model.dart';
 
 import 'firestore_services.dart';
 

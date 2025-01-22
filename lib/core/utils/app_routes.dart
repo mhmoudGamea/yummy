@@ -18,6 +18,7 @@ import '../../features/user/home/data/data/user_food_model.dart';
 import '../../features/user/home/presentation/views/cart_view.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
+import '../../features/user/payment/data/models/paypal_model/order_model.dart';
 import '../../features/user/payment/presentation/views/payment_view.dart';
 import '../../features/user/payment/presentation/views/paymob_registration_view.dart';
 import '../../features/user/payment/presentation/views/widgets/paymob_webview.dart';
@@ -99,12 +100,12 @@ class AppRoutes {
       ),
       GoRoute(
         path: PaymentView.rn,
-        builder: (context, state) => PaymentView(total: state.extra as double),
+        builder: (context, state) =>
+            PaymentView(orderModel: state.extra as OrderModel),
       ),
       GoRoute(
         path: PaypalWebview.rn,
-        builder: (context, state) =>
-            PaypalWebview(total: state.extra as double),
+        builder: (context, state) => PaypalWebview(),
       ),
       GoRoute(
         path: PaymobWebview.rn,

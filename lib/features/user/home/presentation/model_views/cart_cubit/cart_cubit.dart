@@ -49,26 +49,17 @@ class CartCubit extends Cubit<CartState> {
     final cartDocs = await _cartDocs.get();
     try {
       if (cartDocs.docs.isNotEmpty) {
-        log(_cartList.length.toString());
-        log(_cartList[0].toString());
         for (var element in cartDocs.docs) {
-          log("Checking element with ID: ${element.id}");
           if (element.id == cartModel.productId) {
-            log("Match found for productId: ${cartModel.productId}");
             element.reference
                 .update({'productQuantity': FieldValue.increment(1)});
             var index = getItemIndex(cartModel.productId);
-            log("Index found: $index");
             if (index != -1) {
               _cartList[index].productQuantity += 1;
               newElementInCart = false;
               emit(AddToCartSuccessWithIncreaseQuantity());
-            } else {
-              log("Error: Product ID not found in _cartList");
             }
             return;
-          } else {
-            log("No match for element.id: ${element.id}");
           }
         }
         if (newElementInCart) {
@@ -106,8 +97,6 @@ class CartCubit extends Cubit<CartState> {
           _cartList.add(CartModel.fromJson(element.data()));
         }
       }
-      log('///////////////${_cartList.length.toString()}///////////////');
-      log('///////////////${_cartList[0].toString()}///////////////');
       emit(GetCartItemsSuccess());
     } catch (error) {
       emit(GetCartItemsFailure());

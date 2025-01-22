@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/utils/helper.dart';
 import '../../../model_views/cart_cubit/cart_cubit.dart';
-import 'c_fixed_order_button.dart';
+import 'c_order_button_container.dart';
 import 'cart_list_item.dart';
 
 class CartViewBody extends StatelessWidget {
@@ -35,7 +35,7 @@ class CartViewBody extends StatelessWidget {
           itemCount: cartData.getCartList.length,
         ),
       ),
-      CFixedOrderButton(
+      COrderButtonContainer(
         bgColor: AppColors.primaryColor,
         textColor: Colors.white,
         text: 'Order Now',

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 
 import '../../data/repos/home_repo_impl.dart';
 import '../model_views/banner_cubit/banner_cubit.dart';

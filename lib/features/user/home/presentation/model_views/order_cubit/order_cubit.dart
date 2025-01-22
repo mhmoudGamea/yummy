@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
@@ -11,6 +12,7 @@ class OrderCubit extends Cubit<OrderState> {
   OrderCubit() : super(OrderInitial());
 
   final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
+  final FirebaseAuth _auth = GetIt.I.get<FirebaseAuth>();
 
   // this function is used to get total price of all products in user cart
   // total = productPrice * productQuantity
@@ -28,8 +30,12 @@ class OrderCubit extends Cubit<OrderState> {
   // this function is used to calculate total price of all elements in cart
   Future<void> calculateTotalPrice() async {
     emit(TotalPriceLoading());
-    _store.collection('baskets').doc(uid).collection('cart').snapshots().listen(
-        (event) {
+    _store
+        .collection(kUsersCollection)
+        .doc(_auth.currentUser!.uid)
+        .collection(kCartCollection)
+        .snapshots()
+        .listen((event) {
       if (event.docs.isNotEmpty) {
         _totalPrice = 0.0;
         for (var item in event.docs) {
