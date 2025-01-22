@@ -23,6 +23,10 @@ class AddToCartFailure extends CartState {}
 // first state indicate => user add new product to cart or the cart is not empty
 class GetCartItemsLoading extends CartState {}
 
+class GetCartItemsSuccess extends CartState {}
+
+class GetCartItemsFailure extends CartState {}
+
 class CartItemLengthChanged extends CartState {
   final int cartItemsLength;
   CartItemLengthChanged({required this.cartItemsLength});

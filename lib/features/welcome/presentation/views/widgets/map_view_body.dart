@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -18,8 +16,6 @@ class MapViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = BlocProvider.of<LocationCubit>(context);
     var locating = false;
-    log(locationModel.latitude.toString());
-    log(locationModel.longitude.toString());
     return Stack(
       children: [
         GoogleMap(
@@ -70,9 +66,7 @@ class MapViewBody extends StatelessWidget {
                           backgroundColor: AppColors.greyColor,
                           minHeight: 3),
                     TextButton.icon(
-                      onPressed: () {
-                        log(data.getAdministrativeArea!);
-                      },
+                      onPressed: () {},
                       icon: Image.asset(
                         'assets/images/marker.png',
                         width: 22,

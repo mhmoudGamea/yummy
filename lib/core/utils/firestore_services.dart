@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,7 +19,6 @@ class FirestoreServices {
       {required String coll, required Map<String, dynamic> values}) async {
     try {
       await _store.collection(coll).doc(values['uid']).set(values);
-      log('createdddddddddddddd');
       return right('User added successfully');
     } catch (error) {
       return left(const FireStoreSideError('Failed to add user'));

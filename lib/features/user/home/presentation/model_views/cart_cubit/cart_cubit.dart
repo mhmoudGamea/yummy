@@ -1,12 +1,12 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
-import 'package:yummy/core/constants.dart';
-import 'package:yummy/core/utils/helper.dart';
 
-import '../../../../../../core/config/app_colors.dart';
+import 'package:yummy/core/constants.dart';
 import '../../../data/data/cart_model.dart';
 
 part 'cart_state.dart';
@@ -14,65 +14,71 @@ part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
 
-  final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
+  static final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
+  static final FirebaseAuth _auth = GetIt.instance<FirebaseAuth>();
+  final _cartDocs = _store
+      .collection(kUsersCollection)
+      .doc(_auth.currentUser!.uid)
+      .collection(kCartCollection);
 
   // this is a local variable 'll not stored on firebase
   // it define only the initial quantity for the product
-  var _quantity = 1;
+  final _quantity = 1;
 
   int get getQuantity {
     return _quantity;
   }
 
-  void increaseQuantity(BuildContext context) {
-    if (_quantity < 20) {
-      _quantity++;
-      emit(QuantityIncrease());
-    } else {
-      Helper.showCustomToast(
-          context: context,
-          bgColor: AppColors.primaryColor.withAlpha((0.7 * 255).toInt()),
-          icon: FontAwesomeIcons.triangleExclamation,
-          msg: 'Sorry it\'s not allowed to increase than 20');
-    }
+  final List<CartModel> _cartList = [];
+
+  List<CartModel> get getCartList {
+    return [..._cartList];
   }
 
-  void decreaseQuantity() {
-    if (_quantity > 1) {
-      _quantity--;
-      emit(QuantityDecrease());
-    }
+  int getItemIndex(String elementId) {
+    return _cartList.indexWhere((item) {
+      log("Comparing item.productId: ${item.productId} with element.id: $elementId");
+      return item.productId == elementId;
+    });
   }
 
-  // now we finish quantity functionality and 'll begin at cart functionality
-  //1- first i will loop on cart collection if i didn't find any doc then it's the first doc so i 'll add it
-  //2- if i find docs then i 'll check if this cartModel was stored before then i 'll increase it's quantity
-  //3- else i 'll save it. this step 'll happen by the help of newElementInCart flag
-  Future<void> addToCart(
-      {required String productId, required CartModel cartModel}) async {
+  Future<void> addToCart({required CartModel cartModel}) async {
+    emit(AddToCartLoading());
     var newElementInCart = true;
-    var cartDocs =
-        await _store.collection('baskets').doc(uid).collection('cart').get();
+
+    final cartDocs = await _cartDocs.get();
     try {
-      emit(AddToCartLoading());
       if (cartDocs.docs.isNotEmpty) {
+        log(_cartList.length.toString());
+        log(_cartList[0].toString());
         for (var element in cartDocs.docs) {
-          if (element.id == productId) {
-            element.reference.update({
-              'productQuantity':
-                  element['productQuantity'] + cartModel.productQuantity
-            });
-            newElementInCart = false;
-            emit(AddToCartSuccessWithIncreaseQuantity());
+          log("Checking element with ID: ${element.id}");
+          if (element.id == cartModel.productId) {
+            log("Match found for productId: ${cartModel.productId}");
+            element.reference
+                .update({'productQuantity': FieldValue.increment(1)});
+            var index = getItemIndex(cartModel.productId);
+            log("Index found: $index");
+            if (index != -1) {
+              _cartList[index].productQuantity += 1;
+              newElementInCart = false;
+              emit(AddToCartSuccessWithIncreaseQuantity());
+            } else {
+              log("Error: Product ID not found in _cartList");
+            }
             return;
+          } else {
+            log("No match for element.id: ${element.id}");
           }
         }
         if (newElementInCart) {
-          await addElementInCart(productId, cartModel);
+          await addElementInCart(cartModel);
+          _cartList.add(cartModel);
           emit(AddToCartSuccess());
         }
       } else {
-        await addElementInCart(productId, cartModel);
+        await addElementInCart(cartModel);
+        _cartList.add(cartModel);
         emit(AddToCartSuccess());
       }
     } catch (error) {
@@ -81,28 +87,31 @@ class CartCubit extends Cubit<CartState> {
   }
 
   // just to avoid code redundancy
-  Future<void> addElementInCart(String productId, CartModel cartModel) async {
+  Future<void> addElementInCart(CartModel cartModel) async {
     await _store
-        .collection('baskets')
-        .doc(uid)
-        .collection('cart')
-        .doc(productId)
+        .collection(kUsersCollection)
+        .doc(_auth.currentUser!.uid)
+        .collection(kCartCollection)
+        .doc(cartModel.productId)
         .set(cartModel.toJson());
   }
 
-  // now we finish addToCart functionality and will get all items in this authenticated user cart
-  final List<CartModel> _cartList = [];
-
-  List<CartModel> get getCartList {
-    return _cartList;
-  }
-
-  List<CartModel> getCartItemsFromSnapshot(QuerySnapshot snapshot) {
-    _cartList.clear();
-    for (var element in snapshot.docs) {
-      _cartList.add(CartModel.fromJson(element.data() as Map<String, dynamic>));
+  Future<void> getCartItems() async {
+    emit(GetCartItemsLoading());
+    try {
+      _cartList.clear();
+      final cartDocs = await _cartDocs.get();
+      if (cartDocs.docs.isNotEmpty) {
+        for (var element in cartDocs.docs) {
+          _cartList.add(CartModel.fromJson(element.data()));
+        }
+      }
+      log('///////////////${_cartList.length.toString()}///////////////');
+      log('///////////////${_cartList[0].toString()}///////////////');
+      emit(GetCartItemsSuccess());
+    } catch (error) {
+      emit(GetCartItemsFailure());
     }
-    return _cartList;
   }
 
   // a function to remove or delete item from cart

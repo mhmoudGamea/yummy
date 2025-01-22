@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:yummy/core/utils/api_services.dart';
 import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
+import 'features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 import 'firebase_options.dart';
 
 // app packages
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => OrderCubit()..calculateTotalPrice(),
         ),
+        BlocProvider(create: (context) => CartCubit()..getCartItems()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

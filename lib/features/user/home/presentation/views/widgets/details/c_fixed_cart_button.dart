@@ -18,23 +18,26 @@ class CFixedCartButton extends StatelessWidget {
   final VoidCallback onPress;
 
   const CFixedCartButton(
-      {Key? key,
+      {super.key,
       required this.price,
       required this.bgColor,
       required this.textColor,
       required this.iconColor,
       required this.text,
-      required this.onPress})
-      : super(key: key);
+      required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 70,
+      // height: 70,
       padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
         boxShadow: [
           BoxShadow(
             color: AppColors.greyColor.withOpacity(0.4),

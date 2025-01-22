@@ -4,15 +4,15 @@ import 'package:get_it/get_it.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../../core/error/failure.dart';
+import '../../../../../core/models/user_model.dart';
 import './home_repo.dart';
-import '../data/user_info_model.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final FirebaseAuth _auth = GetIt.I.get<FirebaseAuth>();
   final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
 
   @override
-  Future<Either<Failure, UserInfoModel>> getUserInformation() async {
+  Future<Either<Failure, UserModel>> getUserInformation() async {
     try {
       final userDate =
           await _store.collection('users').doc(_auth.currentUser!.uid).get();
@@ -22,7 +22,7 @@ class HomeRepoImpl implements HomeRepo {
               'Sorry we can\'t find your data, please try to login again.'),
         );
       } else {
-        return right(UserInfoModel.fromJson(userDate.data()!));
+        return right(UserModel.fromJson(userDate.data()!));
       }
     } catch (error) {
       return left(

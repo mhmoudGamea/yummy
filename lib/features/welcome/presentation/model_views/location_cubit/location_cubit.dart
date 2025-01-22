@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,7 +49,6 @@ class LocationCubit extends Cubit<LocationState> {
           icon: Icons.check_circle_outline_rounded,
           msg: 'Success detect your location.',
         );
-        log('succccccccccccccccccccccccccccccccesssssssssssssssssssss');
         GoRouter.of(context).push(MapView.rn, extra: _locationModel);
       },
     );

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 
 import '../../data/data/user_food_model.dart';
 import 'widgets/details/food_details_view_body.dart';
@@ -8,15 +6,12 @@ import 'widgets/details/food_details_view_body.dart';
 class FoodDetailsView extends StatelessWidget {
   static const String rn = '/foodDetailsView';
   final UserFoodModel model;
-  const FoodDetailsView({Key? key, required this.model}) : super(key: key);
+  const FoodDetailsView({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CartCubit(),
-      child: Scaffold(
-        body: FoodDetailsViewBody(userFoodModel: model),
-      ),
+    return Scaffold(
+      body: FoodDetailsViewBody(userFoodModel: model),
     );
   }
 }

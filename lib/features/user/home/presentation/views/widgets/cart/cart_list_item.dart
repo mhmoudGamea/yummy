@@ -17,7 +17,7 @@ class CartListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartData = BlocProvider.of<CartCubit>(context);
     return Dismissible(
-      key: ValueKey(cartModel.cartId),
+      key: ValueKey(cartModel.productId),
       direction: DismissDirection.endToStart,
       background: background(),
       onDismissed: (direction) =>

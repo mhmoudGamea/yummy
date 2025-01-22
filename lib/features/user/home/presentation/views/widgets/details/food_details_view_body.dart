@@ -69,15 +69,13 @@ class FoodDetailsViewBody extends StatelessWidget {
           text: 'Add To Cart',
           onPress: () {
             CartModel cartModel = CartModel(
-                cartId: DateTime.now().microsecondsSinceEpoch.toString(),
                 productId: userFoodModel.id,
                 productImage: userFoodModel.foodImage,
                 productCategory: userFoodModel.category,
                 productName: userFoodModel.name,
                 productPrice: userFoodModel.price,
                 productQuantity: cartData.getQuantity);
-            cartData.addToCart(
-                productId: userFoodModel.id, cartModel: cartModel);
+            cartData.addToCart(cartModel: cartModel);
           },
         ),
       ],

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:geolocator/geolocator.dart';
@@ -30,7 +29,6 @@ class LocationService {
       }
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      log(position.toString());
       LocationModel locationModel = LocationModel(
           latitude: position.latitude, longitude: position.longitude);
       return locationModel;

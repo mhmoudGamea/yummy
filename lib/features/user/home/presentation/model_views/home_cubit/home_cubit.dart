@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../../../core/config/app_colors.dart';
+import '../../../../../../core/models/user_model.dart';
 import '../../../../../../core/utils/helper.dart';
 import '../../../data/data/user_food_model.dart';
-import '../../../data/data/user_info_model.dart';
 import '../../../data/repos/home_repo.dart';
 
 part 'home_state.dart';
@@ -19,10 +19,10 @@ class HomeCubit extends Cubit<HomeState> {
   final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
   final FirebaseAuth _auth = GetIt.I.get<FirebaseAuth>();
 
-  late UserInfoModel _userInfoModel;
+  late UserModel _userModel;
 
-  UserInfoModel get getUserInfoModel {
-    return _userInfoModel;
+  UserModel get getUserModel {
+    return _userModel;
   }
 
   Future<void> getUserData(BuildContext context) async {
@@ -35,8 +35,8 @@ class HomeCubit extends Cubit<HomeState> {
           bgColor: AppColors.secondaryColor,
           icon: Icons.close_rounded,
           msg: failure.errorMessage);
-    }, (userInfoModel) {
-      _userInfoModel = userInfoModel;
+    }, (userModel) {
+      _userModel = userModel;
       emit(UserInfoSuccess());
     });
   }

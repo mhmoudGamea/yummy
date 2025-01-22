@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy/core/models/user_model.dart';
@@ -15,8 +13,6 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(userModel?.administrativeArea ??
-        '= nulllllllllllllllllllllllllllllllllll');
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: Scaffold(

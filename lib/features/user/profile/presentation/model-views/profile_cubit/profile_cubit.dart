@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 
-import '../../../../home/data/data/user_info_model.dart';
+import '../../../../../../core/models/user_model.dart';
 
 part 'profile_state.dart';
 
@@ -65,9 +65,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   // this function will get the user data from firebase firestore
-  UserInfoModel? _userInfoModel;
-  UserInfoModel? get getUserInfoModel {
-    return _userInfoModel;
+  UserModel? _userModel;
+  UserModel? get getUserModel {
+    return _userModel;
   }
 
   Future<void> getUserProfileData() async {
@@ -77,7 +77,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       print('Can\'t find user data');
       emit(GetUserInfoFailure());
     } else {
-      _userInfoModel = UserInfoModel.fromJson(result.data()!);
+      _userModel = UserModel.fromJson(result.data()!);
       emit(GetUserInfoSuccess());
       populating();
     }
@@ -85,9 +85,9 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   // a function to populate text editing controller when user want to edit his information
   void populating() {
-    getNameController.text = _userInfoModel!.name ?? '';
-    getEmailController.text = _userInfoModel!.email ?? '';
-    getPhoneController.text = _userInfoModel!.phoneNumber;
+    getNameController.text = _userModel!.name ?? '';
+    getEmailController.text = _userModel!.email ?? '';
+    getPhoneController.text = _userModel!.phoneNumber;
   }
 
   // this function is used to edit user info by 2 ways
@@ -113,13 +113,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   // a function that will get the new updated userInfoModel directly from firebase after updating
-  UserInfoModel getNewUpdatedData(QuerySnapshot<Object?>? snapshot) {
+  UserModel getNewUpdatedData(QuerySnapshot<Object?>? snapshot) {
     for (var element in snapshot!.docs) {
       if (element.id == uid) {
-        _userInfoModel =
-            UserInfoModel.fromJson(element.data() as Map<String, dynamic>);
+        _userModel = UserModel.fromJson(element.data() as Map<String, dynamic>);
       }
     }
-    return _userInfoModel!;
+    return _userModel!;
   }
 }

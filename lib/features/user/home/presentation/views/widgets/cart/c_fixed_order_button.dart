@@ -22,10 +22,13 @@ class CFixedOrderButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderData = BlocProvider.of<OrderCubit>(context);
     return Container(
-      // height: 70,
       padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
         boxShadow: [
           BoxShadow(
             color: AppColors.greyColor.withOpacity(0.4),

@@ -19,12 +19,11 @@ class QuantityWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: AppColors.greyColor.withOpacity(0.2),
+            color: AppColors.greyColor.withAlpha((0.2 * 255).toInt()),
           ),
           child: Row(
             children: [
-              QuantityButton(
-                  onPress: cartData.decreaseQuantity, icon: Icons.remove),
+              QuantityButton(onPress: () {}, icon: Icons.remove),
               const SizedBox(width: 8),
               BlocBuilder<CartCubit, CartState>(
                 builder: (context, state) {
@@ -37,7 +36,7 @@ class QuantityWidget extends StatelessWidget {
               const SizedBox(width: 8),
               QuantityButton(
                   onPress: () {
-                    cartData.increaseQuantity(context);
+                    // cartData.increaseQuantity(context);
                   },
                   icon: Icons.add),
             ],

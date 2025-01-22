@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
-import 'package:yummy/features/user/home/data/data/user_info_model.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 
+import '../../../../../../core/models/user_model.dart';
 import 'user_profile_account.dart';
 import 'user_profile_image.dart';
 
 class UserProfileInfo extends StatelessWidget {
-  const UserProfileInfo({Key? key}) : super(key: key);
+  const UserProfileInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,13 @@ class UserProfileInfo extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CCircleLoading();
         }
-        UserInfoModel userInfoModel =
-            profileData.getNewUpdatedData(snapshot.data);
+        UserModel userModel = profileData.getNewUpdatedData(snapshot.data);
         return Column(
           children: [
-            UserProfileImage(profileImage: userInfoModel.profileImage),
+            UserProfileImage(profileImage: userModel.profileImage),
             const SizedBox(height: 15),
             UserProfileAccount(
-                name: userInfoModel.name, phone: userInfoModel.phoneNumber),
+                name: userModel.name, phone: userModel.phoneNumber),
           ],
         );
       }),

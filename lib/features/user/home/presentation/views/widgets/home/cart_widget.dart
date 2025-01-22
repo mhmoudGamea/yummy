@@ -1,19 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/core/constants.dart';
-import 'package:yummy/core/utils/styles.dart';
-import 'package:yummy/features/user/home/presentation/views/cart_view.dart';
 
 import '../../../../../../../core/config/app_colors.dart';
+import '../../../../../../../core/utils/styles.dart';
+import '../../../../../../../core/widgets/loading_circle.dart';
+import '../../../model_views/cart_cubit/cart_cubit.dart';
+import '../../cart_view.dart';
 
 class CartWidget extends StatelessWidget {
   const CartWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseFirestore store = GetIt.I.get<FirebaseFirestore>();
+    final cartCubit = BlocProvider.of<CartCubit>(context);
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(CartView.rn);
@@ -32,26 +32,19 @@ class CartWidget extends StatelessWidget {
                 color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: StreamBuilder<QuerySnapshot>(
-                stream: store
-                    .collection('baskets')
-                    .doc(uid)
-                    .collection('cart')
-                    .snapshots(),
-                builder: ((context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text(
-                      '...',
-                      style: Styles.title12.copyWith(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    );
+              child: BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  if (state is GetCartItemsLoading) {
+                    return LoadingCircle();
+                  } else if (state is GetCartItemsFailure) {
+                    Text('fail');
                   }
                   return Text(
-                    snapshot.data!.docs.length.toString(),
+                    cartCubit.getCartList.length.toString(),
                     style: Styles.title12.copyWith(color: Colors.white),
                     textAlign: TextAlign.center,
                   );
-                }),
+                },
               ),
             ),
           )
