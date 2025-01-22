@@ -5,7 +5,7 @@ import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
 import 'package:yummy/features/user/payment/presentation/views/widgets/payment_button.dart';
 
-import '../../../data/models/paypal_model/order_model.dart';
+import '../../../data/paypal_model/order_model.dart';
 import '../paymob_registration_view.dart';
 
 class PaymentViewBody extends StatelessWidget {

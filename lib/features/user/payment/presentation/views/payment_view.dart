@@ -4,7 +4,7 @@ import 'package:yummy/features/user/payment/domain/repos/paymob_repo/paymob_repo
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
 
 import '../../../../../core/utils/helper.dart';
-import '../../data/models/paypal_model/order_model.dart';
+import '../../data/paypal_model/order_model.dart';
 import '../model-views/paypal/paypal_cubit.dart';
 import 'widgets/payment_view_body.dart';
 

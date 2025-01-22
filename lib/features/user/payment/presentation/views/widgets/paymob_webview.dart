@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:yummy/features/user/payment/data/models/paymob_model/paymob_config_model.dart';
+import 'package:yummy/features/user/payment/data/paymob_model/paymob_config_model.dart';
 
 class PaymobWebview extends StatefulWidget {
   static const String rn = '/paymobWebview';

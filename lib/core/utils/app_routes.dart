@@ -18,7 +18,7 @@ import '../../features/user/home/data/data/user_food_model.dart';
 import '../../features/user/home/presentation/views/cart_view.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
-import '../../features/user/payment/data/models/paypal_model/order_model.dart';
+import '../../features/user/payment/data/paypal_model/order_model.dart';
 import '../../features/user/payment/presentation/views/payment_view.dart';
 import '../../features/user/payment/presentation/views/paymob_registration_view.dart';
 import '../../features/user/payment/presentation/views/widgets/paymob_webview.dart';

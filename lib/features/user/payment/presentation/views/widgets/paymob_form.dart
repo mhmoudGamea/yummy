@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/core/widgets/c_expanded_button.dart';
-import 'package:yummy/features/user/payment/data/models/paymob_model/paymob_user_info.dart';
+import 'package:yummy/features/user/payment/data/paymob_model/paymob_user_info.dart';
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
 import 'package:yummy/features/user/payment/presentation/views/widgets/paymob_webview.dart';
 

@@ -1,6 +1,6 @@
 import 'package:yummy/features/user/payment/domain/paypal_entity/order_entity.dart';
 
-import '../../../../home/data/data/cart_model.dart';
+import '../../../home/data/data/cart_model.dart';
 
 enum OrderStatus {
   pending,

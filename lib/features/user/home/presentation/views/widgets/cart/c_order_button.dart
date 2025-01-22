@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
-import 'package:yummy/features/user/payment/data/models/paypal_model/order_model.dart';
+import 'package:yummy/features/user/payment/data/paypal_model/order_model.dart';
 
 import '../../../../../../../core/utils/styles.dart';
 import '../../../../../payment/presentation/views/payment_view.dart';
