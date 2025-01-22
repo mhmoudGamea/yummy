@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:yummy/core/error/failure.dart';
 import 'package:yummy/core/utils/api_services.dart';
-import 'package:yummy/features/user/payment/domain/repos/paymob_repo.dart';
+import 'package:yummy/features/user/payment/domain/repos/paymob_repo/paymob_repo.dart';
 
 import '../../../data/models/paymob_model/paymob_config_model.dart';
 import '../../../data/models/paymob_model/paymob_user_info.dart';

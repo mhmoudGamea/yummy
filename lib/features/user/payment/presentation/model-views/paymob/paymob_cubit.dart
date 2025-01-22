@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yummy/features/user/payment/data/models/paymob_model/paymob_config_model.dart';
 import 'package:yummy/features/user/payment/data/models/paymob_model/paymob_user_info.dart';
-import 'package:yummy/features/user/payment/domain/repos/paymob_repo.dart';
+import 'package:yummy/features/user/payment/domain/repos/paymob_repo/paymob_repo.dart';
 
 part 'paymob_state.dart';
 
