@@ -26,6 +26,7 @@ import '../../features/user/login/presentation/views/login_view.dart';
 import '../../features/welcome/data/models/location_model.dart';
 import '../../features/welcome/presentation/views/map_view.dart';
 import '../../features/welcome/presentation/views/welcome_view.dart';
+import '../models/user_model.dart';
 import '../widgets/tabs_view.dart';
 
 class AppRoutes {
@@ -58,9 +59,8 @@ class AppRoutes {
       ),
       GoRoute(
         path: LoginView.rn,
-        builder: (context, state) => LoginView(
-          locationModel: state.extra as LocationModel,
-        ),
+        builder: (context, state) =>
+            LoginView(userModel: state.extra as UserModel?),
       ),
       GoRoute(
         path: BoardView.rn,

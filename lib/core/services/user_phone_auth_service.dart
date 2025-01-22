@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:yummy/core/utils/helper.dart';
 
-import '../../features/user/login/data/user_model.dart';
+import '../models/user_model.dart';
 import '../../features/user/login/data/user_phone_auth_login_model.dart';
 import '../error/failure.dart';
 

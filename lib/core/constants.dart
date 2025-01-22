@@ -11,3 +11,7 @@ dynamic userPhone;
 const String kUsersCollection = 'users';
 const String kUid = 'uid';
 const String kPhoneNumber = 'phoneNumber';
+const String kLatitude = 'latitude';
+const String kLongitude = 'longitude';
+const String kAddress = 'address';
+const String kAdministrativeArea = 'administrativeArea';

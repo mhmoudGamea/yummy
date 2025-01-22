@@ -70,20 +70,24 @@ class MapViewBody extends StatelessWidget {
                           backgroundColor: AppColors.greyColor,
                           minHeight: 3),
                     TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        log(data.getAdministrativeArea!);
+                      },
                       icon: Image.asset(
                         'assets/images/marker.png',
                         width: 22,
                       ),
                       label: Text(
-                        locating ? 'Locating...' : data.getAdministrativeArea,
+                        locating
+                            ? 'Locating...'
+                            : data.getAdministrativeArea ?? 'Locating...',
                         overflow: TextOverflow.ellipsis,
                         style: Styles.title16,
                         textAlign: TextAlign.center,
                       ),
                     ),
                     Text(
-                      data.getAddress,
+                      data.getAddress ?? '',
                       style:
                           Styles.title14.copyWith(color: AppColors.greyColor2),
                       textAlign: TextAlign.center,

@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/models/user_model.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/core/widgets/tabs_view.dart';
@@ -22,16 +26,8 @@ class LocationCubit extends Cubit<LocationState> {
   final LocationRepo _locationRepo;
   LocationCubit(this._locationRepo) : super(LocationInitial());
 
-  final GetIt _get = GetIt.I;
-
-  LocationModel _locationModel =
-      LocationModel(latitude: 30.0444, longitude: 31.2357);
-
   // late LocationModel _locationModel;
-  LocationModel get getLocationModel {
-    return _locationModel;
-  }
-
+  late LocationModel _locationModel;
   Future<void> getCurrentDeviceLocation(BuildContext context) async {
     emit(LocationLoading());
 
@@ -55,6 +51,7 @@ class LocationCubit extends Cubit<LocationState> {
           icon: Icons.check_circle_outline_rounded,
           msg: 'Success detect your location.',
         );
+        log('succccccccccccccccccccccccccccccccesssssssssssssssssssss');
         GoRouter.of(context).push(MapView.rn, extra: _locationModel);
       },
     );
@@ -70,16 +67,14 @@ class LocationCubit extends Cubit<LocationState> {
 
   // as the name suggest it 'll be called when the camera movement is idle or stopped
   // so it will give you the lat & long you stop at
+  String? _address;
+  String? _administrativeArea;
 
-  // TODO: _address, _administrativeArea shouldn't have initial value, 'll be modified later
-  var _address = 'Egypt Menofia Governorate Shibin el Kom';
-  var _administrativeArea = 'Menofia Governorate';
-
-  String get getAddress {
+  String? get getAddress {
     return _address;
   }
 
-  String get getAdministrativeArea {
+  String? get getAdministrativeArea {
     return _administrativeArea;
   }
 
@@ -96,11 +91,11 @@ class LocationCubit extends Cubit<LocationState> {
   // store lat & long & address in shared preferences
 
   Future<void> saveInShared() async {
-    SharedPreferences prefs = _get.get<SharedPreferences>();
-    prefs.setDouble('latitude', _locationModel.latitude);
-    prefs.setDouble('longitude', _locationModel.longitude);
-    prefs.setString('address', _address);
-    prefs.setString('administrativeArea', _administrativeArea);
+    SharedPreferences prefs = GetIt.instance<SharedPreferences>();
+    prefs.setDouble(kLatitude, _locationModel.latitude);
+    prefs.setDouble(kLongitude, _locationModel.longitude);
+    prefs.setString(kAddress, _address!);
+    prefs.setString(kAdministrativeArea, _administrativeArea!);
   }
 
   // store user lat & long in firestore but if he didn't logging in then
@@ -110,29 +105,40 @@ class LocationCubit extends Cubit<LocationState> {
     // we call saveInShared method to save lat , long and address first
     await saveInShared();
 
-    final user = _get.get<FirebaseAuth>().currentUser;
-    FirestoreServices services = _get.get<FirestoreServices>();
+    final user = GetIt.instance<FirebaseAuth>().currentUser;
+    FirestoreServices services = GetIt.instance<FirestoreServices>();
     if (user != null) {
       // the user is already authenticated[his uid and number are stored] so we just need to update his lat, long & address
       // in reality the user can't be authenticated and goto update his lat , long
-      services.updateUser(coll: 'users', values: {
-        'id': user.uid,
+
+      await services.updateUser(coll: 'users', values: {
+        'uid': user.uid,
         'phoneNumber': user.phoneNumber,
         'latitude': _locationModel.latitude,
         'longitude': _locationModel.longitude,
         'address': _address,
         'administrativeArea': _administrativeArea,
-        'profileImage': null,
-        'name': null,
-        'email': null
+        'profileImage': '',
+        'name': '',
+        'email': ''
       });
       GoRouter.of(context).push(TabsView.rn);
     } else {
       // the user is not authenticated so we need to log him in then
       // while logging we store his lat, long & address
-      _locationModel.address = _address;
-      _locationModel.administrativeArea = _administrativeArea;
-      GoRouter.of(context).push(LoginView.rn, extra: _locationModel);
+      UserModel? userModel = UserModel(
+        uid: '',
+        phoneNumber: '',
+        latitude: _locationModel.latitude,
+        longitude: _locationModel.longitude,
+        address: _address,
+        administrativeArea: _administrativeArea,
+        profileImage: '',
+        name: '',
+        email: '',
+      );
+
+      GoRouter.of(context).push(LoginView.rn, extra: userModel);
     }
   }
 }

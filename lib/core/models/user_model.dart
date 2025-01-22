@@ -12,12 +12,12 @@ class UserModel {
   UserModel({
     required this.uid,
     required this.phoneNumber,
-    this.name,
-    this.email,
     this.latitude,
     this.longitude,
     this.address,
     this.administrativeArea,
+    this.name,
+    this.email,
     this.profileImage,
   });
 
@@ -25,12 +25,12 @@ class UserModel {
     return {
       'uid': uid,
       'phoneNumber': phoneNumber,
-      'name': name ?? '',
-      'email': email ?? '',
       'latitude': latitude ?? 0.0,
       'longitude': longitude ?? 0.0,
       'address': address ?? '',
       'administrativeArea': administrativeArea ?? '',
+      'name': name ?? '',
+      'email': email ?? '',
       'profileImage': profileImage ?? '',
     };
   }

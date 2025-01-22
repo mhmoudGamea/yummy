@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/models/user_model.dart';
 import 'package:yummy/core/utils/cache_helper.dart';
 import 'package:yummy/core/widgets/tabs_view.dart';
 
@@ -21,6 +22,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> signinUserWithPhoneNumber({
     required BuildContext context,
     required String number,
+    UserModel? userModel,
   }) async {
     emit(LoginLoading());
     try {
@@ -47,11 +49,18 @@ class LoginCubit extends Cubit<LoginState> {
             GoRouter.of(context).pushReplacement(TabsView.rn);
             // TODO: create users collection to save user data
             final FirestoreServices services = GetIt.I.get<FirestoreServices>();
+            if (userModel != null) {
+              success.latitude = userModel.latitude;
+              success.longitude = userModel.longitude;
+              success.address = userModel.address;
+              success.administrativeArea = userModel.administrativeArea;
+            }
             await services.createUser(
                 coll: kUsersCollection, values: success.toMap());
             // TODO: save user data in shared preferences
-            CacheHelper.saveData(key: kUid, value: success.uid);
-            CacheHelper.saveData(key: kPhoneNumber, value: success.phoneNumber);
+            await CacheHelper.saveData(key: kUid, value: success.uid);
+            await CacheHelper.saveData(
+                key: kPhoneNumber, value: success.phoneNumber);
           });
         },
         timeout: const Duration(seconds: 60),

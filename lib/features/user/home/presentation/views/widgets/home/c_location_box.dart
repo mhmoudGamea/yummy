@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/utils/cache_helper.dart';
 
 import '../../../../../../../core/config/app_colors.dart';
 import '../../../../../../../core/utils/styles.dart';
@@ -19,10 +19,9 @@ class _CLocationBoxState extends State<CLocationBox> {
   String? adminstrativeArea;
   @override
   void initState() {
-    final prefs = GetIt.I.get<SharedPreferences>();
-    address = prefs.getString('address');
-    adminstrativeArea = prefs.getString('administrativeArea');
     super.initState();
+    address = CacheHelper.getData(kAddress);
+    adminstrativeArea = CacheHelper.getData(kAdministrativeArea);
   }
 
   @override

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/core/models/user_model.dart';
 
 import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../../../../core/widgets/c_expanded_button.dart';
 import '../../../../../../core/widgets/c_text_form_field.dart';
-import '../../../../../welcome/data/models/location_model.dart';
 import '../../model_views/login_cubit/login_cubit.dart';
 
 class LoginViewBody extends StatefulWidget {
-  final LocationModel? locationModel;
-  const LoginViewBody({super.key, this.locationModel});
+  const LoginViewBody({super.key, this.userModel});
+
+  final UserModel? userModel;
 
   @override
   State<LoginViewBody> createState() => _LoginViewBodyState();
@@ -82,6 +83,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                                 .signinUserWithPhoneNumber(
                                   context: context,
                                   number: number,
+                                  userModel: widget.userModel,
                                 )
                                 .then((value) => _controller.clear());
                           },
