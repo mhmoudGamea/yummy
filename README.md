@@ -24,7 +24,7 @@ cd .\server\
 npm install
 ```
 > **_NOTE:_**  I have recently add another payment method by paymob. in order to use it
-> go to assets\config\ and create main.json file like that
+> go to assets\config\ and create paymob.json file like that
 
 <img src='demo%20screenshots/json.png' width='230'/>
 

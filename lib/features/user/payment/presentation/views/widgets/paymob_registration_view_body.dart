@@ -12,10 +12,11 @@ class PaymobRegistrationViewBody extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [AppColors.primaryColor, Colors.white],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0.5, 0.5]),
+          colors: [AppColors.primaryColor, Colors.white],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: [0.5, 0.5],
+        ),
       ),
       child: PaymobForm(total: total),
     );

@@ -23,7 +23,7 @@ class ServiceLocator {
         await SharedPreferences.getInstance());
     _getIt.registerSingleton<ImagePicker>(ImagePicker());
 
-    final configFile = await rootBundle.loadString('assets/config/main.json');
+    final configFile = await rootBundle.loadString('assets/config/paymob.json');
     final configData = json.decode(configFile);
 
     _getIt.registerSingleton<PaymobConfigModel>(

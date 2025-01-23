@@ -8,8 +8,7 @@ import 'widgets/paymob_registration_view_body.dart';
 class PaymobRegistrationView extends StatelessWidget {
   static const String rn = '/paymobRegistration';
   final String total;
-  const PaymobRegistrationView({Key? key, required this.total})
-      : super(key: key);
+  const PaymobRegistrationView({super.key, required this.total});
 
   @override
   Widget build(BuildContext context) {

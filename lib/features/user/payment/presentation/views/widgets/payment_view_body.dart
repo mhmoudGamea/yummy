@@ -3,6 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
+import 'package:yummy/features/user/payment/presentation/model-views/paypal/paypal_cubit.dart';
 import 'package:yummy/features/user/payment/presentation/views/widgets/payment_button.dart';
 
 import '../../../data/paypal_model/order_model.dart';
@@ -14,17 +15,21 @@ class PaymentViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = BlocProvider.of<PaymobCubit>(context);
+    final paymobCubit = BlocProvider.of<PaymobCubit>(context);
+    final paypalCubit = BlocProvider.of<PaypalCubit>(context);
     var loading = false;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
         children: [
+          //paypal
           PaymentButton(
             image: 'assets/images/paypal.png',
             onPress: () {
-              orderModel.orderDate = DateTime.now().toString();
-              // Helper.paymentWithPaypal(context, orderModel);
+              paypalCubit.paymentWithPaypal(
+                context,
+                OrderModel.toOrderEntity(orderModel),
+              );
             },
           ),
           const SizedBox(height: 20),
@@ -49,7 +54,7 @@ class PaymentViewBody extends StatelessWidget {
                   : PaymentButton(
                       image: 'assets/images/paymob.png',
                       onPress: () async {
-                        await data.authenticationRequest();
+                        await paymobCubit.authenticationRequest();
                       },
                     );
             },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy/features/user/payment/domain/repos/paymob_repo/paymob_repo_impl.dart';
+import 'package:yummy/features/user/payment/domain/repos/paypal_repo/paypal_repo_impl.dart';
 import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
 
 import '../../../../../core/utils/helper.dart';
@@ -18,7 +19,7 @@ class PaymentView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => PaymobCubit(PaymobRepoImpl())),
-        BlocProvider(create: (context) => PaypalCubit()),
+        BlocProvider(create: (context) => PaypalCubit(PaypalRepoImpl())),
       ],
       child: Scaffold(
         appBar: Helper.appBar(
