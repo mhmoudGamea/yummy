@@ -8,6 +8,7 @@ import 'package:yummy/features/user/profile/presentation/model-views/profile_cub
 import 'package:yummy/features/user/profile/presentation/views/user_edit_profile_view.dart';
 
 import '../../../../home/presentation/views/widgets/home/c_header_name.dart';
+import '../faq_view.dart';
 import 'more_info_tab.dart';
 import 'user_profile_sub_info.dart';
 import 'user_profile_info.dart';
@@ -60,7 +61,9 @@ class UserProfileViewBody extends StatelessWidget {
                       MoreInfoTab(
                         icon: FontAwesomeIcons.commentDots,
                         text: 'FAQ',
-                        onTap: () {},
+                        onTap: () {
+                          GoRouter.of(context).push(FaqView.rn);
+                        },
                       ),
                       const SizedBox(height: 15),
                       const CHeaderName(name: 'Security'),

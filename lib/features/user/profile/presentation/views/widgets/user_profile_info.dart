@@ -5,7 +5,7 @@ import 'package:yummy/core/widgets/c_circle_loading.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 
 import '../../../../../../core/models/user_model.dart';
-import 'user_profile_account.dart';
+import 'user_number.dart';
 import 'user_profile_image.dart';
 
 class UserProfileInfo extends StatelessWidget {
@@ -25,9 +25,7 @@ class UserProfileInfo extends StatelessWidget {
         return Column(
           children: [
             UserProfileImage(profileImage: userModel.profileImage),
-            const SizedBox(height: 15),
-            UserProfileAccount(
-                name: userModel.name, phone: userModel.phoneNumber),
+            UserNumber(name: userModel.name, phone: userModel.phoneNumber),
           ],
         );
       }),

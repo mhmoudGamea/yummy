@@ -65,6 +65,20 @@ class FirestoreServices {
     }
   }
 
+  // store image in firebase storage
+  Future<Either<Failure, void>> deleteImageFromFirebaseStorage(
+      {required String folder}) async {
+    try {
+      String imageName =
+          '$folder/${_auth.currentUser!.uid}/${DateTime.now().microsecondsSinceEpoch}';
+      _storage.ref(imageName).delete();
+
+      return right(null);
+    } catch (error) {
+      return left(StorageSideError.fromStore('Can\'t delete this image.'));
+    }
+  }
+
   Future<Either<Failure, String>> storeInFirebaseStore(
       {required String coll, required Map<String, dynamic> map}) async {
     try {

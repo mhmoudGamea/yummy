@@ -16,8 +16,9 @@ class UserProfileImage extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(75),
         image: DecorationImage(
-          image: NetworkImage(profileImage ??
-              'https://img.freepik.com/premium-vector/cute-brunette-young-girl_128665-103.jpg?size=626&ext=jpg&uid=R77423435&ga=GA1.1.168172065.1675103739'),
+          image: NetworkImage((profileImage != null && profileImage != '')
+              ? profileImage!
+              : 'https://img.freepik.com/premium-vector/cute-brunette-young-girl_128665-103.jpg?size=626&ext=jpg&uid=R77423435&ga=GA1.1.168172065.1675103739'),
           fit: BoxFit.cover,
         ),
       ),

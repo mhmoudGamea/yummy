@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/core/widgets/c_circle_loading.dart';
-import 'package:yummy/core/widgets/c_error_widget.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 import 'package:yummy/features/user/profile/presentation/views/widgets/edit/image_edit.dart';
 
@@ -86,16 +86,34 @@ class UserEditProfileViewBody extends StatelessWidget {
                             return null;
                           }),
                       const SizedBox(height: 30),
-                      BlocBuilder<ProfileCubit, ProfileState>(
+                      BlocConsumer<ProfileCubit, ProfileState>(
+                        listener: (context, state) {
+                          if (state is UploadProfileImageFailure) {
+                            Helper.showCustomToast(
+                                context: context,
+                                bgColor: AppColors.secondaryColor,
+                                icon: FontAwesomeIcons.triangleExclamation,
+                                msg:
+                                    'Error hapening while uploading your image');
+                          } else if (state is SaveProfileImageFailure) {
+                            Helper.showCustomToast(
+                                context: context,
+                                bgColor: AppColors.secondaryColor,
+                                icon: FontAwesomeIcons.triangleExclamation,
+                                msg: 'Error hapening while Saving your image');
+                          } else if (state is ConfirmEditingFailure) {
+                            Helper.showCustomToast(
+                                context: context,
+                                bgColor: AppColors.secondaryColor,
+                                icon: FontAwesomeIcons.triangleExclamation,
+                                msg: 'Error hapening while updating the data');
+                          } else if (state is ConfirmEditingWithImageSuccess) {
+                            GoRouter.of(context).pop();
+                          }
+                        },
                         builder: (context, state) {
                           if (state is ConfirmEditingLoading) {
                             return const CCircleLoading();
-                          } else if (state is ConfirmEditingFailure) {
-                            return CErrorWidget(
-                              icon: FontAwesomeIcons.circleExclamation,
-                              text: 'Error hapening while updating the data',
-                              bgColor: AppColors.secondaryColor,
-                            );
                           }
                           return CExpandedButton(
                             bgColor: AppColors.primaryColor,
@@ -103,7 +121,6 @@ class UserEditProfileViewBody extends StatelessWidget {
                             textColor: Colors.white,
                             onPress: () {
                               data.confirmEditingUserProfileData();
-                              GoRouter.of(context).pop();
                             },
                           );
                         },

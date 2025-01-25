@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/config/app_colors.dart';
 import '../../../../../../core/utils/styles.dart';
 
-class UserProfileAccount extends StatelessWidget {
+class UserNumber extends StatelessWidget {
   final String? name;
   final String? phone;
-  const UserProfileAccount(
-      {super.key, required this.name, required this.phone});
+  const UserNumber({super.key, required this.name, required this.phone});
 
   @override
   Widget build(BuildContext context) {

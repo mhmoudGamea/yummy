@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy/features/user/profile/presentation/views/faq_view.dart';
 
 // views imports
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
@@ -122,6 +123,10 @@ class AppRoutes {
         builder: (context, state) => PaymobRegistrationView(
           total: state.extra as String,
         ),
+      ),
+      GoRoute(
+        path: FaqView.rn,
+        builder: (context, state) => FaqView(),
       ),
 
       // admin navigation section

@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:yummy/core/utils/helper.dart';
 import 'package:yummy/core/utils/styles.dart';
 import 'package:yummy/features/user/profile/presentation/model-views/profile_cubit/profile_cubit.dart';
 
@@ -16,19 +17,31 @@ class ImageEdit extends StatelessWidget {
     final data = BlocProvider.of<ProfileCubit>(context);
     return GestureDetector(
       onTap: () => data.pickProfileImage(),
-      child: BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-        if (state is PickProfileImage) {
-          return ProfileSelectedImage(media: media, data: data);
-        }
-        return SelectImage(media: media);
-      }),
+      child: BlocConsumer<ProfileCubit, ProfileState>(
+        listener: (context, state) {
+          if (state is ErrorPickingProfileImage) {
+            Helper.showCustomToast(
+                context: context,
+                bgColor: AppColors.secondaryColor,
+                icon: FontAwesomeIcons.triangleExclamation,
+                msg:
+                    'Error Happen while picking your image, please try again.');
+          }
+        },
+        builder: (context, state) {
+          if (state is SuccessfulPickingProfileImage) {
+            return ImageSelected(media: media, data: data);
+          }
+          return ImageNotSelected(media: media);
+        },
+      ),
     );
   }
 }
 
 // this when user doesn't select his profile image yet
-class SelectImage extends StatelessWidget {
-  const SelectImage({
+class ImageNotSelected extends StatelessWidget {
+  const ImageNotSelected({
     super.key,
     required this.media,
   });
@@ -74,8 +87,8 @@ class SelectImage extends StatelessWidget {
 }
 
 // this if user select his profile image
-class ProfileSelectedImage extends StatelessWidget {
-  const ProfileSelectedImage({
+class ImageSelected extends StatelessWidget {
+  const ImageSelected({
     super.key,
     required this.media,
     required this.data,

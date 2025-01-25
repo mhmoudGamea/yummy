@@ -1,23 +1,52 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yummy/core/constants.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
+import 'package:yummy/features/user/profile/domain/repos/profile_repo.dart';
 
 import '../../../../../../core/models/user_model.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit() : super(ProfileInitial());
+  ProfileCubit(this._profileRepo) : super(ProfileInitial());
+
+  final ProfileRepo _profileRepo;
+
+  Future<int> getOrdersNumber() async {
+    var orders = 0;
+    emit(NumberOfOrdersLoading());
+    final result = await _profileRepo.getOrdersNumber();
+    result.fold(
+        (error) => {emit(NumberOfOrdersFailure())},
+        (numberOfOrders) =>
+            {orders = numberOfOrders, emit(NumberOfOrdersSuccess())});
+    return orders;
+  }
+
+  Future<double> getUserSpending() async {
+    var spending = 0.0;
+    emit(UserSpendingLoading());
+    final result = await _profileRepo.getUserSpending();
+    result.fold(
+        (error) => {emit(UserSpendingFailure())},
+        (totalSpending) =>
+            {spending = totalSpending, emit(UserSpendingSuccess())});
+    return spending;
+  }
 
   final ImagePicker _picker = GetIt.I.get<ImagePicker>();
   final FirestoreServices _services = GetIt.I.get<FirestoreServices>();
   final FirebaseFirestore _store = GetIt.I.get<FirebaseFirestore>();
+  final String uid = GetIt.I.get<FirebaseAuth>().currentUser!.uid;
+
   final TextEditingController _nameController = TextEditingController();
   TextEditingController get getNameController {
     return _nameController;
@@ -41,17 +70,25 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> pickProfileImage() async {
-    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    _profileImage = File(image!.path);
-    emit(PickProfileImage());
+    try {
+      XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        _profileImage = File(image.path);
+        emit(SuccessfulPickingProfileImage());
+      }
+    } catch (e) {
+      emit(ErrorPickingProfileImage());
+    }
   }
 
   // this function will upload the profile image of this user to storage
+  // and get it's url
   Future<void> uploadProfileImage() async {
     emit(UploadProfileImageLoading());
     final response = await _services.storeInFirebaseStorage(
         folder: 'users', imageFilePath: getProfileImage!);
     response.fold((fail) {
+      log('error in profilecubit: saveProfileImage: ${fail.errorMessage}');
       emit(UploadProfileImageFailure());
     }, (url) async {
       await saveProfileImage(url: url);
@@ -61,7 +98,18 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   // this function just will update the field [profile image] in this signed in user
   Future<void> saveProfileImage({required String url}) async {
-    await _store.collection('users').doc(uid).update({'profileImage': url});
+    try {
+      emit(SaveProfileImageLoading());
+      await _store
+          .collection(kUsersCollection)
+          .doc(uid)
+          .update({'profileImage': url});
+      emit(SaveProfileImageSuccess());
+    } catch (error) {
+      log('error in profilecubit: saveProfileImage: $error');
+      await _services.deleteImageFromFirebaseStorage(folder: kUsersCollection);
+      emit(SaveProfileImageFailure());
+    }
   }
 
   // this function will get the user data from firebase firestore
@@ -99,12 +147,18 @@ class ProfileCubit extends Cubit<ProfileState> {
       if (getProfileImage != null) {
         // then he choose a photo [first way]
         await uploadProfileImage();
-        await _store.collection('users').doc(uid).update(
-            {'name': getNameController.text, 'email': getEmailController.text});
+        await _store.collection('users').doc(uid).update({
+          'name': getNameController.text,
+          'email': getEmailController.text,
+          'phoneNumber': getPhoneController.text
+        });
         emit(ConfirmEditingWithImageSuccess());
       } else {
-        await _store.collection('users').doc(uid).update(
-            {'name': getNameController.text, 'email': getEmailController.text});
+        await _store.collection('users').doc(uid).update({
+          'name': getNameController.text,
+          'email': getEmailController.text,
+          'phoneNumber': getPhoneController.text
+        });
         emit(ConfirmEditingWithoutImageSuccess());
       }
     } catch (error) {
