@@ -7,7 +7,7 @@ import 'widgets/favourite_view_body.dart';
 
 class FavouriteView extends StatelessWidget {
   static const String rn = '/favouriteView';
-  const FavouriteView({Key? key}) : super(key: key);
+  const FavouriteView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,8 @@ class FavouriteView extends StatelessWidget {
           text: 'Favourite',
           bgColor: Colors.white,
           textColor: Colors.black,
-          leading: false,
+          leading: true,
+          iconColor: Colors.black,
           elevation: 2,
         ),
         body: const SafeArea(

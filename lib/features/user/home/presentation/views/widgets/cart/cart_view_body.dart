@@ -16,13 +16,15 @@ class CartViewBody extends StatelessWidget {
     return Column(children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Helper.hint(
-          text:
-              'Order your cart items from "Order Now" button or swipe to "Remove" item',
-          onPress: () {
-            // favourite.understandFav();
-          },
-        ),
+        child: cartData.getCartList.isEmpty
+            ? Helper.hint(
+                text:
+                    'Your cart is empty, add items to your cart to order them',
+              )
+            : Helper.hint(
+                text:
+                    'Order your cart items from "Order Now" button or swipe to "Remove" item',
+              ),
       ),
       Expanded(
         child: ListView.separated(
@@ -35,10 +37,13 @@ class CartViewBody extends StatelessWidget {
           itemCount: cartData.getCartList.length,
         ),
       ),
-      COrderButtonContainer(
-        bgColor: AppColors.primaryColor,
-        textColor: Colors.white,
-        text: 'Order Now',
+      Visibility(
+        visible: cartData.getCartList.isNotEmpty,
+        child: COrderButtonContainer(
+          bgColor: AppColors.primaryColor,
+          textColor: Colors.white,
+          text: 'Order Now',
+        ),
       ),
     ]);
   }

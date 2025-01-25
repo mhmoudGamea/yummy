@@ -69,7 +69,7 @@ class Helper {
     );
   }
 
-  static Widget hint({required String text, required VoidCallback onPress}) {
+  static Widget hint({required String text}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
       decoration: BoxDecoration(
@@ -86,17 +86,6 @@ class Helper {
               style: Styles.title14,
             ),
           ),
-          const SizedBox(width: 10),
-          IconButton(
-            padding: const EdgeInsets.symmetric(horizontal: 0),
-            constraints: const BoxConstraints(),
-            icon: Icon(
-              FontAwesomeIcons.xmark,
-              color: AppColors.primaryColor,
-              size: 20,
-            ),
-            onPressed: onPress,
-          )
         ],
       ),
     );
