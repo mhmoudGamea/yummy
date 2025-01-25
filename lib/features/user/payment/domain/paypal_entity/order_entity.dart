@@ -7,7 +7,7 @@ class OrderEntity {
   final String orderId;
   final double totalPrice;
   final List<CartModel> cartItems;
-  final AddressEntity addressEntity;
+  AddressEntity? addressEntity;
   OrderStatus orderStatus;
   String orderDate;
 
@@ -15,8 +15,13 @@ class OrderEntity {
     required this.orderId,
     required this.totalPrice,
     required this.cartItems,
-    required this.addressEntity,
+    this.addressEntity,
     this.orderStatus = OrderStatus.pending,
     this.orderDate = '',
   });
+
+  @override
+  String toString() {
+    return 'OrderEntity(orderId: $orderId, totalPrice: $totalPrice, cartItems: $cartItems, addressEntity: ${addressEntity.toString()}, orderStatus: $orderStatus, orderDate: $orderDate)';
+  }
 }

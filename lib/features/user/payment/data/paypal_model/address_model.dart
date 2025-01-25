@@ -1,13 +1,13 @@
 import '../../domain/paypal_entity/address_entity.dart';
 
 class AddressModel {
-  final String name;
-  final String street;
-  final String city;
-  final String state;
-  final String country;
-  final String zip;
-  final String email;
+  String name;
+  String street;
+  String city;
+  String state;
+  String country;
+  String zip;
+  String email;
 
   AddressModel({
     required this.name,
@@ -18,6 +18,18 @@ class AddressModel {
     required this.zip,
     required this.email,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'street': street,
+      'city': city,
+      'state': state,
+      'country': country,
+      'zip': zip,
+      'email': email,
+    };
+  }
 
   factory AddressModel.fromAddressEntity(AddressEntity entity) {
     return AddressModel(
@@ -43,15 +55,15 @@ class AddressModel {
     );
   }
 
-  static AddressEntity toAddressEntity(AddressModel? addressModel) {
+  static AddressEntity toAddressEntity(AddressModel addressModel) {
     return AddressEntity(
-      name: addressModel?.name ?? '',
-      street: addressModel?.street ?? '',
-      city: addressModel?.city ?? '',
-      state: addressModel?.state ?? '',
-      country: addressModel?.country ?? '',
-      zip: addressModel?.zip ?? '',
-      email: addressModel?.email ?? '',
+      name: addressModel.name,
+      street: addressModel.street,
+      city: addressModel.city,
+      state: addressModel.state,
+      country: addressModel.country,
+      zip: addressModel.zip,
+      email: addressModel.email,
     );
   }
 }

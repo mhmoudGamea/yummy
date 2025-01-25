@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +34,7 @@ class CartCubit extends Cubit<CartState> {
   }
 
   int getItemIndex(String elementId) {
-    return _cartList.indexWhere((item) {
-      log("Comparing item.productId: ${item.productId} with element.id: $elementId");
-      return item.productId == elementId;
-    });
+    return _cartList.indexWhere((item) => item.productId == elementId);
   }
 
   Future<void> addToCart({required CartModel cartModel}) async {
@@ -107,10 +102,28 @@ class CartCubit extends Cubit<CartState> {
   Future<void> deleteItemInCart(String productId) async {
     // emit(DeleteItemLoading());
     _store
-        .collection('baskets')
-        .doc(uid)
-        .collection('cart')
+        .collection(kUsersCollection)
+        .doc(_auth.currentUser!.uid)
+        .collection(kCartCollection)
         .doc(productId)
         .delete();
+  }
+
+  Future<void> clearCart() async {
+    emit(ClearCartLoading());
+    try {
+      final docs = await _store
+          .collection(kUsersCollection)
+          .doc(_auth.currentUser!.uid)
+          .collection(kCartCollection)
+          .get();
+      for (var doc in docs.docs) {
+        doc.reference.delete();
+      }
+      _cartList.clear();
+      emit(ClearCartSuccess());
+    } catch (error) {
+      emit(ClearCartFailure());
+    }
   }
 }

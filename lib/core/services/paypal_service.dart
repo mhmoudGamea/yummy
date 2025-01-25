@@ -29,6 +29,7 @@ class PaypalService {
           note: "Contact us for any questions on your order.",
           onSuccess: (Map params) async {
             log("onSuccess: $params");
+            Navigator.pop(context);
             return completer.complete(right(true));
           },
           onError: (error) {
@@ -44,7 +45,6 @@ class PaypalService {
         ),
       ),
     );
-    log('error in payment');
     return completer.future;
   }
 }

@@ -10,6 +10,7 @@ dynamic userPhone;
 // collections name
 const String kUsersCollection = 'users';
 const String kCartCollection = 'cart';
+const String kOrdersCollection = 'orders';
 const String kUid = 'uid';
 const String kPhoneNumber = 'phoneNumber';
 const String kLatitude = 'latitude';

@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/core/widgets/c_circle_loading.dart';
-import 'package:yummy/features/user/payment/presentation/model-views/paymob/paymob_cubit.dart';
-import 'package:yummy/features/user/payment/presentation/model-views/paypal/paypal_cubit.dart';
-import 'package:yummy/features/user/payment/presentation/views/widgets/payment_button.dart';
 
+import '../../../../../../core/widgets/c_circle_loading.dart';
 import '../../../data/paypal_model/order_model.dart';
+import '../../model-views/paymob/paymob_cubit.dart';
 import '../paymob_registration_view.dart';
+import '../paypal_registration_view.dart';
+import 'payment_button.dart';
 
 class PaymentViewBody extends StatelessWidget {
   final OrderModel orderModel;
@@ -16,7 +16,6 @@ class PaymentViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final paymobCubit = BlocProvider.of<PaymobCubit>(context);
-    final paypalCubit = BlocProvider.of<PaypalCubit>(context);
     var loading = false;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -26,10 +25,8 @@ class PaymentViewBody extends StatelessWidget {
           PaymentButton(
             image: 'assets/images/paypal.png',
             onPress: () {
-              paypalCubit.paymentWithPaypal(
-                context,
-                OrderModel.toOrderEntity(orderModel),
-              );
+              GoRouter.of(context)
+                  .push(PaypalRegistrationView.rn, extra: orderModel);
             },
           ),
           const SizedBox(height: 20),

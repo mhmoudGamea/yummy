@@ -33,7 +33,9 @@ class OrderModel {
       orderId: entity.orderId,
       totalPrice: entity.totalPrice,
       cartItems: entity.cartItems,
-      addressModel: AddressModel.fromAddressEntity(entity.addressEntity),
+      addressModel: entity.addressEntity != null
+          ? AddressModel.fromAddressEntity(entity.addressEntity!)
+          : null,
       orderStatus: entity.orderStatus,
       orderDate: entity.orderDate,
     );
@@ -43,11 +45,16 @@ class OrderModel {
     return {
       'orderId': orderId,
       'totalPrice': totalPrice,
-      'cartItems': cartItems,
-      'addressModel': addressModel,
-      'orderStatus': orderStatus,
+      'cartItems': cartItems.map((item) => item.toJson()).toList(),
+      'addressModel': addressModel!.toJson(),
+      'orderStatus': orderStatus.toString().split('.').last,
       'orderDate': orderDate,
     };
+  }
+
+  static OrderStatus getOrderStatusFromString(String value) {
+    return OrderStatus.values
+        .firstWhere((element) => element.toString().split('.').last == value);
   }
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -57,8 +64,10 @@ class OrderModel {
       cartItems: json['cartItems']
           .map<CartModel>((v) => CartModel.fromJson(v))
           .toList(),
-      addressModel: AddressModel.fromJson(json['addressModel']),
-      orderStatus: json['orderStatus'],
+      addressModel: json['addressModel'] != null
+          ? AddressModel.fromJson(json['addressModel'])
+          : null,
+      orderStatus: getOrderStatusFromString(json['orderStatus']),
       orderDate: json['orderDate'],
     );
   }
@@ -68,7 +77,9 @@ class OrderModel {
       orderId: orderModel.orderId,
       totalPrice: orderModel.totalPrice,
       cartItems: orderModel.cartItems,
-      addressEntity: AddressModel.toAddressEntity(orderModel.addressModel),
+      addressEntity: orderModel.addressModel != null
+          ? AddressModel.toAddressEntity(orderModel.addressModel!)
+          : null,
       orderStatus: orderModel.orderStatus,
       orderDate: orderModel.orderDate,
     );

@@ -38,3 +38,10 @@ class DeleteItemLoading extends CartState {}
 class DeleteItemSuccess extends CartState {}
 
 class DeleteItemFailure extends CartState {}
+
+// states to clear cart
+class ClearCartLoading extends CartState {}
+
+class ClearCartSuccess extends CartState {}
+
+class ClearCartFailure extends CartState {}

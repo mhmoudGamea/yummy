@@ -33,7 +33,6 @@ class COrderButton extends StatelessWidget {
             totalPrice:
                 double.parse(orderData.getTotalPrice.toStringAsFixed(2)),
             orderId: id,
-            // addressModel: cartCubit.addressModel,
           );
           GoRouter.of(context).push(PaymentView.rn, extra: orderModel);
         },

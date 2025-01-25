@@ -16,4 +16,9 @@ class AddressEntity {
     required this.zip,
     required this.email,
   });
+
+  @override
+  String toString() {
+    return 'AddressEntity(name: $name, street: $street, city: $city, state: $state, country: $country, zip: $zip, email: $email)';
+  }
 }

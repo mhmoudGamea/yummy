@@ -1,9 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy/features/admin/users_faqs/presentation/views/user_faqs_view.dart';
-import 'package:yummy/features/user/payment/presentation/views/payment_success_view.dart';
-import 'package:yummy/features/user/payment/presentation/views/widgets/paypal_webview.dart';
 
 // views imports
 import '../../features/admin/admin_home/presentation/views/admin_home_view.dart';
@@ -12,6 +9,7 @@ import '../../features/admin/categories/presentation/views/category_view.dart';
 import '../../features/admin/food/presentation/views/food_view.dart';
 import '../../features/admin/login/presentation/views/admin_login_view.dart';
 import '../../features/admin/register/presentation/views/admin_register_view.dart';
+import '../../features/admin/users_faqs/presentation/views/user_faqs_view.dart';
 import '../../features/on_board/presentation/views/board_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/user/home/data/data/user_food_model.dart';
@@ -19,8 +17,10 @@ import '../../features/user/home/presentation/views/cart_view.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
 import '../../features/user/home/presentation/views/home_view.dart';
 import '../../features/user/payment/data/paypal_model/order_model.dart';
+import '../../features/user/payment/presentation/views/payment_success_view.dart';
 import '../../features/user/payment/presentation/views/payment_view.dart';
 import '../../features/user/payment/presentation/views/paymob_registration_view.dart';
+import '../../features/user/payment/presentation/views/paypal_registration_view.dart';
 import '../../features/user/payment/presentation/views/widgets/paymob_webview.dart';
 import '../../features/user/profile/presentation/views/user_edit_profile_view.dart';
 import '../../features/user/login/presentation/views/login_view.dart';
@@ -104,8 +104,9 @@ class AppRoutes {
             PaymentView(orderModel: state.extra as OrderModel),
       ),
       GoRoute(
-        path: PaypalWebview.rn,
-        builder: (context, state) => PaypalWebview(),
+        path: PaypalRegistrationView.rn,
+        builder: (context, state) =>
+            PaypalRegistrationView(orderModel: state.extra as OrderModel),
       ),
       GoRoute(
         path: PaymobWebview.rn,
@@ -113,7 +114,8 @@ class AppRoutes {
       ),
       GoRoute(
         path: PaymentSuccessView.rn,
-        builder: (context, state) => const PaymentSuccessView(),
+        builder: (context, state) =>
+            PaymentSuccessView(orderId: state.extra as String),
       ),
       GoRoute(
         path: PaymobRegistrationView.rn,
