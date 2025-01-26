@@ -8,17 +8,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yummy/core/constants.dart';
+import 'package:yummy/core/services/user_service.dart';
 import 'package:yummy/core/utils/firestore_services.dart';
 import 'package:yummy/features/user/profile/domain/repos/profile_repo.dart';
 
+import '../../../../../../core/error/failure.dart';
 import '../../../../../../core/models/user_model.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit(this._profileRepo) : super(ProfileInitial());
+  ProfileCubit(this._profileRepo, this._userService) : super(ProfileInitial());
 
   final ProfileRepo _profileRepo;
+  final UserService _userService;
 
   Future<int> getOrdersNumber() async {
     var orders = 0;
@@ -119,15 +122,15 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> getUserProfileData() async {
-    emit(GetUserInfoLoading());
-    final result = await _store.collection('users').doc(uid).get();
-    if (result.data() == null) {
-      print('Can\'t find user data');
-      emit(GetUserInfoFailure());
-    } else {
-      _userModel = UserModel.fromJson(result.data()!);
+    try {
+      emit(GetUserInfoLoading());
+      final result = await _userService.getUserProfileData();
+      _userModel = UserModel.fromJson(result);
       emit(GetUserInfoSuccess());
       populating();
+    } on FireStoreSideError catch (error) {
+      log(error.errorMessage);
+      emit(GetUserInfoFailure());
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy/core/services/user_service.dart';
 
 import '../../domain/repos/profile_repo_impl.dart';
 import '../model-views/profile_cubit/profile_cubit.dart';
@@ -12,7 +13,7 @@ class UserProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          ProfileCubit(ProfileRepoImpl())..getUserProfileData(),
+          ProfileCubit(ProfileRepoImpl(), UserService())..getUserProfileData(),
       child: const Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(child: UserProfileViewBody())),

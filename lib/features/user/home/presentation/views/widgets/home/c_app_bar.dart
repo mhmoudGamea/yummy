@@ -1,13 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yummy/features/user/home/presentation/views/widgets/home/cart_widget.dart';
-import 'package:yummy/features/welcome/presentation/views/welcome_view.dart';
 
 import 'c_image_box.dart';
 import 'c_location_box.dart';
+import 'cart_widget.dart';
 
 class CAppBar extends StatelessWidget {
   const CAppBar({super.key});
@@ -20,11 +15,7 @@ class CAppBar extends StatelessWidget {
         children: [
           GestureDetector(
               onTap: () async {
-                // GetIt get = GetIt.I;
-                FirebaseAuth.instance.signOut();
-                GoRouter.of(context).push(WelcomeView.rn);
-                SharedPreferences prefs = GetIt.instance<SharedPreferences>();
-                await prefs.clear();
+                Scaffold.of(context).openDrawer();
               },
               child: const CImageBox(imagePath: 'assets/images/splash.png')),
           const SizedBox(width: 10),

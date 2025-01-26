@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yummy/core/services/user_service.dart';
 import 'package:yummy/features/user/payment/data/paymob_model/paymob_config_model.dart';
 
 import 'firestore_services.dart';
@@ -22,6 +23,7 @@ class ServiceLocator {
     _getIt.registerSingleton<SharedPreferences>(
         await SharedPreferences.getInstance());
     _getIt.registerSingleton<ImagePicker>(ImagePicker());
+    _getIt.registerSingleton<UserService>(UserService());
 
     final configFile = await rootBundle.loadString('assets/config/paymob.json');
     final configData = json.decode(configFile);
