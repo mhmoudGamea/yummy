@@ -34,7 +34,7 @@ class CCategories extends StatelessWidget {
             );
           }
           return SizedBox(
-            height: 60,
+            height: 65,
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,

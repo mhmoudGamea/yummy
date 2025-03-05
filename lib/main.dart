@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:yummy/core/utils/api_services.dart';
 import 'package:yummy/features/user/home/presentation/model_views/order_cubit/order_cubit.dart';
 import 'package:yummy/features/user/payment/data/paypal_model/config_model.dart';
+import 'features/user/chat/data/models/agora_config_model.dart';
 import 'features/user/home/presentation/model_views/cart_cubit/cart_cubit.dart';
 import 'firebase_options.dart';
 
@@ -25,6 +26,7 @@ void main() async {
   await ConfigModel.init();
   ApiServices.initializeDio();
   AppRoutes.getAuthState();
+  AgoraConfigModel.agoraConfigModelInitialize();
   runApp(const MyApp());
 }
 

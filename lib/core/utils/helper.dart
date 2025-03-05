@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy/features/user/chat/presentation/views/chat_video_view.dart';
 
 import '../config/app_colors.dart';
 import '../widgets/c_text_button.dart';
@@ -41,6 +43,7 @@ class Helper {
     required String text,
     required Color bgColor,
     bool leading = true,
+    bool trailing = false,
     double elevation = 0,
     Color textColor = Colors.white,
     Color iconColor = Colors.white,
@@ -50,6 +53,11 @@ class Helper {
       backgroundColor: bgColor,
       elevation: elevation,
       shadowColor: AppColors.greyColor,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: AppColors.black,
+        statusBarIconBrightness: Brightness.light,
+      ),
+      surfaceTintColor: Colors.transparent,
       leading: leading
           ? TextButton(
               onPressed: () {
@@ -66,6 +74,20 @@ class Helper {
         text,
         style: Styles.title15.copyWith(color: textColor, letterSpacing: 0.4),
       ),
+      actions: trailing
+          ? [
+              TextButton(
+                onPressed: () {
+                  GoRouter.of(context).push(ChatVideoView.rn);
+                },
+                child: Icon(
+                  FontAwesomeIcons.video,
+                  color: iconColor,
+                  size: 20,
+                ),
+              ),
+            ]
+          : null,
     );
   }
 

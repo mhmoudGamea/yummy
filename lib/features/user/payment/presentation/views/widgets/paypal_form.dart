@@ -176,11 +176,20 @@ class _PaymobFormState extends State<PaypalForm> {
                           child: CCircleLoading(
                         color: AppColors.primaryColor3,
                       ));
+                    } else if (state is AddressSuccess) {
+                      return CExpandedButton(
+                        text: 'Address Detected',
+                        bgColor: AppColors.primaryColor3,
+                        textColor: Colors.white,
+                        onPress: () {
+                          context.read<PaypalCubit>().getUserAddress();
+                        },
+                      );
                     }
                     return CExpandedButton(
-                      text: state is AddressSuccess
-                          ? 'Address Detected'
-                          : 'Failed to Detect Address',
+                      text: state is AddressError
+                          ? 'Failed to Detect Address'
+                          : 'Detect My Address',
                       bgColor: AppColors.primaryColor3,
                       textColor: Colors.white,
                       onPress: () {
@@ -193,6 +202,7 @@ class _PaymobFormState extends State<PaypalForm> {
                 BlocConsumer<PaypalCubit, PaypalState>(
                   listener: (context, state) {
                     if (state is PaypalSuccess) {
+                      FocusManager.instance.primaryFocus!.unfocus();
                       GoRouter.of(context).push(PaymentSuccessView.rn,
                           extra: widget.orderModel.orderId);
                       cartCubit.clearCart();
@@ -212,6 +222,7 @@ class _PaymobFormState extends State<PaypalForm> {
                         onPress: () {
                           if (_form.currentState!.validate()) {
                             _form.currentState!.save();
+
                             widget.orderModel.orderDate =
                                 DateTime.now().toString();
                             widget.orderModel.addressModel = AddressModel(

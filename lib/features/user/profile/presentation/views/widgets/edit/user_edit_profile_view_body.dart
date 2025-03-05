@@ -107,7 +107,7 @@ class UserEditProfileViewBody extends StatelessWidget {
                                 bgColor: AppColors.secondaryColor,
                                 icon: FontAwesomeIcons.triangleExclamation,
                                 msg: 'Error hapening while updating the data');
-                          } else if (state is ConfirmEditingWithImageSuccess) {
+                          } else if (state is ConfirmEditingSuccess) {
                             GoRouter.of(context).pop();
                           }
                         },

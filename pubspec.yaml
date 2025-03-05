@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  agora_rtc_engine: ^6.5.0
+  permission_handler: ^11.3.1
   cached_network_image: ^3.2.3
   carousel_slider: ^5.0.0
   cloud_firestore: ^5.6.1
@@ -58,6 +60,7 @@ dependencies:
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.1.0
   webview_flutter: ^4.10.0
+  skeletonizer: ^1.4.2
 
 dev_dependencies:
   flutter_lints: ^5.0.0

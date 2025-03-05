@@ -17,9 +17,9 @@ class DrawerCubit extends Cubit<DrawerState> {
   DrawerCubit(this._userService) : super(DrawerInitial());
   final UserService _userService;
 
-  late UserModel _userModel;
+  UserModel? _userModel;
 
-  UserModel get getUserModel {
+  UserModel? get getUserModel {
     return _userModel;
   }
 

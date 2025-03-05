@@ -3,8 +3,8 @@ class UserModel {
   final String phoneNumber;
   String? name;
   String? email;
-  double? latitude;
-  double? longitude;
+  num? latitude;
+  num? longitude;
   String? address;
   String? administrativeArea;
   String? profileImage;

@@ -148,22 +148,22 @@ class ProfileCubit extends Cubit<ProfileState> {
     try {
       emit(ConfirmEditingLoading());
       if (getProfileImage != null) {
-        // then he choose a photo [first way]
+        // if user want to update his profile image
         await uploadProfileImage();
         await _store.collection('users').doc(uid).update({
           'name': getNameController.text,
           'email': getEmailController.text,
           'phoneNumber': getPhoneController.text
         });
-        emit(ConfirmEditingWithImageSuccess());
       } else {
+        // if user want to update his info without updating his profile image
         await _store.collection('users').doc(uid).update({
           'name': getNameController.text,
           'email': getEmailController.text,
           'phoneNumber': getPhoneController.text
         });
-        emit(ConfirmEditingWithoutImageSuccess());
       }
+      emit(ConfirmEditingSuccess());
     } catch (error) {
       emit(ConfirmEditingFailure());
     }

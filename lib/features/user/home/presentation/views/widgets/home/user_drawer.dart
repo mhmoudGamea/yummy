@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../chat/presentation/views/chat_contacts_view.dart';
 import '../../../model_views/drawer_cubit.dart/drawer_cubit.dart';
 import 'user_drawer_data.dart';
 import 'user_drawer_item.dart';
@@ -29,7 +31,9 @@ class UserDrawer extends StatelessWidget {
               UserDrawerItem(
                 title: 'Chat',
                 icon: FontAwesomeIcons.commentDots,
-                onTapped: () {},
+                onTapped: () {
+                  GoRouter.of(context).push(ChatContactsView.rn);
+                },
               ),
               Spacer(),
               UserDrawerItem(

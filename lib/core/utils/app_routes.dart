@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy/features/user/chat/presentation/views/chat_audio_view.dart';
 import 'package:yummy/features/user/profile/presentation/views/faq_view.dart';
 
 // views imports
@@ -13,6 +14,9 @@ import '../../features/admin/register/presentation/views/admin_register_view.dar
 import '../../features/admin/users_faqs/presentation/views/user_faqs_view.dart';
 import '../../features/on_board/presentation/views/board_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
+import '../../features/user/chat/presentation/views/chat_contacts_view.dart';
+import '../../features/user/chat/presentation/views/chat_video_view.dart';
+import '../../features/user/chat/presentation/views/chat_view.dart';
 import '../../features/user/home/data/data/user_food_model.dart';
 import '../../features/user/home/presentation/views/cart_view.dart';
 import '../../features/user/home/presentation/views/food_details_view.dart';
@@ -127,6 +131,23 @@ class AppRoutes {
       GoRoute(
         path: FaqView.rn,
         builder: (context, state) => FaqView(),
+      ),
+      GoRoute(
+        path: ChatContactsView.rn,
+        builder: (context, state) => ChatContactsView(),
+      ),
+      GoRoute(
+        path: ChatView.rn,
+        builder: (context, state) =>
+            ChatView(receiverUid: state.extra as String),
+      ),
+      GoRoute(
+        path: ChatAudioView.rn,
+        builder: (context, state) => ChatAudioView(uid: state.extra as String),
+      ),
+      GoRoute(
+        path: ChatVideoView.rn,
+        builder: (context, state) => ChatVideoView(),
       ),
 
       // admin navigation section

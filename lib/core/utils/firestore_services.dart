@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dartz/dartz.dart';
-import '../../features/admin/register/data/models/login_model.dart';
 import '../error/failure.dart';
 
 class FirestoreServices {
@@ -36,16 +35,16 @@ class FirestoreServices {
     }
   }
 
-  Future<Either<Failure, LoginModel>> getUser(
+  Future<Map<String, dynamic>> getUser(
       {required String coll, required String uid}) async {
     try {
       final result = await _store.collection(coll).doc(uid).get();
       if (result.data() == null) {
-        return left(const FireStoreSideError('Can\'t find user'));
+        throw FireStoreSideError('Can\'t find user');
       }
-      return right(LoginModel.fromJson(result.data()!));
+      return result.data()!;
     } catch (error) {
-      return left(const FireStoreSideError('Failed to get user'));
+      throw FireStoreSideError('Failed to get user');
     }
   }
 
